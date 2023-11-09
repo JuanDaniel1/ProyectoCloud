@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/screens/chatbot/chatbotscreen.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
+import 'package:shop_app/screens/informacion/pag_informacion.dart';
 import 'package:shop_app/screens/profile/profile_screen.dart';
 import 'package:shop_app/screens/sign_in/components/sign_form.dart';
 import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
@@ -58,7 +59,9 @@ class CustomBottomNavBar extends StatelessWidget {
               ),
               IconButton(
                 icon: Icon(Icons.info, color: Colors.grey[400]),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, Informacion.routeName);
+                },
               ),
               IconButton(
                 icon: SvgPicture.asset("assets/icons/Chat bubble Icon.svg"),
