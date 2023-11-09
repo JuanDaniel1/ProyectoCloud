@@ -89,7 +89,7 @@ class _ProductCardState extends State<ProductCard> {
                   Text(
                     "Precio: \$${widget.product.price}",
                     style: TextStyle(
-                      fontSize: 25,
+                      fontSize: 22,
                       fontWeight: FontWeight.w600,
                       color: kPrimaryColor,
                     ),

@@ -218,7 +218,7 @@ class _SignFormState extends State<SignForm> {
     // ignore: use_build_context_synchronously
     if (user.username == "admin@gmail.com") {
       Navigator.pushNamed(
-          context, LoginSuccessScreen.routeName
+          context, Menu.routeName
       );
     } else if (user.username == "comerc@gmail.com") {
       Navigator.pushNamed(context, HomeScreen.routeName);
