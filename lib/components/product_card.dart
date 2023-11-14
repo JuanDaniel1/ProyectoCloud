@@ -4,6 +4,7 @@ import 'package:shop_app/models/Product.dart';
 import 'package:shop_app/screens/details/details_screen.dart';
 
 import '../constants.dart';
+import '../models/producto_model.dart';
 import '../size_config.dart';
 
 class ProductCard extends StatefulWidget {
@@ -11,10 +12,10 @@ class ProductCard extends StatefulWidget {
     Key? key,
     this.width = 60,
     this.aspectRetio = 1.02,
-    required this.product,
+    this.model,
   }) : super(key: key);
   final double width, aspectRetio;
-  final Product product;
+  final ProductoModel? model;
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -53,7 +54,7 @@ class _ProductCardState extends State<ProductCard> {
                 onTap: () => Navigator.pushNamed(
                   context,
                   DetailsScreen.routeName,
-                  arguments: ProductDetailsArguments(product: widget.product),
+                  arguments: ProductDetailsArguments(model: widget.model),
                 ),
                 child: SingleChildScrollView(
                   child: Column(
@@ -68,8 +69,8 @@ class _ProductCardState extends State<ProductCard> {
                               borderRadius: BorderRadius.circular(15),
                             ),
                             child: Hero(
-                              tag: widget.product.id.toString(),
-                              child: Image.asset(widget.product.images[0]),
+                              tag: widget.model!.id.toString(),
+                              child: Image.network(widget.model!.productoImage!, fit: BoxFit.cover,),
                             ),
                           ),
 
@@ -79,7 +80,7 @@ class _ProductCardState extends State<ProductCard> {
               ),
               const SizedBox(height: 10),
               Text(
-                widget.product.title,
+                widget.model!.productoName!,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                 maxLines: 2,
               ),
@@ -87,7 +88,7 @@ class _ProductCardState extends State<ProductCard> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Precio: \$${widget.product.price}",
+                    "Precio: \$${widget.model!.productoPrice}",
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w600,

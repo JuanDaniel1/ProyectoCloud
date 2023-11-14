@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/models/Product.dart';
 
 import '../../../constants.dart';
+import '../../../models/producto_model.dart';
 import '../../../size_config.dart';
 
 // Seccion de descripcion de productos en detalles
@@ -10,11 +11,11 @@ import '../../../size_config.dart';
 class ProductDescription extends StatelessWidget {
   const ProductDescription({
     Key? key,
-    required this.product,
+    required this.model,
     this.pressOnSeeMore,
   }) : super(key: key);
 
-  final Product product;
+  final ProductoModel? model;
   final GestureTapCallback? pressOnSeeMore;
 
   @override
@@ -26,7 +27,7 @@ class ProductDescription extends StatelessWidget {
           padding:
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
           child: Text(
-            product.title,
+            model!.productoName!,
             style: Theme.of(context).textTheme.headline6,
           ),
         ),
@@ -36,7 +37,7 @@ class ProductDescription extends StatelessWidget {
             right: getProportionateScreenWidth(64),
           ),
           child: Text(
-            product.description,
+            model!.productoDescription!,
             maxLines: 3,
           ),
         ),
@@ -47,7 +48,7 @@ class ProductDescription extends StatelessWidget {
           ),
           child: GestureDetector(
             onTap: () {},
-            child: Row(
+            child: const Row(
               children: [
                 Text(
                   "See More Detail",

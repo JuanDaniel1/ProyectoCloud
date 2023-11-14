@@ -109,6 +109,38 @@ class _ProductoAddEditState extends State<ProductoAddEdit> {
             child: FormHelper.inputFieldWidget(
               context,
               //const Icon(Icons.person),
+              "ProductoDescription",
+              "Producto Description",
+                  (onValidateVal) {
+                if (onValidateVal == null || onValidateVal.isEmpty) {
+                  return 'La descripcion no puede ser vacio o null ';
+                }
+
+                return null;
+              },
+                  (onSavedVal) => {
+                //productModel!.productoPrice = int.parse(onSavedVal),
+                productoModel!.productoDescription = onSavedVal,
+              },
+              initialValue: productoModel!.productoDescription ?? "",
+              obscureText: false,
+              borderFocusColor: Colors.black,
+              borderColor: Colors.black,
+              textColor: Colors.black,
+              hintColor: Colors.black.withOpacity(0.7),
+              borderRadius: 10,
+              showPrefixIcon: false,
+              suffixIcon: const Icon(Icons.description),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              bottom: 10,
+              top: 10,
+            ),
+            child: FormHelper.inputFieldWidget(
+              context,
+              //const Icon(Icons.person),
               "ProductoPrice",
               "Producto Price",
                   (onValidateVal) {

@@ -3,11 +3,12 @@ import 'package:shop_app/components/rounded_icon_btn.dart';
 import 'package:shop_app/models/Product.dart';
 
 import '../../../constants.dart';
+import '../../../models/producto_model.dart';
 import '../../../size_config.dart';
 
 class ColorDots extends StatefulWidget {
-  const ColorDots({super.key, required this.product});
-  final Product product;
+  const ColorDots({super.key, required this.model});
+  final ProductoModel? model;
   @override
   State<ColorDots> createState() => _ColorDotsState();
 
