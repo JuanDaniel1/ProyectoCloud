@@ -86,6 +86,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/service.json
+    - assets/carrusel/
   fonts:
     - family: Muli
       fonts:

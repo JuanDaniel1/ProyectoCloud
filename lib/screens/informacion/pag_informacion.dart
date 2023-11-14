@@ -1,4 +1,4 @@
-import 'dart:html';
+
 
 import 'package:flutter/material.dart';
 import 'package:shop_app/components/coustom_bottom_nav_bar.dart';
@@ -8,8 +8,9 @@ import 'package:shop_app/screens/informacion/pag2_informacion.dart';
 
 
 class Informacion extends StatelessWidget {
-  Informacion({super.key, required this.title});
   static String routeName = "/informacion";
+  Informacion({super.key, required this.title});
+
 
    final String title;
   @override

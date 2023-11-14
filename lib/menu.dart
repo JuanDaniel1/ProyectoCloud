@@ -36,14 +36,14 @@ class MenuState extends State<Menu> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Empresa XYZ"),
+        title: const Text("SENA"),
       ),
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
             const UserAccountsDrawerHeader(
-              accountName: Text('Empresa XYZ'),
-              accountEmail: Text('contaco@xyz.com'),
+              accountName: Text('SENA'),
+              accountEmail: Text('contaco@misena.edu.co'),
               currentAccountPicture: CircleAvatar(
                 backgroundImage: AssetImage('assets/images/logoxyz.png'),
               ),

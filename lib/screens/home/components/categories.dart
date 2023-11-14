@@ -50,54 +50,72 @@ class Categories extends StatelessWidget {
     );
   }
 }
-
-class CategoryCard extends StatelessWidget {
-  const CategoryCard({
-    Key? key,
-    required this.icon,
+class CategoryCard extends StatefulWidget {
+  const CategoryCard({super.key,required this.icon,
     required this.text,
-    required this.press,
-  }) : super(key: key);
-
+    required this.press,});
   final String? icon, text;
   final GestureTapCallback press;
 
+
+  @override
+  State<CategoryCard> createState() => _CategoryCardState();
+}
+
+class _CategoryCardState extends State<CategoryCard> {
+  late bool borde = false;
   @override
   Widget build(BuildContext context) {
-    return Padding(padding: EdgeInsets.only(right: 20),
-    child: GestureDetector(
-        onTap: press,
 
-        child: Container(
-          width: 500,
-          height: 300,
-          child: Stack(
-            children: [
-              Image.asset(icon!, fit: BoxFit.cover, width: double.infinity),
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: Container(
-                  color: Colors.black.withOpacity(0.7),
-                  padding: EdgeInsets.all(8),
-                  child: Text(
-                    text!,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+    return Padding(padding: EdgeInsets.only(right: 20),
+      child: GestureDetector(
+          onTap: (){
+            setState(() {
+              borde = !borde;
+            });
+          },
+
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+                border: borde
+                    ? Border.all(
+                  color: Colors.green, // Color del borde cuando mostrarBorde es true
+                  width: 5.0, // Ancho del borde
+                )
+                    : null,
+
+            ),
+            width: 500,
+            height: 300,
+            child: Stack(
+              children: [
+                Image.asset(widget.icon!, fit: BoxFit.cover, width: double.infinity),
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    color: Colors.black.withOpacity(0.7),
+                    padding: EdgeInsets.all(8),
+                    child: Text(
+                      widget.text!,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                    textAlign: TextAlign.center,
                   ),
                 ),
-              ),
-            ],
-          ),
-        )
+              ],
+            ),
+          )
 
-    ),);
+      ),);
 
   }
- 
 }
+
+

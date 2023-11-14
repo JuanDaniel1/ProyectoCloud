@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants.dart';
+
 // ignore: camel_case_types
 class inicio extends StatelessWidget {
   const inicio({super.key});
@@ -14,9 +16,9 @@ class inicio extends StatelessWidget {
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(10),
                 child: const Text(
-                  'EMPRESA XYZ',
+                  'SENA',
                   style: TextStyle(
-                      color: Colors.blue,
+                      color: kPrimaryColor,
                       fontWeight: FontWeight.w500,
                       fontSize: 30),
                 )),

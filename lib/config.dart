@@ -1,5 +1,5 @@
 class Config {
-  static const String appName = "Empresa XYZ";
+  static const String appName = "SENA";
   static const String apiURL = '192.168.1.59';
   static const productosAPI = "api/producto";
   static const clientesAPI = "api/cliente";

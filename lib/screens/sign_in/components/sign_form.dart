@@ -5,8 +5,10 @@ import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/form_error.dart';
 import 'package:shop_app/helper/keyboard.dart';
 import 'package:shop_app/menu.dart';
+import 'package:shop_app/screens/comercializadora/comercializadora.dart';
 import 'package:shop_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
+import 'package:shop_app/screens/jefe/jefe.dart';
 import 'package:shop_app/screens/login_success/login_success_screen.dart';
 import 'package:shop_app/screens/profile/profile_screen.dart';
 import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
@@ -221,6 +223,10 @@ class _SignFormState extends State<SignForm> {
           context, Menu.routeName
       );
     } else if (user.username == "comerc@gmail.com") {
+      Navigator.pushNamed(context, Comercializadora.routeName);
+    } else if (user.username == "jefe@gmail.com") {
+      Navigator.pushNamed(context, jefe.routeName);
+    } else {
       Navigator.pushNamed(context, HomeScreen.routeName);
     }
   }

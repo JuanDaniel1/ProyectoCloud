@@ -4,10 +4,13 @@ import 'package:shop_app/pages/producto/producto_add_edit.dart';
 import 'package:shop_app/pages/producto/producto_list.dart';
 import 'package:shop_app/screens/cart/cart_screen.dart';
 import 'package:shop_app/screens/chatbot/chatbotscreen.dart';
+import 'package:shop_app/screens/comercializadora/comercializadora.dart';
 import 'package:shop_app/screens/complete_profile/complete_profile_screen.dart';
 import 'package:shop_app/screens/details/details_screen.dart';
 import 'package:shop_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
+import 'package:shop_app/screens/informacion/pag2_informacion.dart';
+import 'package:shop_app/screens/jefe/jefe.dart';
 import 'package:shop_app/screens/login_success/login_success_screen.dart';
 import 'package:shop_app/screens/otp/otp_screen.dart';
 import 'package:shop_app/screens/profile/profile_screen.dart';
@@ -35,7 +38,11 @@ final Map<String, WidgetBuilder> routes = {
   ChatBot.routeName: (context) => ChatBot(title: "ChatBot"),
   Menu.routeName: (context) => Menu(),
   ProductoAddEdit.routeName: (context) => ProductoAddEdit(),
-  ProductosList.routeName: (context) => ProductosList()
+  ProductosList.routeName: (context) => ProductosList(),
+  Carousel.routeName: (context) => Carousel(),
+  jefe.routeName: (context) => jefe(),
+  Comercializadora.routeName: (context) => Comercializadora()
+
 };
 
 
