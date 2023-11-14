@@ -14,3 +14,6 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+#En conostruccion 
+*Actualmente estamos trabajando en una seccion de categorias bonita, limpia y sencilla con una seccion, en construccion tenemos la barra buscadora que nos agrada informar que esta casi completada, aqui unos previas de como se verian estos nuevos avances*
