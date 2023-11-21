@@ -47,6 +47,8 @@ dependencies:
   email_validator: ^2.1.17
   url_launcher: ^6.2.1
   font_awesome_flutter: ^10.6.0
+  lottie:
+  animated_splash_screen:
 
 dev_dependencies:
   flutter_test:

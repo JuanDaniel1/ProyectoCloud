@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/routes.dart';
+import 'package:shop_app/screens/MySplashPage.dart';
 import 'package:shop_app/screens/splash/splash_screen.dart';
 import 'package:shop_app/theme.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'The Flutter Way - Template',
       theme: AppTheme.lightTheme(context),
-      initialRoute: SplashScreen.routeName,
+      initialRoute: MySplash.routeName,
       routes: routes,
     );
   }

@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/screens/home/components/section_title.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import '../../../models/categoria_model.dart';
 import '../../../size_config.dart';
 
 // Seccion de categorias
@@ -53,7 +54,8 @@ class Categories extends StatelessWidget {
 class CategoryCard extends StatefulWidget {
   const CategoryCard({super.key,required this.icon,
     required this.text,
-    required this.press,});
+    required this.press, this.model,});
+  final CategoriaModel? model;
   final String? icon, text;
   final GestureTapCallback press;
 

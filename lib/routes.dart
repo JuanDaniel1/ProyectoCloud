@@ -1,7 +1,11 @@
 import 'package:flutter/widgets.dart';
 import 'package:shop_app/main.dart';
+import 'package:shop_app/pages/categoria/categoria_add_edit.dart';
+import 'package:shop_app/pages/categoria/categoria_item.dart';
+import 'package:shop_app/pages/categoria/categoria_list.dart';
 import 'package:shop_app/pages/producto/producto_add_edit.dart';
 import 'package:shop_app/pages/producto/producto_list.dart';
+import 'package:shop_app/screens/MySplashPage.dart';
 import 'package:shop_app/screens/cart/cart_screen.dart';
 import 'package:shop_app/screens/chatbot/chatbotscreen.dart';
 import 'package:shop_app/screens/comercializadora/comercializadora.dart';
@@ -41,7 +45,10 @@ final Map<String, WidgetBuilder> routes = {
   ProductosList.routeName: (context) => ProductosList(),
   Carousel.routeName: (context) => Carousel(),
   jefe.routeName: (context) => jefe(),
-  Comercializadora.routeName: (context) => Comercializadora()
+  Comercializadora.routeName: (context) => Comercializadora(),
+  MySplash.routeName: (context) => MySplash(),
+  CategoriaAddEdit.routeName: (context) => CategoriaAddEdit(),
+  CategoriasList.routeName: (context) => CategoriasList()
 
 };
 
