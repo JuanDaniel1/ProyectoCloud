@@ -23,8 +23,9 @@ class CategoriaModel {
   factory CategoriaModel.fromJson(Map<String, dynamic> json) {
     return CategoriaModel(
         id: json['id'] as int,
+        categoriaName: json['nombre'],
         categoriaImage: json['imagen'],
-        categoriaName: json['nombre']
+
 
     );
   }
@@ -32,8 +33,8 @@ class CategoriaModel {
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
     data['id'] = id;
-    data['imagen'] = categoriaImage;
     data['nombre'] = categoriaName;
+    data['imagen'] = categoriaImage;
     return data;
   }
 }

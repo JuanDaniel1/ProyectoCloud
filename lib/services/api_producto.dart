@@ -54,7 +54,7 @@ class APIProducto {
     request.fields["productoName"] = model.productoName!;
     request.fields["productoDescription"] = model.productoDescription!;
     request.fields["productoPrice"] =
-        double.parse(model.productoPrice!).toStringAsFixed(2);
+        double.parse(model.productoPrice!).toString();
     //request.headers["Authorization"] = "token 6c7e9f684c68adf057008ce8a0f4dc11fae3c0d4";
 
     if (model.productoImage != null && isFileSelected) {
