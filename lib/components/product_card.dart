@@ -38,7 +38,7 @@ class _ProductCardState extends State<ProductCard> {
                 boxShadow: [
                   BoxShadow(
                       color: Colors.green,
-                      spreadRadius: 4,
+                      spreadRadius: 0,
                       blurRadius: 10,
                       offset: Offset(0,6)
                   ),

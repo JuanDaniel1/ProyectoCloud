@@ -43,12 +43,12 @@ class _CarouselState extends State<Carousel> {
             style: TextStyle(fontSize: 40, color: Colors.black),),
           SizedBox(height: 2,),
           Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(35),
             child: Text("Es una estrategia institucional para contribuir en la permanencia y el desempeño exitoso de los aprendices de la entidad en su proceso formativo con enfoque territorial y diferencial.Dirigido a "
                 "todos los aprendices matriculados en formación titulada, para todos los niveles, en sus diferentes modalidades: presencial, virtual o a distanciaContribuir al desarrollo humano integral de los aprendices, "
                 "por medio de la definición de lineamientos que se implementen de manera articulada y gradual con el proceso de formación profesional integral.",
               textAlign: TextAlign.center,
-              style: TextStyle( fontSize:15, color: Colors.black),
+              style: TextStyle( fontSize:17, color: Colors.black),
             ),
           ),
           SizedBox(height: 30,),

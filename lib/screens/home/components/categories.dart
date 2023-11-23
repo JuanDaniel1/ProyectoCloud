@@ -2,21 +2,44 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/screens/home/components/section_title.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:shop_app/services/api_categoria.dart';
+import 'package:snippet_coder_utils/ProgressHUD.dart';
 
+import '../../../models/categoria_model.dart';
 import '../../../size_config.dart';
 
 // Seccion de categorias
 
 class Categories extends StatelessWidget {
-  @override
+  bool isApiCallProcess = false;
 
+  @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> categories = [
-      {"icon": "assets/images/frutasyverduras.jpg", "text": "Frutas y Verduras"},
-      {"icon": "assets/images/flores.jpg", "text": "Flores"},
-      {"icon": "assets/images/huevos.jpg", "text": "Huevos"},
-      {"icon": "assets/images/lacteos.jpg", "text": "Lacteos"},
-    ];
+    return ProgressHUD(
+      inAsyncCall: isApiCallProcess,
+      opacity: 0.3,
+      key: UniqueKey(),
+      child: loadCategorias(),
+    );
+  }
+  Widget loadCategorias() {
+    return FutureBuilder(
+      future: APIcategoria.getcategorias(),
+      builder: (
+          BuildContext context,
+          AsyncSnapshot<List<CategoriaModel>?> model,
+          ) {
+        if (model.hasData) {
+          return categoriaList(model.data, context);
+        }
+
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+  }
+  Widget categoriaList(categorias, BuildContext context) {
     return Column(
       children: [
         Padding(
@@ -35,12 +58,15 @@ class Categories extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: List.generate(
-                categories.length,
-                    (index) => CategoryCard(
-                  icon: categories[index]["icon"],
-                  text: categories[index]["text"],
-                  press: () {},
-                ),
+                categorias.length,
+                    (index) => categorias[index] != null
+                        ? CategoryCard(
+                      model: categorias[index],
+                      press: () {
+                        // Acciones cuando se presiona la tarjeta de categoría
+                      },
+                    )
+                        : Container(),
               ),
             ),
           ),
@@ -51,10 +77,9 @@ class Categories extends StatelessWidget {
   }
 }
 class CategoryCard extends StatefulWidget {
-  const CategoryCard({super.key,required this.icon,
-    required this.text,
-    required this.press,});
-  final String? icon, text;
+  const CategoryCard({super.key,
+    required this.press, this.model,});
+  final CategoriaModel? model;
   final GestureTapCallback press;
 
 
@@ -90,7 +115,8 @@ class _CategoryCardState extends State<CategoryCard> {
             height: 300,
             child: Stack(
               children: [
-                Image.asset(widget.icon!, fit: BoxFit.cover, width: double.infinity),
+                Hero(tag: widget.model!.id!, child: Image.network(widget.model!.categoriaImage!, fit: BoxFit.cover, width: double.infinity),),
+
                 Positioned(
                   bottom: 0,
                   left: 0,
@@ -99,7 +125,7 @@ class _CategoryCardState extends State<CategoryCard> {
                     color: Colors.black.withOpacity(0.7),
                     padding: EdgeInsets.all(8),
                     child: Text(
-                      widget.text!,
+                      widget.model!.categoriaName!,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,

@@ -40,7 +40,7 @@ class _ColorDotsState extends State<ColorDots> {
       EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
       child: Row(
         children: [
-          Text("Precio: 2500", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+          Text(widget.model!.productoPrice.toString(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
           Spacer(),
           RoundedIconBtn(
             icon: Icons.remove,

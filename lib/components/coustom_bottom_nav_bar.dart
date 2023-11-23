@@ -26,11 +26,11 @@ class CustomBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color inActiveIconColor = Color(0xFFB6B6B6);
+    final Color inActiveIconColor = Colors.black87;
     return Container(
       padding: EdgeInsets.symmetric(vertical: 14),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.green[200],
         boxShadow: [
           BoxShadow(
             offset: Offset(0, -15),
@@ -52,16 +52,16 @@ class CustomBottomNavBar extends StatelessWidget {
                 icon: SvgPicture.asset(
                   "assets/icons/Shop Icon.svg",
                   color: MenuState.home == selectedMenu
-                      ? kPrimaryColor
-                      : inActiveIconColor,
+                      ? inActiveIconColor
+                      : kPrimaryColor,
                 ),
                 onPressed: () =>
                     Navigator.pushNamed(context, HomeScreen.routeName),
               ),
               IconButton(
                 icon: SvgPicture.asset("assets/icons/info.svg", color: MenuState.favourite == selectedMenu
-                    ? kPrimaryColor
-                    : inActiveIconColor,),
+                    ? inActiveIconColor
+                    : kPrimaryColor,),
 
                 onPressed: () {
                   Navigator.pushNamed(context, Carousel.routeName);
@@ -69,7 +69,9 @@ class CustomBottomNavBar extends StatelessWidget {
                 },
               ),
               IconButton(
-                icon: SvgPicture.asset("assets/icons/Chat bubble Icon.svg"),
+                icon: SvgPicture.asset("assets/icons/Chat bubble Icon.svg", color: MenuState.message == selectedMenu
+                    ? inActiveIconColor
+                    : kPrimaryColor,),
                 onPressed: () {
                   Navigator.pushNamed(context, ChatBot.routeName);
                 },
@@ -78,8 +80,8 @@ class CustomBottomNavBar extends StatelessWidget {
                 icon: SvgPicture.asset(
                   "assets/icons/User Icon.svg",
                   color: MenuState.profile == selectedMenu
-                      ? kPrimaryColor
-                      : inActiveIconColor,
+                      ? inActiveIconColor
+                      : kPrimaryColor,
                 ),
                 onPressed: () {
 

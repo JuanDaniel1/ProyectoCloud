@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:shop_app/pages/categoria/categoria_list.dart';
 import 'package:shop_app/pages/cliente/cliente_list.dart';
 import 'package:shop_app/pages/producto/producto_list.dart';
 import 'package:shop_app/pages/inicio/inicio.dart';
@@ -19,7 +20,7 @@ class MenuState extends State<Menu> {
       case 0:
         return const inicio();
       case 1:
-        return const ClientesList();
+        return const CategoriasList();
       case 2:
         return const ProductosList();
     }
@@ -58,7 +59,7 @@ class MenuState extends State<Menu> {
             ),
             const Divider(),
             ListTile(
-              title: const Text('Clientes'),
+              title: const Text('Categorias'),
               leading: const Icon(Icons.person),
               selected: (1 == _selectDrawerItem),
               onTap: () {

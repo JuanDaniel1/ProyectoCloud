@@ -1,19 +1,19 @@
 import 'package:flutter/foundation.dart';
-import 'package:shop_app/models/producto_model.dart';
+import 'package:shop_app/models/categoria_model.dart';
 import 'package:http/http.dart' as http;
 import '../../config.dart';
 
-class APIProducto {
+class APIcategoria {
   static var client = http.Client();
 
-  static Future<List<ProductoModel>?> getProductos() async {
+  static Future<List<CategoriaModel>?> getcategorias() async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
     };
 
     var url = Uri.http(
       Config.apiURL,
-      Config.productosAPI,
+      Config.categoriasAPI,
     );
 
     var response = await client.get(
@@ -22,7 +22,7 @@ class APIProducto {
     );
 
     if (response.statusCode == 200) {
-      return compute(productosFromJson, response.body);
+      return compute(categoriasFromJson, response.body);
 
       //return true;
     } else {
@@ -30,12 +30,12 @@ class APIProducto {
     }
   }
 
-  static Future<bool> saveProducto(
-      ProductoModel model,
+  static Future<bool> savecategoria(
+      CategoriaModel model,
       bool isEditMode,
       bool isFileSelected,
       ) async {
-    var productURL = "${Config.productosAPI}/";
+    var productURL = "${Config.categoriasAPI}/";
 
     if (isEditMode) {
       productURL = "$productURL${model.id.toString()}/";
@@ -51,22 +51,17 @@ class APIProducto {
     };*/
 
     var request = http.MultipartRequest(requestMethod, url);
-    request.fields["productoName"] = model.productoName!;
-    request.fields["productoDescription"] = model.productoDescription!;
-    request.fields["productoPrice"] =
-        double.parse(model.productoPrice!).toString();
+    request.fields["nombre"] = model.categoriaName!;
     //request.headers["Authorization"] = "token 6c7e9f684c68adf057008ce8a0f4dc11fae3c0d4";
 
-    if (model.productoImage != null && isFileSelected) {
+    if (model.categoriaImage != null && isFileSelected) {
       http.MultipartFile multipartFile = await http.MultipartFile.fromPath(
-        'productoImage',
-        model.productoImage!,
+        'imagen',
+        model.categoriaImage!,
       );
 
       request.files.add(multipartFile);
     }
-    request.fields["productoCantidad"] = int.parse(model.productoCant!).toString();
-    request.fields["productoCategoria"] = model.selected.join(',');
 
     var response = await request.send();
 
@@ -77,12 +72,12 @@ class APIProducto {
     }
   }
 
-  static Future<bool> deleteProducto(productId) async {
+  static Future<bool> deletecategoria(productId) async {
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
     };
 
-    var url = Uri.http(Config.apiURL, "${Config.productosAPI}/$productId/");
+    var url = Uri.http(Config.apiURL, "${Config.categoriasAPI}/$productId/");
 
     var response = await client.delete(
       url,
