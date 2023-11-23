@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/models/Product.dart';
 
+import '../../../Delegates/search_categories_delegate.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
@@ -10,6 +12,7 @@ class SearchField extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,18 +21,15 @@ class SearchField extends StatelessWidget {
         color: kSecondaryColor.withOpacity(0.1),
         borderRadius: BorderRadius.circular(15),
       ),
-      child: TextField(
-        onChanged: (value) => print(value),
-        decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(
-                horizontal: getProportionateScreenWidth(20),
-                vertical: getProportionateScreenWidth(9)),
-            border: InputBorder.none,
-            focusedBorder: InputBorder.none,
-            enabledBorder: InputBorder.none,
-            hintText: "Buscar",
-            prefixIcon: Icon(Icons.search)),
-      ),
+      child: IconButton(onPressed: (){
+
+        showSearch(
+            context: context,
+            delegate: SearchCategoriesDelegate(demoProducts),
+        );
+      },
+          icon: const Icon(Icons.search)
+      )
     );
   }
 }
