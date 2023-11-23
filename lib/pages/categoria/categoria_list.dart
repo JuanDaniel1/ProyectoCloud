@@ -59,6 +59,7 @@ class _CategoriasListState extends State<CategoriasList> {
     );
   }
 
+
   Widget categoriaList(categorias) {
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(vertical: 20),

@@ -1,19 +1,25 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'package:shop_app/models/categoria_model.dart';
 import 'package:shop_app/models/producto_model.dart';
 import 'package:shop_app/pages/producto/producto_list.dart';
+import 'package:shop_app/services/api_categoria.dart';
 import 'package:shop_app/services/api_producto.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
 import 'package:snippet_coder_utils/hex_color.dart';
+import 'package:http/http.dart' as http;
 
 import '../../config.dart';
 
 class ProductoAddEdit extends StatefulWidget {
   static String routeName = "/crud";
-  const ProductoAddEdit({Key? key}) : super(key: key);
+
+  ProductoAddEdit({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -21,12 +27,19 @@ class ProductoAddEdit extends StatefulWidget {
 }
 
 class _ProductoAddEditState extends State<ProductoAddEdit> {
+  List<CategoriaModel>category = [];
   ProductoModel? productoModel;
+  CategoriaModel? categoriaModel;
   static final GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
   bool isApiCallProcess = false;
   List<Object> images = [];
   bool isEditMode = false;
   bool isImageSelected = false;
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,12 +54,26 @@ class _ProductoAddEditState extends State<ProductoAddEdit> {
           inAsyncCall: isApiCallProcess,
           opacity: 0.3,
           key: UniqueKey(),
-          child: Form(
-            key: globalFormKey,
-            child: productoForm(),
-          ),
+          child: loadProductos()
         ),
       ),
+    );
+  }
+  Widget loadProductos() {
+    return FutureBuilder(
+      future: APIcategoria.getcategorias(),
+      builder: (
+          BuildContext context,
+          AsyncSnapshot<List<CategoriaModel>?> model,
+          ) {
+        if (model.hasData) {
+          return Form(key: globalFormKey, child: productoForm(model.data),);
+        }
+
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
     );
   }
 
@@ -65,7 +92,7 @@ class _ProductoAddEditState extends State<ProductoAddEdit> {
     });
   }
 
-  Widget productoForm() {
+  Widget productoForm(category) {
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -170,6 +197,64 @@ class _ProductoAddEditState extends State<ProductoAddEdit> {
               suffixIcon: const Icon(Icons.monetization_on),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.only(
+              bottom: 10,
+              top: 10,
+            ),
+            child: FormHelper.inputFieldWidget(
+              context,
+              //const Icon(Icons.person),
+              "ProductoCantidad",
+              "Producto Cantidad",
+                  (onValidateVal) {
+                if (onValidateVal == null || onValidateVal.isEmpty) {
+                  return 'La cantidad no puede ser vacio o null ';
+                }
+
+                return null;
+              },
+                  (onSavedVal) => {
+                //productModel!.productoPrice = int.parse(onSavedVal),
+                productoModel!.productoCant = onSavedVal,
+              },
+              initialValue: productoModel!.productoCant == null ? "" : productoModel!.productoPrice.toString(),
+              obscureText: false,
+              borderFocusColor: Colors.black,
+              borderColor: Colors.black,
+              textColor: Colors.black,
+              hintColor: Colors.black.withOpacity(0.7),
+              borderRadius: 10,
+              showPrefixIcon: false,
+              suffixIcon: const Icon(Icons.description),
+            ),
+          ),
+
+          SizedBox(height: 10,),
+          Container(
+            width: 300,
+            decoration: const BoxDecoration(boxShadow: []),
+            child: MultiSelectDialogField(
+              buttonText: Text('Categorias'
+              ),
+
+              searchable: true,
+              confirmText: Text("Ok",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green, fontSize: 30),),
+              cancelText: Text("Cancel",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green, fontSize: 30),),
+              items: category
+                  .map((e) => MultiSelectItem(e.id.toString(), e.categoriaName!))
+                  .toList().cast<MultiSelectItem<dynamic>>(),
+              initialValue: productoModel!.selected,
+              onConfirm: (values) {
+                setState(() {
+                  productoModel!.selected = values.cast();
+                });
+              },
+              title: Text('Categories'),
+            ),
+
+          ),
+
           picPicker(
             isImageSelected,
             productoModel!.productoImage ?? "",
@@ -191,7 +276,7 @@ class _ProductoAddEditState extends State<ProductoAddEdit> {
               "Save",
                   () {
                 if (validateAndSave()) {
-                  //print(productoModel!.toJson());
+                  print(productoModel!.toJson());
 
                   setState(() {
                     isApiCallProcess = true;

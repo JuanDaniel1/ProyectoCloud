@@ -65,6 +65,8 @@ class APIProducto {
 
       request.files.add(multipartFile);
     }
+    request.fields["productoCantidad"] = int.parse(model.productoCant!).toString();
+    request.fields["productoCategoria"] = model.selected.join(',');
 
     var response = await request.send();
 

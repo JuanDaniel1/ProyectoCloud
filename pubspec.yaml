@@ -49,6 +49,7 @@ dependencies:
   font_awesome_flutter: ^10.6.0
   lottie:
   animated_splash_screen:
+  multi_select_flutter: ^4.1.3
 
 dev_dependencies:
   flutter_test:
