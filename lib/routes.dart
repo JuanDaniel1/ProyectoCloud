@@ -1,4 +1,7 @@
+
+
 import 'package:flutter/widgets.dart';
+import 'package:shop_app/escaner/ui/home_view.dart';
 import 'package:shop_app/main.dart';
 import 'package:shop_app/pages/categoria/categoria_add_edit.dart';
 import 'package:shop_app/pages/categoria/categoria_item.dart';
@@ -48,7 +51,8 @@ final Map<String, WidgetBuilder> routes = {
   Comercializadora.routeName: (context) => Comercializadora(),
   MySplash.routeName: (context) => MySplash(),
   CategoriaAddEdit.routeName: (context) => CategoriaAddEdit(),
-  CategoriasList.routeName: (context) => CategoriasList()
+  CategoriasList.routeName: (context) => CategoriasList(),
+  HomeView.routeName: (context) => HomeView()
 
 };
 

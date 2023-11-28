@@ -57,16 +57,9 @@ class APIProducto {
         double.parse(model.productoPrice!).toString();
     //request.headers["Authorization"] = "token 6c7e9f684c68adf057008ce8a0f4dc11fae3c0d4";
 
-    if (model.productoImage != null && isFileSelected) {
-      http.MultipartFile multipartFile = await http.MultipartFile.fromPath(
-        'productoImage',
-        model.productoImage!,
-      );
-
-      request.files.add(multipartFile);
-    }
+    request.fields["productoImage"] = model.productoImage!;
     request.fields["productoCantidad"] = int.parse(model.productoCant!).toString();
-    request.fields["productoCategoria"] = model.selected.join(',');
+    request.fields["productoCategoria"] = model.selected.join(",");
 
     var response = await request.send();
 

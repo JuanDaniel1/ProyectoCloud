@@ -1,0 +1,2 @@
+0 Control Xbox
+1 Celular

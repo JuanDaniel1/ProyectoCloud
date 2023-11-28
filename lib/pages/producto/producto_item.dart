@@ -1,18 +1,30 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:shop_app/pages/producto/producto_add_edit.dart';
+import 'package:shop_app/services/api_popular.dart';
+import '../../models/popular_model.dart';
 import '../../models/producto_model.dart';
-
-class ProductoItem extends StatelessWidget {
+class ProductoItem extends StatefulWidget {
   final ProductoModel? model;
+  final PopularModel? popular;
   final Function? onDelete;
 
-  // ignore: prefer_const_constructors_in_immutables
-  ProductoItem({
-    Key? key,
-    this.model,
-    this.onDelete,
-  }) : super(key: key);
+  const ProductoItem({super.key, this.model, this.onDelete, this.popular});
 
+  @override
+  State<ProductoItem> createState() => _ProductoItemState();
+}
+
+class _ProductoItemState extends State<ProductoItem> {
+  // Resto del código de la clase
+
+
+
+  // Resto del código de la clase
+
+
+  bool _isHovering = false;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -28,23 +40,58 @@ class ProductoItem extends StatelessWidget {
       ),
     );
   }
-
   Widget cartItem(context) {
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          width: 120,
-          alignment: Alignment.center,
-          margin: const EdgeInsets.all(10),
-          child: Image.network(
-            (model!.productoImage == null || model!.productoImage == "")
-                ? "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
-                : model!.productoImage!,
-            height: 70,
-            fit: BoxFit.scaleDown,
-          ),
+            width: 120,
+            alignment: Alignment.center,
+            margin: const EdgeInsets.all(10),
+            child:  Stack(
+              children: [
+                Image.network(
+                  widget.model!.productoImage!,
+                  height: 70,
+                  fit: BoxFit.scaleDown,
+                ),
+
+                  Positioned.fill(
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _isHovering =! _isHovering;
+                            if(_isHovering) {
+                              save();
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                      'Se agrego "${widget.model!.productoName
+                                      }" a productos populares'),
+                                  duration: Duration(seconds: 2),
+                                ),
+                              );
+                            } else {
+                              APIPopular.deleteProducto(widget.popular!.id);
+                            }
+                          }
+                            );
+                        },
+                        icon: Icon(
+                          Icons.star,
+                          size: 24,
+                          color: _isHovering ? Colors.yellow : Colors.grey,
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            )
+
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -53,7 +100,7 @@ class ProductoItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                model!.productoName!,
+                widget.model!.productoName!,
                 style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -63,7 +110,7 @@ class ProductoItem extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                "${model!.productoPrice}",
+                "${widget.model!.productoPrice}",
                 style: const TextStyle(color: Colors.black),
               ),
               const SizedBox(
@@ -80,7 +127,7 @@ class ProductoItem extends StatelessWidget {
                         Navigator.of(context).pushNamed(
                           ProductoAddEdit.routeName,
                           arguments: {
-                            'model': model,
+                            'model': widget.model,
                           },
                         );
                       },
@@ -91,7 +138,7 @@ class ProductoItem extends StatelessWidget {
                         color: Colors.red,
                       ),
                       onTap: () {
-                        onDelete!(model);
+                        widget.onDelete!(widget.model);
                       },
                     ),
                   ],
@@ -103,4 +150,32 @@ class ProductoItem extends StatelessWidget {
       ],
     );
   }
+    void save() {
+    // URL del servidor al que deseas enviar la solicitud POST
+    String url = "http://192.168.1.59/api/producto-popular/";
+
+    // Preparar los datos del producto a enviar en la solicitud POST
+    Map<String, dynamic> data = {
+    "productoName": widget.model!.productoName,
+    "productoImagen": widget.model!.productoImage,
+    "productoPrice": widget.model!.productoPrice,
+    };
+
+    // Realizar la solicitud POST al servidor
+    http.post(
+    Uri.parse(url),
+    body: json.encode(data),
+    headers: {"Content-Type": "application/json"},
+    ).then((response) {
+    // Si la solicitud fue exitosa, puedes mostrar un mensaje al usuario
+    if (response.statusCode == 200) {
+    print("Producto guardado correctamente");
+    } else {
+    print("Error al guardar el producto");
+    }
+    }).catchError((error) {
+    print("Error al realizar la solicitud POST: $error");
+    });
+    }
 }
+

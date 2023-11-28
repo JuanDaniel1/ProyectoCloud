@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/escaner/ui/home_view.dart';
 import 'package:shop_app/screens/cart/cart_screen.dart';
 
 import '../../../size_config.dart';
 import 'icon_btn_with_counter.dart';
 import 'search_field.dart';
+import 'dart:io' show Platform;
 
 // Encabezado de aplicacion donde se ubica buscador, escaner, carro de compras
 
@@ -27,7 +29,12 @@ class HomeHeader extends StatelessWidget {
           ),
           IconBtnWithCounter(
             svgSrc: "assets/icons/Camera Icon.svg",
-            press: () {},
+            press: () { if (Platform.isAndroid || Platform.isIOS) {
+              Navigator.pushNamed(context, HomeView.routeName);
+    } else {
+
+            }
+            }
           ),
         ],
       ),

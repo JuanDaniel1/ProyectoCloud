@@ -14,7 +14,7 @@ class ProductoModel {
   late String? productoPrice;
   late String? productoImage;
   late String? productoCant;
-  List<dynamic>selected=[];
+  late List<dynamic>selected=[];
 
   ProductoModel({
     this.id,

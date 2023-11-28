@@ -98,6 +98,31 @@ class _ProductoAddEditState extends State<ProductoAddEdit> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          SizedBox(height: 10,),
+          Container(
+            width: 300,
+            decoration: const BoxDecoration(boxShadow: []),
+            child: MultiSelectDialogField(
+              buttonText: Text('Categorias'
+              ),
+
+              searchable: true,
+              confirmText: Text("Ok",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green, fontSize: 30),),
+              cancelText: Text("Cancel",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green, fontSize: 30),),
+              items: category
+                  .map((e) => MultiSelectItem(e.id.toString(), e.categoriaName!))
+                  .toList().cast<MultiSelectItem<dynamic>>(),
+              initialValue: productoModel!.selected,
+              onConfirm: (values) {
+                setState(() {
+                  productoModel!.selected = values.cast();
+                });
+              },
+              title: Text('Categories'),
+            ),
+
+          ),
+          SizedBox(height: 15,),
           Padding(
             padding: const EdgeInsets.only(
               bottom: 10,
@@ -218,7 +243,39 @@ class _ProductoAddEditState extends State<ProductoAddEdit> {
                 //productModel!.productoPrice = int.parse(onSavedVal),
                 productoModel!.productoCant = onSavedVal,
               },
-              initialValue: productoModel!.productoCant == null ? "" : productoModel!.productoPrice.toString(),
+              initialValue: productoModel!.productoCant == null ? "" : productoModel!.productoCant.toString(),
+              obscureText: false,
+              borderFocusColor: Colors.black,
+              borderColor: Colors.black,
+              textColor: Colors.black,
+              hintColor: Colors.black.withOpacity(0.7),
+              borderRadius: 10,
+              showPrefixIcon: false,
+              suffixIcon: const Icon(Icons.description),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              bottom: 10,
+              top: 10,
+            ),
+            child: FormHelper.inputFieldWidget(
+              context,
+              //const Icon(Icons.person),
+              "ProductoURL",
+              "Producto URL",
+                  (onValidateVal) {
+                if (onValidateVal == null || onValidateVal.isEmpty) {
+                  return 'URL no puede ser vacio o null ';
+                }
+
+                return null;
+              },
+                  (onSavedVal) => {
+                //productModel!.productoPrice = int.parse(onSavedVal),
+                productoModel!.productoImage = onSavedVal,
+              },
+              initialValue: productoModel!.productoImage ?? "",
               obscureText: false,
               borderFocusColor: Colors.black,
               borderColor: Colors.black,
@@ -230,44 +287,7 @@ class _ProductoAddEditState extends State<ProductoAddEdit> {
             ),
           ),
 
-          SizedBox(height: 10,),
-          Container(
-            width: 300,
-            decoration: const BoxDecoration(boxShadow: []),
-            child: MultiSelectDialogField(
-              buttonText: Text('Categorias'
-              ),
 
-              searchable: true,
-              confirmText: Text("Ok",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green, fontSize: 30),),
-              cancelText: Text("Cancel",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green, fontSize: 30),),
-              items: category
-                  .map((e) => MultiSelectItem(e.id.toString(), e.categoriaName!))
-                  .toList().cast<MultiSelectItem<dynamic>>(),
-              initialValue: productoModel!.selected,
-              onConfirm: (values) {
-                setState(() {
-                  productoModel!.selected = values.cast();
-                });
-              },
-              title: Text('Categories'),
-            ),
-
-          ),
-
-          picPicker(
-            isImageSelected,
-            productoModel!.productoImage ?? "",
-                (file) => {
-              setState(
-                    () {
-                  //model.productPic = file.path;
-                  productoModel!.productoImage = file.path;
-                  isImageSelected = true;
-                },
-              )
-            },
-          ),
           const SizedBox(
             height: 20,
           ),
@@ -348,8 +368,8 @@ class _ProductoAddEditState extends State<ProductoAddEdit> {
       children: [
         fileName.isNotEmpty
             ? isImageSelected
-            ? Image.file(
-          File(fileName),
+            ? Image.network(
+          fileName,
           width: 300,
           height: 300,
         )

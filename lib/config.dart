@@ -6,4 +6,5 @@ class Config {
   static const loginAPI = "api/login/";
   static const obtenertokenAPI = "api/api-token-auth/";
   static const categoriasAPI = "api/categoria";
+  static const popularAPI = "api/producto-popular";
 }
