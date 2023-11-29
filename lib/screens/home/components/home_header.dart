@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/escaner/ui/home_view.dart';
 import 'package:shop_app/screens/cart/cart_screen.dart';
 
 import '../../../size_config.dart';
@@ -29,11 +28,8 @@ class HomeHeader extends StatelessWidget {
           ),
           IconBtnWithCounter(
             svgSrc: "assets/icons/Camera Icon.svg",
-            press: () { if (Platform.isAndroid || Platform.isIOS) {
-              Navigator.pushNamed(context, HomeView.routeName);
-    } else {
+            press: () {
 
-            }
             }
           ),
         ],
