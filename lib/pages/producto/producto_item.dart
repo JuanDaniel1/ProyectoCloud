@@ -152,7 +152,7 @@ class _ProductoItemState extends State<ProductoItem> {
   }
     void save() {
     // URL del servidor al que deseas enviar la solicitud POST
-    String url = "http://192.168.1.59/api/producto-popular/";
+    String url = "http://192.168.1.56/api/producto-popular/";
 
     // Preparar los datos del producto a enviar en la solicitud POST
     Map<String, dynamic> data = {

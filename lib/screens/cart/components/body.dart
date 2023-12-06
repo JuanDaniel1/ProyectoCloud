@@ -1,33 +1,74 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shop_app/models/Cart.dart';
-
+import 'package:http/http.dart' as http;
+import '../../../constants.dart';
+import '../../../models/carrito_model.dart';
 import '../../../size_config.dart';
 import 'cart_card.dart';
 
 // Cuerpo de carrito de compras
 
+
+
 class Body extends StatefulWidget {
+  const Body ({super.key, this.cart});
+  final CarritoModel? cart;
   @override
   _BodyState createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
+
+
+  Future<List<CarritoModel>> fetchPopularData() async {
+    final response = await http.get(Uri.parse('http://192.168.1.59/api/carrito/'));
+
+    if (response.statusCode == 200) {
+      // Decodificar la respuesta JSON y mapear a instancias de PopularModel
+      List<CarritoModel> carritoList = carritoFromJson(response.body);
+      return carritoList;
+    } else {
+      // Si la solicitud no fue exitosa, lanzar una excepción o manejar el error según sea necesario
+      throw Exception('Error al cargar datos desde la API');
+    }
+  }
+  void main() async {
+    try {
+      List<CarritoModel> popularData = await fetchPopularData();
+      // Hacer algo con los datos obtenidos, por ejemplo, imprimirlos
+      print(popularData);
+    } catch (e) {
+      // Manejar el error
+      print('Error: $e');
+    }
+  }
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder<List<CarritoModel>>(
+        future: fetchPopularData(),
+    builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+    return CircularProgressIndicator(); // Puedes mostrar un indicador de carga mientras se espera la respuesta.
+    } else if (snapshot.hasError) {
+    return Text('Error: ${snapshot.error}');
+    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+    return Text('No se encontraron datos');
+    } else {
     return Padding(
       padding:
           EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
       child: ListView.builder(
-        itemCount: demoCarts.length,
+        itemCount: snapshot.data!.length,
         itemBuilder: (context, index) => Padding(
           padding: EdgeInsets.symmetric(vertical: 10),
           child: Dismissible(
-            key: Key(demoCarts[index].product.id.toString()),
+            key: Key(snapshot.data![index].toString()),
             direction: DismissDirection.endToStart,
-            onDismissed: (direction) {
+            onDismissed: (direction) async{
+              await snapshot.data![index].deleteCarrito();
               setState(() {
-                demoCarts.removeAt(index);
+                snapshot.data!.removeAt(index);
               });
             },
             background: Container(
@@ -43,10 +84,63 @@ class _BodyState extends State<Body> {
                 ],
               ),
             ),
-            child: CartCard(cart: demoCarts[index]),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: getProportionateScreenWidth(100),
+                  height: getProportionateScreenWidth(80),
+                  child: AspectRatio(
+                    aspectRatio: 0.88,
+                    child: Container(
+                      padding: EdgeInsets.all(getProportionateScreenWidth(10)),
+                      decoration: BoxDecoration(
+                        color: Color(0xFFF5F6F9),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Image.network(snapshot.data![index].carritoImagen!),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 20),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      snapshot.data![index].carritoNombre!,
+                      style: TextStyle(color: Colors.black, fontSize: getProportionateScreenWidth(14)),
+                      maxLines: 2,
+                    ),
+                    SizedBox(height: 10),
+                    Text.rich(
+                      TextSpan(
+                        text: "\$${snapshot.data![index].carritoPrecioUnitario}",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600, color: kPrimaryColor, fontSize: getProportionateScreenWidth(14)),
+                        children: [
+                          TextSpan(
+                              text: " x${snapshot.data![index].carritoCantidad}",
+                              style: TextStyle(fontSize: getProportionateScreenWidth(12))),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                Column(
+                  children: [
+                    Padding(padding: EdgeInsets.only(top: 30),child: Text("SubTotal", style: TextStyle(fontSize: getProportionateScreenWidth(14)),),),
+
+                    Text("\$${snapshot.data![index].carritoSubtotal}", style: TextStyle(fontSize: getProportionateScreenWidth(16), fontWeight: FontWeight.bold),),
+
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
     );
   }
+
+    });}
 }
