@@ -65,7 +65,6 @@ class _ProductoItemState extends State<ProductoItem> {
                         onPressed: () {
                           setState(() {
                             _isHovering =! _isHovering;
-                            if(_isHovering) {
                               save();
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
@@ -75,9 +74,7 @@ class _ProductoItemState extends State<ProductoItem> {
                                   duration: Duration(seconds: 2),
                                 ),
                               );
-                            } else {
-                              APIPopular.deleteProducto(widget.popular!.id);
-                            }
+
                           }
                             );
                         },
@@ -150,32 +147,45 @@ class _ProductoItemState extends State<ProductoItem> {
       ],
     );
   }
-    void save() {
+  void save() {
     // URL del servidor al que deseas enviar la solicitud POST
-    String url = "http://192.168.1.56/api/producto-popular/";
+    String url = "http://192.168.1.59/api/producto-popular/";
 
-    // Preparar los datos del producto a enviar en la solicitud POST
-    Map<String, dynamic> data = {
-    "productoName": widget.model!.productoName,
-    "productoImagen": widget.model!.productoImage,
-    "productoPrice": widget.model!.productoPrice,
-    };
+    // Obtener el ID del producto actual (si está disponible)
 
-    // Realizar la solicitud POST al servidor
-    http.post(
-    Uri.parse(url),
-    body: json.encode(data),
-    headers: {"Content-Type": "application/json"},
-    ).then((response) {
-    // Si la solicitud fue exitosa, puedes mostrar un mensaje al usuario
-    if (response.statusCode == 200) {
-    print("Producto guardado correctamente");
-    } else {
-    print("Error al guardar el producto");
+
+    // Si isHovering es verdadero, el usuario activó la estrella y quieres agregar el producto a populares
+    if (_isHovering) {
+      // Preparar los datos del producto a enviar en la solicitud POST
+      Map<String, dynamic> data = {
+        "productoName": widget.model!.productoName,
+        "productoImagen": widget.model!.productoImage,
+        "productoPrice": widget.model!.productoPrice,
+      };
+
+      // Realizar la solicitud POST al servidor
+      http.post(
+        Uri.parse(url),
+        body: json.encode(data),
+        headers: {"Content-Type": "application/json"},
+      ).then((response) {
+        // Si la solicitud fue exitosa, puedes mostrar un mensaje al usuario
+        if (response.statusCode == 200) {
+          print("Producto agregado a populares correctamente");
+
+
+
+        } else {
+          print("Error al agregar el producto a populares");
+        }
+      }).catchError((error) {
+        print("Error al realizar la solicitud POST: $error");
+      });
     }
-    }).catchError((error) {
-    print("Error al realizar la solicitud POST: $error");
-    });
-    }
+  }
+
+
+
+
 }
 

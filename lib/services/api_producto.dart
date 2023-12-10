@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:shop_app/models/producto_model.dart';
 import 'package:http/http.dart' as http;
@@ -50,18 +52,21 @@ class APIProducto {
       "Authorization": "token 6c7e9f684c68adf057008ce8a0f4dc11fae3c0d4",
     };*/
 
-    var request = http.MultipartRequest(requestMethod, url);
-    request.fields["productoName"] = model.productoName!;
-    request.fields["productoDescription"] = model.productoDescription!;
-    request.fields["productoPrice"] =
-        double.parse(model.productoPrice!).toString();
-    //request.headers["Authorization"] = "token 6c7e9f684c68adf057008ce8a0f4dc11fae3c0d4";
+    var request = http.Request(requestMethod, url);
+    request.headers["Content-Type"] = "application/json";
+    var requestBody = {
+      "productoName": model.productoName!,
+      "productoDescription": model.productoDescription!,
+      "productoPrice": double.parse(model.productoPrice!).toString(),
+      "productoImage": model.productoImage!,
+      "productoCantidad": int.parse(model.productoCantidad!).toString(),
+      "productoCategoria": model.selected,
+    };
+    // Convert the request body to JSON and set it in the request
+    request.body = jsonEncode(requestBody);
 
-    request.fields["productoImage"] = model.productoImage!;
-    request.fields["productoCantidad"] = int.parse(model.productoCant!).toString();
-    request.fields["productoCategoria"] = model.selected.join(",");
+    var response = await http.Client().send(request);
 
-    var response = await request.send();
 
     if (response.statusCode >= 200 && response.statusCode <= 299) {
       return true;

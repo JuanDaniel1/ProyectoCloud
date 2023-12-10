@@ -20,13 +20,13 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
 
-
   Future<List<CarritoModel>> fetchPopularData() async {
     final response = await http.get(Uri.parse('http://192.168.1.59/api/carrito/'));
 
     if (response.statusCode == 200) {
       // Decodificar la respuesta JSON y mapear a instancias de PopularModel
       List<CarritoModel> carritoList = carritoFromJson(response.body);
+      // Puedes imprimir el total si lo necesitas
       return carritoList;
     } else {
       // Si la solicitud no fue exitosa, lanzar una excepción o manejar el error según sea necesario
@@ -131,7 +131,6 @@ class _BodyState extends State<Body> {
                     Padding(padding: EdgeInsets.only(top: 30),child: Text("SubTotal", style: TextStyle(fontSize: getProportionateScreenWidth(14)),),),
 
                     Text("\$${snapshot.data![index].carritoSubtotal}", style: TextStyle(fontSize: getProportionateScreenWidth(16), fontWeight: FontWeight.bold),),
-
                   ],
                 )
               ],

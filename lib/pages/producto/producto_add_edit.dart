@@ -110,9 +110,9 @@ class _ProductoAddEditState extends State<ProductoAddEdit> {
               confirmText: Text("Ok",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green, fontSize: 30),),
               cancelText: Text("Cancel",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green, fontSize: 30),),
               items: category
-                  .map((e) => MultiSelectItem(e.id.toString(), e.categoriaName!))
+                  .map((e) => MultiSelectItem(e.id, e.categoriaName!))
                   .toList().cast<MultiSelectItem<dynamic>>(),
-              initialValue: productoModel!.selected,
+              initialValue: productoModel!.selected!,
               onConfirm: (values) {
                 setState(() {
                   productoModel!.selected = values.cast();
@@ -241,9 +241,11 @@ class _ProductoAddEditState extends State<ProductoAddEdit> {
               },
                   (onSavedVal) => {
                 //productModel!.productoPrice = int.parse(onSavedVal),
-                productoModel!.productoCant = onSavedVal,
+                productoModel!.productoCantidad = onSavedVal,
               },
-              initialValue: productoModel!.productoCant == null ? "" : productoModel!.productoCant.toString(),
+              initialValue: productoModel!.productoCantidad == null
+                  ? ""
+                  : productoModel!.productoCantidad.toString(),
               obscureText: false,
               borderFocusColor: Colors.black,
               borderColor: Colors.black,
@@ -429,4 +431,5 @@ class _ProductoAddEditState extends State<ProductoAddEdit> {
   isValidURL(url) {
     return Uri.tryParse(url)?.hasAbsolutePath ?? false;
   }
+
 }

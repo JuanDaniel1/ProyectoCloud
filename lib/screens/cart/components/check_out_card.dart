@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/components/default_button.dart';
+import 'package:shop_app/models/Product.dart';
+import 'package:shop_app/models/carrito_model.dart';
+import 'package:shop_app/models/producto_model.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -8,8 +11,9 @@ import '../../../size_config.dart';
 // Card de opcion comprar en carro de compras
 
 class CheckoutCard extends StatelessWidget {
+  final CarritoModel? model;
   const CheckoutCard({
-    Key? key,
+    Key? key, this.model,
   }) : super(key: key);
 
   @override
@@ -64,7 +68,6 @@ class CheckoutCard extends StatelessWidget {
                     text: "Total:\n",
                     children: [
                       TextSpan(
-                        text: "\$337.15",
                         style: TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     ],

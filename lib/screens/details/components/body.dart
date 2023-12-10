@@ -24,6 +24,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  double total = 0.0;
   int counter = 1;
   void incrementCounter() {
     setState(() {
@@ -157,6 +158,7 @@ class _BodyState extends State<Body> {
       "cantidad": counter,
 
     };
+    widget.model!.total += double.parse(widget.model!.productoPrice! * counter);
 
     // Realizar la solicitud POST al servidor
     http.post(

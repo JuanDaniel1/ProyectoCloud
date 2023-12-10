@@ -29,7 +29,6 @@ class HomeHeader extends StatelessWidget {
           IconBtnWithCounter(
             svgSrc: "assets/icons/Camera Icon.svg",
             press: () {
-
             }
           ),
         ],
