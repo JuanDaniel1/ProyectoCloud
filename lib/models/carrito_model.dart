@@ -18,7 +18,7 @@ class CarritoModel {
   late String? carritoNombre;
   late String? carritoImagen;
   late String? carritoPrecioUnitario;
-  late int? carritoCantidad;
+  late String? carritoCantidad;
   late String? carritoSubtotal;
 
 

@@ -59,7 +59,7 @@ class APIProducto {
       "productoDescription": model.productoDescription!,
       "productoPrice": double.parse(model.productoPrice!).toString(),
       "productoImage": model.productoImage!,
-      "productoCantidad": int.parse(model.productoCantidad!).toString(),
+      "productoCantidad": model.productoCantidad!.toString(),
       "productoCategoria": model.selected,
     };
     // Convert the request body to JSON and set it in the request

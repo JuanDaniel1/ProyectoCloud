@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:shop_app/pages/categoria/categoria_list.dart';
 import 'package:shop_app/pages/cliente/cliente_list.dart';
+import 'package:shop_app/pages/populares/producto_list.dart';
 import 'package:shop_app/pages/producto/producto_list.dart';
 import 'package:shop_app/pages/inicio/inicio.dart';
 
@@ -23,6 +24,8 @@ class MenuState extends State<Menu> {
         return const CategoriasList();
       case 2:
         return const ProductosList();
+      case 3:
+        return const PopularList();
     }
   }
 
@@ -75,7 +78,7 @@ class MenuState extends State<Menu> {
               },
             ),
             ListTile(
-              title: const Text('Ventas'),
+              title: const Text('Populares'),
               leading: const Icon(Icons.production_quantity_limits),
               selected: (3 == _selectDrawerItem),
               onTap: () {
@@ -86,7 +89,7 @@ class MenuState extends State<Menu> {
             ListTile(
               title: const Text('Cerra Sessión'),
               leading: const Icon(Icons.touch_app_outlined),
-              selected: (3 == _selectDrawerItem),
+              selected: (4 == _selectDrawerItem),
               onTap: () {
                 exit(0);
               },

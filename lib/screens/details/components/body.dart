@@ -28,7 +28,9 @@ class _BodyState extends State<Body> {
   int counter = 1;
   void incrementCounter() {
     setState(() {
-      counter++;
+      if(counter < int.parse(widget.model!.productoCantidad!)) {
+        counter++;
+      }
     });
   }
 

@@ -33,7 +33,7 @@ class ProductoModel {
       productoDescription: json['productoDescription'],
       productoPrice: json['productoPrice'],
       productoImage: json['productoImage'],
-      productoCantidad: json['productoCant']
+      productoCantidad: json['productoCantidad']
     );
   }
 
@@ -44,7 +44,7 @@ class ProductoModel {
     data['productoDescription'] = productoDescription;
     data['productoPrice'] = productoPrice;
     data['productoImage'] = productoImage;
-    data['productoCant'] = productoCantidad;
+    data['productoCantidad'] = productoCantidad;
     return data;
   }
 }
