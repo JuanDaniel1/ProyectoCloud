@@ -63,7 +63,7 @@ class _BodyState extends State<Body> {
                       EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
                       child: Row(
                         children: [
-                          Text(widget.model!.productoPrice.toString(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                          Text("\$${widget.model!.productoPrice}", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                           Spacer(),
                           RoundedIconBtn(
                             icon: Icons.remove,
@@ -97,6 +97,15 @@ class _BodyState extends State<Body> {
                                 text: "Anadir a carrito",
                                 press: () {
                                   save();
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                          'Se agrego "${widget.model!.productoName
+                                          }" al carrito de compras'),
+                                      duration: Duration(seconds: 2),
+                                    ),
+                                  );
+                                  Navigator.pop(context);
                                 },
                               ),
 

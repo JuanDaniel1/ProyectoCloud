@@ -47,12 +47,12 @@ class SearchCategoriesDelegate extends SearchDelegate{
 
     final productService = new ProductService();
 
-    return FutureBuilder(
+    return FutureBuilder<List<Producto>>(
         future: productService.getProductByName( query ),
-        builder: ( _  , AsyncSnapshot snapshot) {
+        builder: ( _  , AsyncSnapshot<List<Producto>> snapshot) {
           if( snapshot.hasData ){
             //crear la lista
-            return _showProducts( snapshot.data );
+            return _showProducts( snapshot.data! );
           } else {
             //cargando
             return Center(child: CircularProgressIndicator(strokeWidth: 4));

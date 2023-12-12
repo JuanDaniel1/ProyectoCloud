@@ -318,7 +318,7 @@ class _ProductoAddEditState extends State<ProductoAddEdit> {
                       if (response) {
                         Navigator.pushNamedAndRemoveUntil(
                           context,
-                          Menu.routeName,
+                          ProductosList.routeName,
                               (route) => false,
                         );
                       } else {

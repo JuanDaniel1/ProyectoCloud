@@ -21,6 +21,24 @@ class CarritoModel {
   late String? carritoCantidad;
   late String? carritoSubtotal;
 
+  Future<List<CarritoModel>> fetchCartItems() async {
+    final String apiUrl = 'http://192.168.1.59/api/carrito'; // Replace with your actual API URL
+    final Uri apiUri = Uri.parse(apiUrl);
+    // Realiza una llamada a la API para obtener los elementos del carrito
+    final response = await http.get(apiUri); // Reemplaza 'URL_DE_TU_API' con la URL real de tu API
+
+    if (response.statusCode == 200) {
+      // Si la llamada a la API fue exitosa, decodifica el JSON y devuelve la lista de elementos del carrito
+      final List<dynamic> data = json.decode(response.body);
+      return data.map((item) => CarritoModel(/* construye el objeto CartItem a partir de los datos */)).toList();
+    } else {
+      // Si la llamada a la API falla, lanza una excepción
+      throw Exception('Error al cargar los elementos del carrito');
+    }
+  }
+
+  List<CarritoModel> cartItems = [];
+
 
   Future<void> deleteCarrito() async {
     try {

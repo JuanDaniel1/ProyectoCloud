@@ -105,7 +105,7 @@ class SpecialOfferCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: getProportionateScreenWidth(20)),
       child: GestureDetector(
-        onTap: press,
+        onTap: (){},
         child: SizedBox(
           height: getProportionateScreenWidth(130),
           child: ClipRRect(

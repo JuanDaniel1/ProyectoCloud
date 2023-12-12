@@ -6,6 +6,8 @@ import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/services/api_producto.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
 
+import '../../menu.dart';
+
 class ProductosList extends StatefulWidget {
   static String routeName="/Product-list";
   const ProductosList({Key? key}) : super(key: key);
@@ -93,7 +95,7 @@ class _ProductosListState extends State<ProductosList> {
                       onPressed: () {
                         Navigator.pushNamed(
                           context,
-                          HomeScreen.routeName,
+                          Menu.routeName,
                         );
                         //Navigator.push(context,MaterialPageRoute(builder: (context) => Home()),                        );
                       },
@@ -105,6 +107,24 @@ class _ProductosListState extends State<ProductosList> {
                               borderRadius: BorderRadius.circular(50))),
                       child: const Text(
                         'Menu',
+                        style: TextStyle(fontSize: 15, color: Colors.black),
+                      )),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          HomeScreen.routeName,
+                        );
+                        //Navigator.push(context,MaterialPageRoute(builder: (context) => Home()),                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.lightBlueAccent,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 30),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50))),
+                      child: const Text(
+                        'Home',
                         style: TextStyle(fontSize: 15, color: Colors.black),
                       )),
                 ],

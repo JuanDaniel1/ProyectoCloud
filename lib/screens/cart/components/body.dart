@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shop_app/models/Cart.dart';
 import 'package:http/http.dart' as http;
+import 'package:shop_app/screens/cart/cart_screen.dart';
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
 import '../../../models/carrito_model.dart';
@@ -80,6 +81,7 @@ class _BodyState extends State<Body> {
                               setState(() {
                                 snapshot.data!.removeAt(index);
                               });
+                              Navigator.pushReplacementNamed(context, CartScreen.routeName);
                             },
                             background: Container(
                               padding: EdgeInsets.symmetric(horizontal: 20),
@@ -226,7 +228,7 @@ class _BodyState extends State<Body> {
                                     text: "Total:\n",
                                     children: [
                                       TextSpan(
-                                        text: total.toStringAsFixed(0),
+                                        text: "\$${total}",
                                         style: TextStyle(
                                             fontSize: 16, color: Colors.black),
                                       ),

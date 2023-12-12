@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/models/producto_model.dart';
+import 'package:shop_app/pages/populares/producto_item.dart';
 import 'package:shop_app/pages/producto/producto_add_edit.dart';
 import 'package:shop_app/pages/producto/producto_item.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
-import 'package:shop_app/services/api_popular.dart';
-import 'package:shop_app/services/api_producto.dart';
+
 import 'package:snippet_coder_utils/ProgressHUD.dart';
 
 import '../../models/popular_model.dart';
+import '../../services/api_popular.dart';
 
 class PopularList extends StatefulWidget {
   static String routeName="/Product-list";
@@ -39,12 +39,12 @@ class _PopularListState extends State<PopularList> {
         inAsyncCall: isApiCallProcess,
         opacity: 0.3,
         key: UniqueKey(),
-        child: loadPopular(),
+        child: loadProductos(),
       ),
     );
   }
 
-  Widget loadPopular() {
+  Widget loadProductos() {
     return FutureBuilder(
       future: APIPopular.getProductos(),
       builder: (
@@ -62,7 +62,7 @@ class _PopularListState extends State<PopularList> {
     );
   }
 
-  Widget productoList(Popular) {
+  Widget productoList(productos) {
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Column(
@@ -120,16 +120,16 @@ class _PopularListState extends State<PopularList> {
                 shrinkWrap: true,
                 physics: const ClampingScrollPhysics(),
                 scrollDirection: Axis.vertical,
-                itemCount: Popular.length,
+                itemCount: productos.length,
                 itemBuilder: (context, index) {
-                  return ProductoItem(
-                    model: Popular[index],
-                    onDelete: (ProductoModel model) {
+                  return PopularItem(
+                    model: productos[index],
+                    onDelete: (PopularModel model) {
                       setState(() {
                         isApiCallProcess = true;
                       });
 
-                      APIProducto.deleteProducto(model.id).then(
+                      APIPopular.deleteProducto(model.id).then(
                             (response) {
                           setState(() {
                             isApiCallProcess = false;

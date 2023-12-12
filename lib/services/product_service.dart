@@ -7,10 +7,10 @@ class ProductService{
 
   final _dio = new Dio();
 
-  Future getProductByName(String productoName) async{
+  Future<List<Producto>> getProductByName(String productoName) async{
 
     try{
-      final url = 'http://172.30.208.1/productos/?search=$productoName';
+      final url = 'http://192.168.1.59/productos/?search=$productoName';
       final resp = await _dio.get(url);
 
       final List<dynamic> productoList = resp.data;

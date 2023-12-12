@@ -6,6 +6,8 @@ import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/services/api_categoria.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
 
+import '../../menu.dart';
+
 class CategoriasList extends StatefulWidget {
   static String routeName="/Category-list";
   const CategoriasList({Key? key}) : super(key: key);
@@ -88,6 +90,24 @@ class _CategoriasListState extends State<CategoriasList> {
                               borderRadius: BorderRadius.circular(50))),
                       child: const Text(
                         'Add categoria',
+                        style: TextStyle(fontSize: 15, color: Colors.black),
+                      )),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          Menu.routeName,
+                        );
+                        //Navigator.push(context,MaterialPageRoute(builder: (context) => Home()),                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.lightBlueAccent,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 30),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50))),
+                      child: const Text(
+                        'Menu',
                         style: TextStyle(fontSize: 15, color: Colors.black),
                       )),
                   ElevatedButton(

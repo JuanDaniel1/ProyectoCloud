@@ -6,6 +6,7 @@ import 'package:shop_app/pages/cliente/cliente_list.dart';
 import 'package:shop_app/pages/populares/producto_list.dart';
 import 'package:shop_app/pages/producto/producto_list.dart';
 import 'package:shop_app/pages/inicio/inicio.dart';
+import 'package:shop_app/screens/home/home_screen.dart';
 
 class Menu extends StatefulWidget {
   static String routeName = "/admin";
@@ -91,7 +92,7 @@ class MenuState extends State<Menu> {
               leading: const Icon(Icons.touch_app_outlined),
               selected: (4 == _selectDrawerItem),
               onTap: () {
-                exit(0);
+                Navigator.pushNamed(context, HomeScreen.routeName);
               },
             ),
           ],
