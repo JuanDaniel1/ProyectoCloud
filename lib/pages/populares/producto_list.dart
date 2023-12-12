@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/models/producto_model.dart';
-import 'package:shop_app/pages/populares/producto_item.dart';
 import 'package:shop_app/pages/producto/producto_add_edit.dart';
 import 'package:shop_app/pages/producto/producto_item.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
@@ -123,14 +122,14 @@ class _PopularListState extends State<PopularList> {
                 scrollDirection: Axis.vertical,
                 itemCount: Popular.length,
                 itemBuilder: (context, index) {
-                  return PopularItem(
+                  return ProductoItem(
                     model: Popular[index],
-                    onDelete: (PopularModel model) {
+                    onDelete: (ProductoModel model) {
                       setState(() {
                         isApiCallProcess = true;
                       });
 
-                      APIPopular.deleteProducto(model.id).then(
+                      APIProducto.deleteProducto(model.id).then(
                             (response) {
                           setState(() {
                             isApiCallProcess = false;

@@ -111,8 +111,8 @@ class _CategoryCardState extends State<CategoryCard> {
                     : null,
 
             ),
-            width: 500,
-            height: 300,
+            width: 200,
+            height: 150,
             child: Stack(
               children: [
                 Hero(tag: widget.model!.id!, child: Image.network(widget.model!.categoriaImage!, fit: BoxFit.cover, width: double.infinity),),

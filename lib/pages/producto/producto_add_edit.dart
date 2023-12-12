@@ -15,6 +15,7 @@ import 'package:snippet_coder_utils/hex_color.dart';
 import 'package:http/http.dart' as http;
 
 import '../../config.dart';
+import '../../menu.dart';
 
 class ProductoAddEdit extends StatefulWidget {
   static String routeName = "/crud";
@@ -317,7 +318,7 @@ class _ProductoAddEditState extends State<ProductoAddEdit> {
                       if (response) {
                         Navigator.pushNamedAndRemoveUntil(
                           context,
-                          ProductosList.routeName,
+                          Menu.routeName,
                               (route) => false,
                         );
                       } else {
