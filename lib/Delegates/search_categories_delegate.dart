@@ -1,7 +1,7 @@
 
-
-
 import 'package:flutter/material.dart';
+import 'package:shop_app/models/productSearch.dart';
+import 'package:shop_app/services/product_service.dart';
 
 import '../components/product_card.dart';
 import '../models/Product.dart';
@@ -12,11 +12,7 @@ class SearchCategoriesDelegate extends SearchDelegate{
 
 
 
-  final List<Product> demopProducts;
 
-  List<Product> _filter =[];
-
-  SearchCategoriesDelegate(this.demopProducts);
 
 
 
@@ -44,28 +40,42 @@ class SearchCategoriesDelegate extends SearchDelegate{
 
   @override
   Widget buildResults(BuildContext context) {
-    return ListView.builder(
-        itemCount: _filter.length,
-        itemBuilder:(_,index){
-          return ListTile(
-            title: Text(_filter[index].title),
-          );
-        }
+
+    if ( query.trim().length == 0){
+      return Text('No hay valor en el query');
+    }
+
+    final productService = new ProductService();
+
+    return FutureBuilder(
+        future: productService.getProductByName( query ),
+        builder: ( _  , AsyncSnapshot snapshot) {
+          if( snapshot.hasData ){
+            //crear la lista
+            return _showProducts( snapshot.data );
+          } else {
+            //cargando
+            return Center(child: CircularProgressIndicator(strokeWidth: 4));
+          }
+        },
     );
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    _filter=demoProducts.where((element){
-      return element.title.toLowerCase().contains(query.trim().toLowerCase());
-    }).toList();
+    return ListTile(title: Text('Sugerencias'),);
+  }
+  Widget _showProducts ( List<Producto> productos1 ) {
     return ListView.builder(
-        itemCount: _filter.length,
-        itemBuilder:(_,index){
-          return ListTile(
-            title: Text(_filter[index].title),
-          );
-        }
+      itemCount: productos1.length,
+      itemBuilder: ( _ , i){
+        final producto = productos1[i];
+        return ListTile(
+          title: Text(producto.productoName),
+          subtitle: Text(producto.productoCategoria),
+          trailing: Text(producto.productoPrice),
+        );
+      }
     );
 
 

@@ -25,7 +25,7 @@ class SearchField extends StatelessWidget {
 
         showSearch(
             context: context,
-            delegate: SearchCategoriesDelegate(demoProducts),
+            delegate: SearchCategoriesDelegate(),
         );
       },
           icon: const Icon(Icons.search)
