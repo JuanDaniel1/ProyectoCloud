@@ -9,8 +9,8 @@ import 'sign_form.dart';
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SizedBox(
+    return
+     SizedBox(
         width: double.infinity,
         child: Padding(
           padding:
@@ -22,13 +22,13 @@ class Body extends StatelessWidget {
                 Text(
                   "Bienvenido!",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.white,
                     fontSize: getProportionateScreenWidth(28),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  "Inicia Sesion con tu correo y contrasena ",
+                  "Inicia Sesion con tu correo y contrasena ", style: TextStyle(color: Colors.white),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
@@ -39,7 +39,7 @@ class Body extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+      );
+
   }
 }

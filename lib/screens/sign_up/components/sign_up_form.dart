@@ -42,11 +42,32 @@ class _SignUpFormState extends State<SignUpForm> {
       key: _formKey,
       child: Column(
         children: [
-          buildEmailFormField(),
+          Container(
+            child: buildEmailFormField(),
+            decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.8),
+                borderRadius: BorderRadius.circular(30)
+            ),
+
+          ),
           SizedBox(height: getProportionateScreenHeight(30)),
-          buildPasswordFormField(),
+          Container(
+            child: buildPasswordFormField(),
+            decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.8),
+                borderRadius: BorderRadius.circular(30)
+            ),
+
+          ),
           SizedBox(height: getProportionateScreenHeight(30)),
-          buildConformPassFormField(),
+          Container(
+            child: buildConformPassFormField(),
+            decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.8),
+                borderRadius: BorderRadius.circular(30)
+            ),
+
+          ),
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(40)),
           DefaultButton(
@@ -87,7 +108,6 @@ class _SignUpFormState extends State<SignUpForm> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: "Confirmar contrasena",
         hintText: "Vuelve a digitar tu contrasena",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
@@ -120,7 +140,6 @@ class _SignUpFormState extends State<SignUpForm> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: "Contrasena",
         hintText: "Digita tu contrasena",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
@@ -153,7 +172,6 @@ class _SignUpFormState extends State<SignUpForm> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: "Email",
         hintText: "Digita tu correo",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly

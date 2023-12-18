@@ -65,9 +65,26 @@ class _SignFormState extends State<SignForm> {
       key: _formKey,
       child: Column(
         children: [
-          buildEmailFormField(),
+          Container(
+            child: buildEmailFormField(),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.8),
+              borderRadius: BorderRadius.circular(30)
+            ),
+
+          ),
+
+
+
           SizedBox(height: getProportionateScreenHeight(30)),
-          buildPasswordFormField(),
+          Container(
+            child: buildPasswordFormField(),
+            decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.8),
+                borderRadius: BorderRadius.circular(30)
+            ),
+
+          ),
           SizedBox(height: getProportionateScreenHeight(30)),
           Row(
             children: [
@@ -80,7 +97,7 @@ class _SignFormState extends State<SignForm> {
                   });
                 },
               ),
-              Text("Recuerdame"),
+              Text("Recuerdame", style: TextStyle(color: Colors.white),),
               Spacer(),
               GestureDetector(
                 onTap: () =>
@@ -88,7 +105,7 @@ class _SignFormState extends State<SignForm> {
                         context, ForgotPasswordScreen.routeName),
                 child: Text(
                   "Olvide la contrasena",
-                  style: TextStyle(decoration: TextDecoration.underline),
+                  style: TextStyle(decoration: TextDecoration.underline, color: Colors.white),
                 ),
               )
             ],
@@ -130,7 +147,6 @@ class _SignFormState extends State<SignForm> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: "Contrasena",
         hintText: "Digita tu contrasena",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
@@ -164,7 +180,6 @@ class _SignFormState extends State<SignForm> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: "Email",
         hintText: "Digita tu email",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
@@ -231,3 +246,9 @@ class _SignFormState extends State<SignForm> {
     }
   }
 }
+
+const TextStyle Kmail = TextStyle(
+  fontSize: 22,
+  fontWeight: FontWeight.bold,
+  color: Colors.white
+);

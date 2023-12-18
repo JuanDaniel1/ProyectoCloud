@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/screens/sign_up/sign_up_screen.dart';
 
-import 'components/body.dart';
+class Register extends StatefulWidget {
+  const Register({super.key});
+  static String routeName = "/register";
+  @override
+  State<Register> createState() => _RegisterState();
+}
 
-// Pagina para iniciar Sesion
+class _RegisterState extends State<Register> {
 
-class SignInScreen extends StatelessWidget {
-  static String routeName = "/sign_in";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,12 +38,10 @@ class SignInScreen extends StatelessWidget {
 
 
 
-          Body()
+          SignUpScreen()
 
         ],
       ),
     );
-
-
   }
 }

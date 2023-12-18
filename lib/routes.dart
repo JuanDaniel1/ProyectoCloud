@@ -21,6 +21,7 @@ import 'package:shop_app/screens/login_success/login_success_screen.dart';
 import 'package:shop_app/screens/otp/otp_screen.dart';
 import 'package:shop_app/screens/profile/profile_screen.dart';
 import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
+import 'package:shop_app/screens/sign_up/registerScreen.dart';
 import 'package:shop_app/screens/splash/splash_screen.dart';
 import 'package:shop_app/screens/chatbot/chatbotscreen.dart';
 import 'package:shop_app/menu.dart';
@@ -51,6 +52,7 @@ final Map<String, WidgetBuilder> routes = {
   MySplash.routeName: (context) => MySplash(),
   CategoriaAddEdit.routeName: (context) => CategoriaAddEdit(),
   CategoriasList.routeName: (context) => CategoriasList(),
+  Register.routeName: (context) => Register(),
 
 };
 

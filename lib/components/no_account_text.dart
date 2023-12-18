@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/screens/sign_up/sign_up_screen.dart';
 
 import '../constants.dart';
+import '../screens/sign_up/registerScreen.dart';
 import '../size_config.dart';
 
 class NoAccountText extends StatelessWidget {
@@ -15,13 +16,13 @@ class NoAccountText extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "Don’t have an account? ",
-          style: TextStyle(fontSize: getProportionateScreenWidth(16)),
+          "No tienes cuenta? ",
+          style: TextStyle(fontSize: getProportionateScreenWidth(16), color: Colors.white),
         ),
         GestureDetector(
-          onTap: () => Navigator.pushNamed(context, SignUpScreen.routeName),
+          onTap: () => Navigator.pushNamed(context, Register.routeName),
           child: Text(
-            "Sign Up",
+            "Registrarse",
             style: TextStyle(
                 fontSize: getProportionateScreenWidth(16),
                 color: kPrimaryColor),
