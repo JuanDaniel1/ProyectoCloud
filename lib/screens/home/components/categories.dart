@@ -111,8 +111,8 @@ class _CategoryCardState extends State<CategoryCard> {
                     : null,
 
             ),
-            width: 200,
-            height: 150,
+            width: getProportionateScreenWidth(150),
+            height: getProportionateScreenWidth(100),
             child: Stack(
               children: [
                 Hero(tag: widget.model!.id!, child: Image.network(widget.model!.categoriaImage!, fit: BoxFit.cover, width: double.infinity),),
@@ -128,7 +128,7 @@ class _CategoryCardState extends State<CategoryCard> {
                       widget.model!.categoriaName!,
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 20,
+                        fontSize: getProportionateScreenWidth(17),
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center,

@@ -81,7 +81,7 @@ class _ProductCardState extends State<ProductCard> {
               const SizedBox(height: 10),
               Text(
                 widget.model!.productoName!,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: getProportionateScreenWidth(18)),
                 maxLines: 2,
               ),
               Row(
@@ -90,7 +90,7 @@ class _ProductCardState extends State<ProductCard> {
                   Text(
                     "Precio: \$${widget.model!.productoPrice}",
                     style: TextStyle(
-                      fontSize: 22,
+                      fontSize: getProportionateScreenWidth(15),
                       fontWeight: FontWeight.w600,
                       color: kPrimaryColor,
                     ),
