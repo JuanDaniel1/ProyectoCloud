@@ -115,6 +115,7 @@ class SpecialOfferCard extends StatelessWidget {
                 Image.network(
                   image,
                   fit: BoxFit.cover,
+
                 ),
                 Container(
                   decoration: BoxDecoration(
@@ -128,27 +129,33 @@ class SpecialOfferCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: getProportionateScreenWidth(15.0),
-                    vertical: getProportionateScreenWidth(10),
-                  ),
-                  child: Text.rich(
-                    TextSpan(
-                      style: TextStyle(color: Colors.white),
-                      children: [
-                        TextSpan(
-                          text: "$category\n",
-                          style: TextStyle(
-                            fontSize: getProportionateScreenWidth(18),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        TextSpan(text: "\$$numOfBrands", style: TextStyle(fontSize: getProportionateScreenWidth(15)))
-                      ],
+                Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.4),
+                      borderRadius: BorderRadius.circular(15)
                     ),
-                  ),
-                ),
+                    child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Text.rich(
+                        TextSpan(
+                          style: TextStyle(color: Colors.white),
+                          children: [
+                            TextSpan(
+                              text: "$category\n",
+                              style: TextStyle(
+                                fontSize: getProportionateScreenWidth(18),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            TextSpan(text: "\$$numOfBrands", style: TextStyle(fontSize: getProportionateScreenWidth(15)))
+                          ],
+                        ),
+                      ),
+                    )
+
+                  )
+
+
               ],
             ),
           ),

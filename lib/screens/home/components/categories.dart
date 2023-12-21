@@ -100,44 +100,36 @@ class _CategoryCardState extends State<CategoryCard> {
             });
           },
 
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-                border: borde
-                    ? Border.all(
-                  color: Colors.green, // Color del borde cuando mostrarBorde es true
-                  width: 5.0, // Ancho del borde
-                )
-                    : null,
-
-            ),
-            width: getProportionateScreenWidth(150),
-            height: getProportionateScreenWidth(100),
-            child: Stack(
+            child: Column(
               children: [
-                Hero(tag: widget.model!.id!, child: Image.network(widget.model!.categoriaImage!, fit: BoxFit.cover, width: double.infinity),),
+              Container(
+              width: getProportionateScreenWidth(60),
+              height: getProportionateScreenWidth(60),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage("${widget.model!.categoriaImage!}"),
+                ),
+              ),
+            ),
 
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    color: Colors.black.withOpacity(0.7),
-                    padding: EdgeInsets.all(8),
-                    child: Text(
+
+
+                 Text(
                       widget.model!.categoriaName!,
                       style: TextStyle(
-                        color: Colors.white,
-                        fontSize: getProportionateScreenWidth(17),
+                        color: Colors.black54,
+                        fontSize: getProportionateScreenWidth(14),
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center,
                     ),
-                  ),
-                ),
+
+
               ],
             ),
-          )
+
 
       ),);
 

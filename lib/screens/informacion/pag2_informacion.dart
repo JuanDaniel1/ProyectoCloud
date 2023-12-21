@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shop_app/components/coustom_bottom_nav_bar.dart';
 import 'package:shop_app/screens/informacion/data/data_receta.dart';
 import 'package:shop_app/screens/informacion/models/model_receta.dart';
@@ -40,7 +41,7 @@ class _CarouselState extends State<Carousel> {
           ),
           SizedBox(height: 20,),
           Text("¿Que es el Sena?",
-            style: TextStyle(fontSize: 40, color: Colors.black),),
+            style: GoogleFonts.oswald(fontWeight: FontWeight.w700, fontSize: 40, color: Colors.black)),
           SizedBox(height: 2,),
           Padding(
             padding: const EdgeInsets.all(35),
@@ -48,7 +49,7 @@ class _CarouselState extends State<Carousel> {
                 "todos los aprendices matriculados en formación titulada, para todos los niveles, en sus diferentes modalidades: presencial, virtual o a distanciaContribuir al desarrollo humano integral de los aprendices, "
                 "por medio de la definición de lineamientos que se implementen de manera articulada y gradual con el proceso de formación profesional integral.",
               textAlign: TextAlign.center,
-              style: TextStyle( fontSize:17, color: Colors.black),
+              style: GoogleFonts.oswald(fontSize: 17, fontWeight: FontWeight.w300, color: Colors.black54),
             ),
           ),
           SizedBox(height: 30,),

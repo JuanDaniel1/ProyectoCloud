@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shop_app/models/Product.dart';
 import 'package:shop_app/screens/details/details_screen.dart';
 
@@ -32,7 +33,7 @@ class _ProductCardState extends State<ProductCard> {
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(
-                  Radius.circular(18.0),
+                  Radius.circular(10.0),
                 ),
                 color: Colors.white,
                 boxShadow: [
@@ -68,10 +69,8 @@ class _ProductCardState extends State<ProductCard> {
                               color: kSecondaryColor.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(15),
                             ),
-                            child: Hero(
-                              tag: widget.model!.id.toString(),
-                              child: Image.network(widget.model!.productoImage!, fit: BoxFit.cover,),
-                            ),
+                            child: Image.network(widget.model!.productoImage!, fit: BoxFit.cover,),
+
                           ),
 
 
@@ -79,24 +78,28 @@ class _ProductCardState extends State<ProductCard> {
 
               ),
               const SizedBox(height: 10),
-              Text(
-                widget.model!.productoName!,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: getProportionateScreenWidth(18)),
-                maxLines: 2,
+              Padding(
+                padding: EdgeInsets.only(left: 8),
+                child: Text(
+                  widget.model!.productoName!,
+                  style: GoogleFonts.oswald(fontSize: getProportionateScreenWidth(14), fontWeight: FontWeight.w300, color: Colors.black),
+                  maxLines: 2,
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Precio: \$${widget.model!.productoPrice}",
-                    style: TextStyle(
-                      fontSize: getProportionateScreenWidth(15),
-                      fontWeight: FontWeight.w600,
-                      color: kPrimaryColor,
+              Padding(
+                padding: EdgeInsets.only(left: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "\$${widget.model!.productoPrice}",
+                      style: GoogleFonts.oswald(fontSize: getProportionateScreenWidth(16), fontWeight: FontWeight.w400, color: kPrimaryColor)
                     ),
-                  ),
-                ],
+                  ],
+                ),
               )
+
+
               ],
             ),
           )

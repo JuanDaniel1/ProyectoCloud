@@ -155,7 +155,7 @@ class _BodyState extends State<Body> {
                                 Column(
                                   children: [
                                     Padding(
-                                      padding: EdgeInsets.only(top: 30),
+                                      padding: EdgeInsets.only(top: 20),
                                       child: Text(
                                         "SubTotal",
                                         style: TextStyle(
