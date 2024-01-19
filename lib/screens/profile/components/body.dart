@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/screens/complete_profile/complete_profile_screen.dart';
+import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
 
 import 'profile_menu.dart';
@@ -26,11 +28,37 @@ class Body extends StatelessWidget {
             icon: "assets/icons/Question mark.svg",
             press: () {},
           ),
-          ProfileMenu(
-            text: "Log In/Log Out",
-            icon: "assets/icons/Log out.svg",
-            press: () {
-              Navigator.pushNamed(context, SignInScreen.routeName);
+          FutureBuilder<User?>(
+            future: FirebaseAuth.instance.authStateChanges().first,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                final User? user = snapshot.data;
+                if (user != null) {
+                  // El usuario ha iniciado sesión
+                  return ProfileMenu(
+                    text: "Log Out",
+                    icon: "assets/icons/Log out.svg",
+                    press: () async {
+                      // Cerrar sesión
+                      await FirebaseAuth.instance.signOut();
+                      // Navegar a la pantalla de inicio de sesión
+                      Navigator.pushNamed(context, HomeScreen.routeName);
+                    },
+                  );
+                } else {
+                  // El usuario no ha iniciado sesión
+                  return ProfileMenu(
+                    text: "Log In",
+                    icon: "assets/icons/Log out.svg",
+                    press: () {
+                      Navigator.pushNamed(context, SignInScreen.routeName);
+                    },
+                  );
+                }
+              } else {
+                // Mostrar un indicador de carga mientras se verifica el estado de autenticación
+                return CircularProgressIndicator();
+              }
             },
           ),
         ],

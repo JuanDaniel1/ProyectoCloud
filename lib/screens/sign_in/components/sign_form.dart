@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/form_error.dart';
@@ -16,6 +17,7 @@ import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
 import '../../../components/default_button.dart';
 import '../../../config.dart';
 import '../../../constants.dart';
+import '../../../services/firebase_auth_services.dart';
 import '../../../size_config.dart';
 import '../../../usuario.dart';
 import 'package:http/http.dart' as http;
@@ -29,6 +31,7 @@ class SignForm extends StatefulWidget {
 }
 
 class _SignFormState extends State<SignForm> {
+  final FirebaseAuthService _auth = FirebaseAuthService();
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -115,7 +118,7 @@ class _SignFormState extends State<SignForm> {
           DefaultButton(
             text: "Continua",
             press: () {
-              login();
+              _signIn();
             },
           ),
         ],
@@ -243,6 +246,29 @@ class _SignFormState extends State<SignForm> {
       Navigator.pushNamed(context, jefe.routeName);
     } else {
       Navigator.pushNamed(context, HomeScreen.routeName);
+    }
+  }
+  void _signIn() async {
+    String email = nameController.text;
+    String password = passwordController.text;
+
+    User? user = await _auth.signInWithEmailAndPassword(email, password);
+
+
+    if(user != null) {
+      print("usuario creado");
+      if(email == "admin@gmail.com"){
+        Navigator.pushNamed(context, Menu.routeName);
+      } else if(email == "comerc@gmail.com"){
+        Navigator.pushNamed(context, Comercializadora.routeName);
+      } else if(email == "jefe@gmail.com"){
+        Navigator.pushNamed(context, jefe.routeName);
+      } else {
+        Navigator.pushNamed(context, HomeScreen.routeName);
+      }
+
+    } else {
+      print("error");
     }
   }
 }

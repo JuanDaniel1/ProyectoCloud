@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/default_button.dart';
 import 'package:shop_app/components/form_error.dart';
 import 'package:shop_app/screens/complete_profile/complete_profile_screen.dart';
+import 'package:shop_app/screens/home/home_screen.dart';
+import 'package:shop_app/services/firebase_auth_services.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -15,12 +18,28 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
+
+  final FirebaseAuthService _auth = FirebaseAuthService();
+
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+
   final _formKey = GlobalKey<FormState>();
   String? email;
   String? password;
   String? conform_password;
   bool remember = false;
   final List<String?> errors = [];
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   void addError({String? error}) {
     if (!errors.contains(error))
@@ -73,11 +92,7 @@ class _SignUpFormState extends State<SignUpForm> {
           DefaultButton(
             text: "Continua",
             press: () {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-                // if all are valid then go to success screen
-                Navigator.pushNamed(context, CompleteProfileScreen.routeName);
-              }
+              _signUp();
             },
           ),
         ],
@@ -88,15 +103,7 @@ class _SignUpFormState extends State<SignUpForm> {
   TextFormField buildConformPassFormField() {
     return TextFormField(
       obscureText: true,
-      onSaved: (newValue) => conform_password = newValue,
-      onChanged: (value) {
-        if (value.isNotEmpty) {
-          removeError(error: kPassNullError);
-        } else if (value.isNotEmpty && password == conform_password) {
-          removeError(error: kMatchPassError);
-        }
-        conform_password = value;
-      },
+      controller: _passwordController ,
       validator: (value) {
         if (value!.isEmpty) {
           addError(error: kPassNullError);
@@ -119,16 +126,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField buildPasswordFormField() {
     return TextFormField(
-      obscureText: true,
-      onSaved: (newValue) => password = newValue,
-      onChanged: (value) {
-        if (value.isNotEmpty) {
-          removeError(error: kPassNullError);
-        } else if (value.length >= 8) {
-          removeError(error: kShortPassError);
-        }
-        password = value;
-      },
+      controller: _emailController,
       validator: (value) {
         if (value!.isEmpty) {
           addError(error: kPassNullError);
@@ -140,7 +138,7 @@ class _SignUpFormState extends State<SignUpForm> {
         return null;
       },
       decoration: InputDecoration(
-        hintText: "Digita tu contrasena",
+        hintText: "Digita tu email",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -151,16 +149,8 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField buildEmailFormField() {
     return TextFormField(
+      controller: _usernameController,
       keyboardType: TextInputType.emailAddress,
-      onSaved: (newValue) => email = newValue,
-      onChanged: (value) {
-        if (value.isNotEmpty) {
-          removeError(error: kEmailNullError);
-        } else if (emailValidatorRegExp.hasMatch(value)) {
-          removeError(error: kInvalidEmailError);
-        }
-        return null;
-      },
       validator: (value) {
         if (value!.isEmpty) {
           addError(error: kEmailNullError);
@@ -172,12 +162,26 @@ class _SignUpFormState extends State<SignUpForm> {
         return null;
       },
       decoration: InputDecoration(
-        hintText: "Digita tu correo",
+        hintText: "Digita tu usuario",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),
     );
+  }
+  void _signUp() async {
+    String username = _usernameController.text;
+    String email = _emailController.text;
+    String password = _passwordController.text;
+
+    User? user = await _auth.signUpWithEmailAndPassword(email, password);
+    
+    if(user != null) {
+      print("usuario creado");
+      Navigator.pushNamed(context, HomeScreen.routeName);
+    } else {
+      print("error");
+    }
   }
 }

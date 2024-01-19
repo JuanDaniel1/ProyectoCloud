@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shop_app/routes.dart';
@@ -5,9 +7,14 @@ import 'package:shop_app/screens/MySplashPage.dart';
 import 'package:shop_app/screens/splash/splash_screen.dart';
 import 'package:shop_app/theme.dart';
 
-void main() async{
+Future main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  if(kIsWeb){
+    await Firebase.initializeApp(options: FirebaseOptions(apiKey: "AIzaSyCYOpzbtNJgTw8wDiW9R1h7q9LmekvGORo", appId: "1:473814828693:web:31c54959d45b72b6b8bd9c", messagingSenderId: "473814828693", projectId: "precise-airship-402104"));
+  }
+  else{
+    await Firebase.initializeApp();
+  }
   runApp(MyApp());
 }
 

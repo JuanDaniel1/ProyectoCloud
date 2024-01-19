@@ -58,6 +58,11 @@ dependencies:
   shared_preferences: ^2.0.10
   dio: ^5.4.0
   google_fonts:
+  firebase_core:
+  cloud_firestore:
+  firebase_auth:
+  firebase_storage:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/screens/chatbot/chatbotscreen.dart';
@@ -13,16 +14,9 @@ import '../constants.dart';
 import '../enums.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
-
-   CustomBottomNavBar({
-    Key? key,
-    required this.selectedMenu
-  }) : super(key: key);
+  CustomBottomNavBar({Key? key, required this.selectedMenu}) : super(key: key);
 
   final MenuState selectedMenu;
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -59,34 +53,64 @@ class CustomBottomNavBar extends StatelessWidget {
                     Navigator.pushNamed(context, HomeScreen.routeName),
               ),
               IconButton(
-                icon: SvgPicture.asset("assets/icons/info.svg", color: MenuState.favourite == selectedMenu
-                    ? inActiveIconColor
-                    : kPrimaryColor,),
-
-                onPressed: () {
-                  Navigator.pushNamed(context, Carousel.routeName);
-
-                },
-              ),
-              IconButton(
-                icon: SvgPicture.asset("assets/icons/Chat bubble Icon.svg", color: MenuState.message == selectedMenu
-                    ? inActiveIconColor
-                    : kPrimaryColor,),
-                onPressed: () {
-                  Navigator.pushNamed(context, ChatBot.routeName);
-                },
-              ),
-              IconButton(
                 icon: SvgPicture.asset(
-                  "assets/icons/User Icon.svg",
-                  color: MenuState.profile == selectedMenu
+                  "assets/icons/info.svg",
+                  color: MenuState.favourite == selectedMenu
                       ? inActiveIconColor
                       : kPrimaryColor,
                 ),
                 onPressed: () {
-
-                    Navigator.pushNamed(context, ProfileScreen.routeName);}
+                  Navigator.pushNamed(context, Carousel.routeName);
+                },
               ),
+              IconButton(
+                icon: SvgPicture.asset(
+                  "assets/icons/Chat bubble Icon.svg",
+                  color: MenuState.message == selectedMenu
+                      ? inActiveIconColor
+                      : kPrimaryColor,
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, ChatBot.routeName);
+                },
+              ),
+              FutureBuilder<User?>(
+                  future: FirebaseAuth.instance.authStateChanges().first,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      final User? user = snapshot.data;
+                      if (user != null) {
+                        return IconButton(
+                            icon: SvgPicture.asset(
+                              "assets/icons/User Icon.svg",
+                              color: MenuState.profile == selectedMenu
+                                  ? inActiveIconColor
+                                  : kPrimaryColor,
+                            ),
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, ProfileScreen.routeName);
+                            });
+                      } else {
+                        return IconButton(
+                            icon: SvgPicture.asset(
+                              "assets/icons/User Icon.svg",
+                              color: MenuState.profile == selectedMenu
+                                  ? inActiveIconColor
+                                  : kPrimaryColor,
+                            ),
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, SignInScreen.routeName);
+                            }
+                            // El usuario no ha iniciado sesión
+
+                            );
+                      }
+                    } else {
+                      return CircularProgressIndicator();
+                    }
+                  })
             ],
           )),
     );

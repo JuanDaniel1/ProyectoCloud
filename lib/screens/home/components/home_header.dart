@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/screens/cart/cart_screen.dart';
+import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
 
 import '../../../size_config.dart';
 import 'icon_btn_with_counter.dart';
@@ -22,10 +24,27 @@ class HomeHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SearchField(),
-          IconBtnWithCounter(
-            svgSrc: "assets/icons/Cart Icon.svg",
-            press: () => Navigator.pushNamed(context, CartScreen.routeName),
-          ),
+          FutureBuilder<User?>(
+              future: FirebaseAuth.instance.authStateChanges().first,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  final User? user = snapshot.data;
+                  if (user != null) {
+                    return IconBtnWithCounter(
+                      svgSrc: "assets/icons/Cart Icon.svg",
+                      press: () => Navigator.pushNamed(context, CartScreen.routeName),
+                    );
+                  } else {
+                    return IconBtnWithCounter(
+                      svgSrc: "assets/icons/Cart Icon.svg",
+                      press: () => Navigator.pushNamed(context, SignInScreen.routeName),
+                    );
+                  }
+                } else {
+                  return CircularProgressIndicator();
+                }
+              }),
+
           IconBtnWithCounter(
             svgSrc: "assets/icons/Camera Icon.svg",
             press: () {
