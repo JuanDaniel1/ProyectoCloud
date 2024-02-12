@@ -3,13 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/screens/complete_profile/complete_profile_screen.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
-
+import 'package:shop_app/face_auth/pages/models/user.model.dart';
 import 'profile_menu.dart';
 import 'profile_pic.dart';
 
 // Cuerpo de menu de perfil
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+  const Body({super.key});
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -61,8 +67,10 @@ class Body extends StatelessWidget {
               }
             },
           ),
+
         ],
       ),
     );
   }
 }
+

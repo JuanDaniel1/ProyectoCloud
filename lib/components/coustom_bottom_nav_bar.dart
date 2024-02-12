@@ -74,13 +74,8 @@ class CustomBottomNavBar extends StatelessWidget {
                   Navigator.pushNamed(context, ChatBot.routeName);
                 },
               ),
-              FutureBuilder<User?>(
-                  future: FirebaseAuth.instance.authStateChanges().first,
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.done) {
-                      final User? user = snapshot.data;
-                      if (user != null) {
-                        return IconButton(
+
+                    IconButton(
                             icon: SvgPicture.asset(
                               "assets/icons/User Icon.svg",
                               color: MenuState.profile == selectedMenu
@@ -90,27 +85,9 @@ class CustomBottomNavBar extends StatelessWidget {
                             onPressed: () {
                               Navigator.pushNamed(
                                   context, ProfileScreen.routeName);
-                            });
-                      } else {
-                        return IconButton(
-                            icon: SvgPicture.asset(
-                              "assets/icons/User Icon.svg",
-                              color: MenuState.profile == selectedMenu
-                                  ? inActiveIconColor
-                                  : kPrimaryColor,
-                            ),
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                  context, SignInScreen.routeName);
                             }
-                            // El usuario no ha iniciado sesión
 
-                            );
-                      }
-                    } else {
-                      return CircularProgressIndicator();
-                    }
-                  })
+    )
             ],
           )),
     );

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/face_auth/pages/home.dart';
+import 'package:shop_app/face_auth/pages/sign-up.dart';
 
 import '../../components/socal_card.dart';
 import '../../constants.dart';
@@ -31,7 +33,9 @@ class SignUpScreen extends StatelessWidget {
                   SizedBox(height: SizeConfig.screenHeight * 0.08),
                   SignUpForm(),
                   SizedBox(height: SizeConfig.screenHeight * 0.08),
-
+                  IconButton(onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SignUp()));
+                  }, icon: Icon(Icons.camera)),
                   SizedBox(height: getProportionateScreenHeight(20)),
                   Text(
                     'Al continuar aceptas \n nuestros terminos y condiciones',

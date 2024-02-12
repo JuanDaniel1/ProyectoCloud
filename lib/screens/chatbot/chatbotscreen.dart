@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:dialogflow_flutter/dialogflowFlutter.dart';
 import 'package:intl/intl.dart';
 
+import '../../face_auth/locator.dart';
+import '../../face_auth/services/camera.service.dart';
+import 'dart:io';
 
 
 
@@ -30,6 +33,7 @@ class ChatBot extends StatefulWidget {
 }
 
 class _ChatBotState extends State<ChatBot> {
+  CameraService _cameraService = locator<CameraService>();
 
   void response(query) async {
     AuthGoogle authGoogle = await AuthGoogle(
@@ -213,7 +217,7 @@ class _ChatBotState extends State<ChatBot> {
             height: 60,
             width: 60,
             child: CircleAvatar(
-              backgroundImage: AssetImage("assets/images/Profile Image.png"),
+              backgroundImage: FileImage(File(_cameraService.imagePath.toString())),
             ),
           ) : Container(),
 

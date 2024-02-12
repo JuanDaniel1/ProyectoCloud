@@ -20,7 +20,7 @@ class _CartScreenState extends State<CartScreen> {
 
   Future<List<CarritoModel>> fetchPopularData() async {
     final response =
-    await http.get(Uri.parse('http://192.168.1.59/api/carrito/'));
+    await http.get(Uri.parse('http://127.0.0.1:8000/api/carrito/'));
 
     if (response.statusCode == 200) {
       // Decodificar la respuesta JSON y mapear a instancias de PopularModel

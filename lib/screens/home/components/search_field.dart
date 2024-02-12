@@ -23,10 +23,7 @@ class SearchField extends StatelessWidget {
       ),
       child: IconButton(onPressed: (){
 
-        showSearch(
-            context: context,
-            delegate: SearchCategoriesDelegate(),
-        );
+        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SearchPage()));
       },
           icon: const Icon(Icons.search)
       )

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/components/no_account_text.dart';
 import 'package:shop_app/components/socal_card.dart';
+import 'package:shop_app/face_auth/pages/home.dart';
+import 'package:shop_app/face_auth/pages/sign-in.dart';
 import '../../../size_config.dart';
 import 'sign_form.dart';
 
@@ -33,6 +35,10 @@ class Body extends StatelessWidget {
                 ),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
                 SignForm(),
+                SizedBox(height: getProportionateScreenHeight(20)),
+                IconButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>SignIn()));
+                }, icon: Icon(Icons.camera)),
                 SizedBox(height: getProportionateScreenHeight(20)),
                 NoAccountText(),
               ],
