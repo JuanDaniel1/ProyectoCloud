@@ -8,6 +8,8 @@ import 'package:shop_app/pages/producto/producto_list.dart';
 import 'package:shop_app/pages/inicio/inicio.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 
+import 'face_auth/pages/db/databse_helper.dart';
+
 class Menu extends StatefulWidget {
   static String routeName = "/admin";
   @override
@@ -93,6 +95,15 @@ class MenuState extends State<Menu> {
               selected: (4 == _selectDrawerItem),
               onTap: () {
                 Navigator.pushNamed(context, HomeScreen.routeName);
+              },
+            ),
+            ListTile(
+              title: const Text('Limpiar FaceAuth'),
+              leading: const Icon(Icons.remove),
+              selected: (5 == _selectDrawerItem),
+              onTap: () {
+                DatabaseHelper _dataBaseHelper = DatabaseHelper.instance;
+                _dataBaseHelper.deleteAll();
               },
             ),
           ],

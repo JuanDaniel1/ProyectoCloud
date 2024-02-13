@@ -1,9 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_app/face_auth/pages/sign-up.dart';
 import 'package:shop_app/screens/complete_profile/complete_profile_screen.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
 import 'package:shop_app/face_auth/pages/models/user.model.dart';
+import '../../../face_auth/pages/db/databse_helper.dart';
+import '../../../menu.dart';
 import 'profile_menu.dart';
 import 'profile_pic.dart';
 
@@ -24,15 +27,45 @@ class _BodyState extends State<Body> {
         children: [
           ProfilePic(),
           SizedBox(height: 20),
-          ProfileMenu(
-            text: "Configuracion",
-            icon: "assets/icons/Settings.svg",
-            press: () {Navigator.pushNamed(context, CompleteProfileScreen.routeName);},
+          FutureBuilder<User?>(
+            future: FirebaseAuth.instance.authStateChanges().first,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                final User? user = snapshot.data;
+                if (user != null) {
+                  if(user.email == "admin@gmail.com") {
+                    // El usuario ha iniciado sesión
+                    return ProfileMenu(
+                      text: "Admin",
+                      icon: "assets/icons/Settings.svg",
+                      press: () async {
+                        // Cerrar sesión
+                        await FirebaseAuth.instance.signOut();
+                        // Navegar a la pantalla de inicio de sesión
+                        Navigator.pushNamed(context, Menu.routeName);
+                      },
+                    );
+                  } else {
+                    return Text('');
+                  }
+                } else {
+                  return Text('');
+
+                }
+              } else {
+                // Mostrar un indicador de carga mientras se verifica el estado de autenticación
+                return CircularProgressIndicator();
+              }
+            },
           ),
           ProfileMenu(
-            text: "Informacion",
+            text: "FaceAuth",
             icon: "assets/icons/Question mark.svg",
-            press: () {},
+            press: () {
+              DatabaseHelper _dataBaseHelper = DatabaseHelper.instance;
+              _dataBaseHelper.deleteAll();
+              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=> SignUp()));
+            },
           ),
           FutureBuilder<User?>(
             future: FirebaseAuth.instance.authStateChanges().first,

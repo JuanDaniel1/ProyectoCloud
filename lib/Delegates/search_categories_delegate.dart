@@ -92,16 +92,20 @@ class _SearchPageState extends State<SearchPage> {
             SizedBox(
               height: 10.0,
             ),
-            GridView.builder(
-              shrinkWrap: true,
-              itemCount: searchResults.length,
-              itemBuilder: (BuildContext context, int index) {
-                return buildResultCard(searchResults[index]);
-              }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: crossAxisCount,
-              childAspectRatio: 0.7
-            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: GridView.builder(
+                shrinkWrap: true,
+                itemCount: searchResults.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return buildResultCard(searchResults[index]);
+                }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: crossAxisCount,
+                  childAspectRatio: 0.7
+              ),
+              ),
             )
+
           ],
         ),
       ),
