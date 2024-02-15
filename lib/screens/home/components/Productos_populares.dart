@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/config.dart';
 
 import '../../../models/popular_model.dart';
+import '../../../models/producto_model.dart';
 import '../../../size_config.dart';
+import '../../details/details_screen.dart';
 import 'section_title.dart';
 import 'package:http/http.dart' as http;
 
@@ -13,7 +16,7 @@ class SpecialOffers extends StatelessWidget {
   }) : super(key: key);
 
   Future<List<PopularModel>> fetchPopularData() async {
-    final response = await http.get(Uri.parse('http://192.168.1.59/api/producto-popular/'));
+    final response = await http.get(Uri.http(Config.apiURL, Config.popularAPI));
 
     if (response.statusCode == 200) {
       // Decodificar la respuesta JSON y mapear a instancias de PopularModel
@@ -93,19 +96,20 @@ class SpecialOfferCard extends StatelessWidget {
     required this.category,
     required this.image,
     required this.numOfBrands,
-    required this.press,
+    required this.press, this.model,
   }) : super(key: key);
 
   final String category, image;
   final int numOfBrands;
   final GestureTapCallback press;
+  final ProductoModel? model;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: getProportionateScreenWidth(20)),
       child: GestureDetector(
-        onTap: (){},
+        onTap: () {},
         child: SizedBox(
           height: getProportionateScreenWidth(130),
           child: ClipRRect(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/config.dart';
 import 'package:shop_app/models/Cart.dart';
 
 import '../../models/carrito_model.dart';
@@ -20,7 +21,10 @@ class _CartScreenState extends State<CartScreen> {
 
   Future<List<CarritoModel>> fetchPopularData() async {
     final response =
-    await http.get(Uri.parse('http://127.0.0.1:8000/api/carrito/'));
+
+
+    await http.get(Uri.http(Config.apiURL, Config.carritoAPI));
+
 
     if (response.statusCode == 200) {
       // Decodificar la respuesta JSON y mapear a instancias de PopularModel

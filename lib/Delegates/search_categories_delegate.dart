@@ -4,7 +4,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shop_app/Delegates/search_service.dart';
+
+import 'package:shop_app/components/coustom_bottom_nav_bar.dart';
+import 'package:shop_app/enums.dart';
+
 import 'package:shop_app/models/productSearch.dart';
+import 'package:shop_app/models/producto_model.dart';
 import 'package:shop_app/services/product_service.dart';
 
 import '../components/product_card.dart';
@@ -34,7 +39,10 @@ class _SearchPageState extends State<SearchPage> {
     // Realiza la solicitud de búsqueda
     try {
       String responseBody = await SearchService.searchDjangoApi(value);
-      List<dynamic> data = jsonDecode(responseBody);
+
+
+      List<ProductoModel> data = productosFromJson(responseBody);
+
 
       // Actualiza la lista de resultados y notifica a Flutter que debe redibujar la interfaz de usuario
       setState(() {
@@ -62,10 +70,7 @@ class _SearchPageState extends State<SearchPage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('django Api search'),
-          centerTitle: true,
-        ),
+
         body: ListView(
           children: <Widget>[
             Padding(
@@ -92,26 +97,23 @@ class _SearchPageState extends State<SearchPage> {
             SizedBox(
               height: 10.0,
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: GridView.builder(
-                shrinkWrap: true,
-                itemCount: searchResults.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return buildResultCard(searchResults[index]);
-                }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: crossAxisCount,
-                  childAspectRatio: 0.7
-              ),
-              ),
+            GridView.builder(
+              shrinkWrap: true,
+              itemCount: searchResults.length,
+              itemBuilder: (BuildContext context, int index) {
+                return buildResultCard(searchResults[index]);
+              }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: crossAxisCount,
+              childAspectRatio: 0.7
+            ),
             )
-
           ],
         ),
+        bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home,),
       ),
     );
   }
-  Widget buildResultCard(data) {
+  Widget buildResultCard(ProductoModel producto) {
     return Padding(
         padding: EdgeInsets.all(5 ),
         child: Card(
@@ -140,7 +142,8 @@ class _SearchPageState extends State<SearchPage> {
                   onTap: () => Navigator.pushNamed(
                     context,
                     DetailsScreen.routeName,
-                    arguments: ProductDetailsArguments(model: data)
+                    arguments: ProductDetailsArguments(model: producto)
+
                   ),
                   child: SingleChildScrollView(
                     child: Column(
@@ -154,7 +157,8 @@ class _SearchPageState extends State<SearchPage> {
                               color: kSecondaryColor.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(15),
                             ),
-                            child: Image.network(data['productoImage'], fit: BoxFit.cover,),
+
+                            child: Image.network(producto.productoImage!, fit: BoxFit.cover,),
 
                           ),
 
@@ -166,7 +170,9 @@ class _SearchPageState extends State<SearchPage> {
                         Padding(
                           padding: EdgeInsets.only(left: 8),
                           child: Text(
-                            data['productoName'],
+
+                            producto.productoName!,
+
                             style: GoogleFonts.oswald(fontSize: getProportionateScreenWidth(14), fontWeight: FontWeight.w300, color: Colors.black),
                             maxLines: 2,
                           ),
@@ -177,7 +183,9 @@ class _SearchPageState extends State<SearchPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                  "\$${data['productoPrice']}",
+
+                                  "\$${producto.productoPrice}",
+
                                   style: GoogleFonts.oswald(fontSize: getProportionateScreenWidth(16), fontWeight: FontWeight.w400, color: kPrimaryColor)
                               ),
                             ],

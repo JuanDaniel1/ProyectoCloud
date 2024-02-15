@@ -75,23 +75,7 @@ class _PopularListState extends State<PopularList> {
               Row(
                 // ignore: sort_child_properties_last
                 children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(
-                          context,
-                          ProductoAddEdit.routeName,
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.amber,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 30),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50))),
-                      child: const Text(
-                        'Add Producto',
-                        style: TextStyle(fontSize: 15, color: Colors.black),
-                      )),
+
                   ElevatedButton(
                       onPressed: () {
                         Navigator.pushNamed(

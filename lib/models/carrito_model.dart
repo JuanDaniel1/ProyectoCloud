@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shop_app/config.dart';
 
 
 
@@ -43,7 +44,7 @@ class CarritoModel {
   Future<void> deleteCarrito() async {
     try {
       final response = await http.delete(
-        Uri.parse('http://192.168.1.59/api/carrito/${carritoId}'),
+        Uri.http(Config.apiURL,  '${Config.carritoAPI}/${carritoId}'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

@@ -102,8 +102,10 @@ class MenuState extends State<Menu> {
               leading: const Icon(Icons.remove),
               selected: (5 == _selectDrawerItem),
               onTap: () {
+
                 DatabaseHelper _dataBaseHelper = DatabaseHelper.instance;
                 _dataBaseHelper.deleteAll();
+
               },
             ),
           ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shop_app/screens/home/components/ProductCategory.dart';
 import 'package:shop_app/screens/home/components/section_title.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shop_app/services/api_categoria.dart';
@@ -97,6 +98,7 @@ class _CategoryCardState extends State<CategoryCard> {
           onTap: (){
             setState(() {
               borde = !borde;
+              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>ProductCategory(id: widget.model!.id!, title: widget.model!.categoriaName!,)));
             });
           },
 

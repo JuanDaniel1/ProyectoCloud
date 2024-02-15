@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shop_app/config.dart';
 import 'package:shop_app/models/Cart.dart';
 import 'package:http/http.dart' as http;
 import 'package:shop_app/screens/cart/cart_screen.dart';
@@ -21,7 +22,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   Future<List<CarritoModel>> fetchPopularData() async {
     final response =
-        await http.get(Uri.parse('http://192.168.1.59/api/carrito/'));
+        await http.get(Uri.http(Config.apiURL, Config.carritoAPI));
 
     if (response.statusCode == 200) {
       // Decodificar la respuesta JSON y mapear a instancias de PopularModel

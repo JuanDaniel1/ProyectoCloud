@@ -22,7 +22,7 @@ class _CartCardState extends State<CartCard> {
   Future<void> deleteCarrito() async {
     try {
       final response = await http.delete(
-        Uri.parse('http://192.168.1.59/api/carrito/${widget.cart.carritoId}'),
+        Uri.parse('http://192.168.122.225/api/carrito/${widget.cart.carritoId}'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

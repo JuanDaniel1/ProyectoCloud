@@ -7,6 +7,7 @@ import 'package:shop_app/face_auth/pages/models/user.model.dart';
 import '../../../face_auth/locator.dart';
 import '../../../face_auth/services/camera.service.dart';
 
+
 // Configuracion para foto de perfil
 
 class ProfilePic extends StatefulWidget {
@@ -21,6 +22,7 @@ class ProfilePic extends StatefulWidget {
 
 class _ProfilePicState extends State<ProfilePic> {
   CameraService _cameraService = locator<CameraService>();
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -32,6 +34,7 @@ class _ProfilePicState extends State<ProfilePic> {
         children: [
           CircleAvatar(
             backgroundImage: FileImage(File(_cameraService.imagePath.toString())),
+
           ),
           Positioned(
             right: -16,

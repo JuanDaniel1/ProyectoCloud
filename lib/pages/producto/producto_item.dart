@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:shop_app/config.dart';
 import 'package:shop_app/pages/producto/producto_add_edit.dart';
 import 'package:shop_app/services/api_popular.dart';
 import '../../models/popular_model.dart';
@@ -149,7 +150,6 @@ class _ProductoItemState extends State<ProductoItem> {
   }
   void save() {
     // URL del servidor al que deseas enviar la solicitud POST
-    String url = "http://192.168.1.59/api/producto-popular/";
 
     // Obtener el ID del producto actual (si está disponible)
 
@@ -165,7 +165,7 @@ class _ProductoItemState extends State<ProductoItem> {
 
       // Realizar la solicitud POST al servidor
       http.post(
-        Uri.parse(url),
+        Uri.http(Config.apiURL, Config.popularAPI),
         body: json.encode(data),
         headers: {"Content-Type": "application/json"},
       ).then((response) {

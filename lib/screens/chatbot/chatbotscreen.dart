@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 
 import '../../face_auth/locator.dart';
 import '../../face_auth/services/camera.service.dart';
+
 import 'dart:io';
 
 
@@ -217,7 +218,9 @@ class _ChatBotState extends State<ChatBot> {
             height: 60,
             width: 60,
             child: CircleAvatar(
+
               backgroundImage: FileImage(File(_cameraService.imagePath.toString())),
+
             ),
           ) : Container(),
 
