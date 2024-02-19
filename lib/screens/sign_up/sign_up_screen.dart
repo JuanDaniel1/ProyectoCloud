@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/face_auth/pages/home.dart';
-import 'package:shop_app/face_auth/pages/sign-up.dart';
 
 
 import '../../components/socal_card.dart';
 import '../../constants.dart';
-import '../../face_auth/pages/db/databse_helper.dart';
 import '../../size_config.dart';
 import 'components/sign_up_form.dart';
 
@@ -37,9 +34,7 @@ class SignUpScreen extends StatelessWidget {
                   SizedBox(height: SizeConfig.screenHeight * 0.08),
                   IconButton(onPressed: (){
 
-                    DatabaseHelper _dataBaseHelper = DatabaseHelper.instance;
-                    _dataBaseHelper.deleteAll();
-                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SignUp()));
+
 
                   }, icon: Icon(Icons.camera)),
                   SizedBox(height: getProportionateScreenHeight(20)),

@@ -1,5 +1,8 @@
+
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:shop_app/config.dart';
 import 'package:shop_app/models/Cart.dart';
 import 'package:http/http.dart' as http;
@@ -9,6 +12,9 @@ import '../../../constants.dart';
 import '../../../models/carrito_model.dart';
 import '../../../size_config.dart';
 import 'cart_card.dart';
+import 'package:shop_app/screens/cart/factura/pdf_pages.dart';
+import 'package:pdf/widgets.dart' as pdfWidgets;
+import 'package:open_file/open_file.dart';
 
 // Cuerpo de carrito de compras
 
@@ -240,7 +246,9 @@ class _BodyState extends State<Body> {
                                   width: getProportionateScreenWidth(190),
                                   child: DefaultButton(
                                     text: "Comprar",
-                                    press: () {},
+                                    press: () async {
+                                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=> PdfPage()));
+                                    },
                                   ),
                                 ),
                               ],

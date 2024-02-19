@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:shop_app/face_auth/locator.dart';
 import 'package:shop_app/routes.dart';
 import 'package:shop_app/screens/MySplashPage.dart';
 import 'package:shop_app/screens/splash/splash_screen.dart';
@@ -16,7 +15,6 @@ Future main() async{
   else{
     await Firebase.initializeApp();
   }
-  setupServices();
   runApp(MyApp());
 }
 
