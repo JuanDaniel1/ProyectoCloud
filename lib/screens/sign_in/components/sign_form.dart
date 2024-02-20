@@ -6,6 +6,7 @@ import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/form_error.dart';
 import 'package:shop_app/helper/keyboard.dart';
 import 'package:shop_app/menu.dart';
+import 'package:shop_app/menucomerc.dart';
 import 'package:shop_app/screens/comercializadora/comercializadora.dart';
 import 'package:shop_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
@@ -260,7 +261,7 @@ class _SignFormState extends State<SignForm> {
       if(email == "admin@gmail.com"){
         Navigator.pushNamed(context, Menu.routeName);
       } else if(email == "comerc@gmail.com"){
-        Navigator.pushNamed(context, Comercializadora.routeName);
+        Navigator.pushNamed(context, MenuComerc.routeName);
       } else if(email == "jefe@gmail.com"){
         Navigator.pushNamed(context, jefe.routeName);
       } else {

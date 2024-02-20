@@ -1,7 +1,9 @@
 
 
 import 'package:flutter/widgets.dart';
+import 'package:path/path.dart';
 import 'package:shop_app/main.dart';
+import 'package:shop_app/menucomerc.dart';
 import 'package:shop_app/pages/categoria/categoria_add_edit.dart';
 import 'package:shop_app/pages/categoria/categoria_item.dart';
 import 'package:shop_app/pages/categoria/categoria_list.dart';
@@ -11,6 +13,8 @@ import 'package:shop_app/screens/MySplashPage.dart';
 import 'package:shop_app/screens/cart/cart_screen.dart';
 import 'package:shop_app/screens/chatbot/chatbotscreen.dart';
 import 'package:shop_app/screens/comercializadora/comercializadora.dart';
+import 'package:shop_app/screens/comercializadora/populares/producto_list.dart';
+import 'package:shop_app/screens/comercializadora/producto/producto_list.dart';
 import 'package:shop_app/screens/complete_profile/complete_profile_screen.dart';
 import 'package:shop_app/screens/details/details_screen.dart';
 import 'package:shop_app/screens/forgot_password/forgot_password_screen.dart';
@@ -53,6 +57,9 @@ final Map<String, WidgetBuilder> routes = {
   CategoriaAddEdit.routeName: (context) => CategoriaAddEdit(),
   CategoriasList.routeName: (context) => CategoriasList(),
   Register.routeName: (context) => Register(),
+  PopularListComerc.routeName: (context) => PopularListComerc(),
+  ProductosListComerc.routeName: (context) => ProductosListComerc(),
+  MenuComerc.routeName: (context) => MenuComerc()
 
 };
 
