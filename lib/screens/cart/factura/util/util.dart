@@ -9,72 +9,9 @@ import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 
 
-Future<Uint8List> generatePdf(final PdfPageFormat format) async{
-  final doc = pw.Document(
-    title: "Factura"
-  );
-  final logoImage = pw.MemoryImage(
-      (await rootBundle.load("assets/sena.png")).buffer.asUint8List()
-  );
 
-  final pageTheme = await _myPageTheme(format);
 
-  doc.addPage(
-    pw.MultiPage(
-      pageTheme: pageTheme,
-    header: (final context) => pw.Image(
-      alignment: pw.Alignment.topLeft,
-      logoImage,
-      fit: pw.BoxFit.contain,
-      width: 100
-
-    )
-
-    , build: (final context)=> [
-      pw.Container(
-        padding: pw.EdgeInsets.only(left: 30, bottom: 20),
-        child: pw.Column(
-          crossAxisAlignment: pw.CrossAxisAlignment.center,
-          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-          children: [
-            pw.Column(
-              crossAxisAlignment: pw.CrossAxisAlignment.end,
-              children: [
-                pw.Text('Email: '),
-                pw.Text('Telefono: '),
-                pw.Text('Instagram: ')
-              ]
-            ),
-            pw.SizedBox(width: 70),
-          pw.Column(
-          crossAxisAlignment: pw.CrossAxisAlignment.start,
-            children: [
-              pw.Text('sena@misena.com'),
-              pw.Text('032131 03123'),
-            ]
-      ),
-            pw.SizedBox(width: 70),
-            pw.BarcodeWidget(
-              data: "Factura",
-              width: 40,
-              height: 40,
-              barcode: pw.Barcode.qrCode(),
-              drawText: false
-            ),
-            pw.Padding(padding: pw.EdgeInsets.zero)
-          ]
-        )
-      ),
-      pw.Center(
-        child: pw.Text('Factura', textAlign: pw.TextAlign.center, )
-      )
-    ]
-    ),
-  );
-  return doc.save();
-}
-
-Future<pw.PageTheme> _myPageTheme(PdfPageFormat format) async{
+Future<pw.PageTheme> myPageTheme(PdfPageFormat format) async{
   final logoImage = pw.MemoryImage(
       (await rootBundle.load("assets/sena.png")).buffer.asUint8List()
   );
@@ -90,7 +27,7 @@ Future<pw.PageTheme> _myPageTheme(PdfPageFormat format) async{
           child: pw.Watermark(
             angle: 20,
             child: pw.Opacity(
-              opacity: 0.5,
+              opacity: 0.1,
               child: pw.Image(
                 alignment: pw.Alignment.center,
                 logoImage,

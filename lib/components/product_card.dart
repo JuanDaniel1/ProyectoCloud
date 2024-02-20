@@ -87,7 +87,7 @@ class _ProductCardState extends State<ProductCard> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 8),
+                padding: EdgeInsets.only(left: 8, right: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -95,6 +95,10 @@ class _ProductCardState extends State<ProductCard> {
                       "\$${widget.model!.productoPrice}",
                       style: GoogleFonts.oswald(fontSize: getProportionateScreenWidth(16), fontWeight: FontWeight.w400, color: kPrimaryColor)
                     ),
+                    Text(
+                      "Cantidad: ${widget.model!.productoCantidad}",
+                      style: GoogleFonts.oswald(fontSize: getProportionateScreenWidth(13), fontWeight: FontWeight.w300, color: Colors.black),
+                    )
                   ],
                 ),
               )

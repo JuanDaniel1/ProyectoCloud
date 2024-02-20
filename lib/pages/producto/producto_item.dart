@@ -165,7 +165,7 @@ class _ProductoItemState extends State<ProductoItem> {
 
       // Realizar la solicitud POST al servidor
       http.post(
-        Uri.http(Config.apiURL, Config.popularAPI),
+        Uri.parse('http://192.168.1.59/api/producto-popular/'),
         body: json.encode(data),
         headers: {"Content-Type": "application/json"},
       ).then((response) {

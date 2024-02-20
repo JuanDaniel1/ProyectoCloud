@@ -162,7 +162,7 @@ class _BodyState extends State<Body> {
                                 Column(
                                   children: [
                                     Padding(
-                                      padding: EdgeInsets.only(top: 20),
+                                      padding: EdgeInsets.only(top: 7),
                                       child: Text(
                                         "SubTotal",
                                         style: TextStyle(
@@ -247,7 +247,7 @@ class _BodyState extends State<Body> {
                                   child: DefaultButton(
                                     text: "Comprar",
                                     press: () async {
-                                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=> PdfPage()));
+                                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=> PdfPage(model: snapshot.data!,)));
                                     },
                                   ),
                                 ),
