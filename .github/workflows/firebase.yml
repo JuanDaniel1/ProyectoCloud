@@ -18,6 +18,7 @@ jobs:
           run: |
             flutter config --enable-web
             flutter pub get
+            flutter pub upgrade
             flutter build web --release
             
         - name: Firebase Deploy
