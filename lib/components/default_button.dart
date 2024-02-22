@@ -19,9 +19,8 @@ class DefaultButton extends StatelessWidget {
       height: getProportionateScreenHeight(46),
       child: TextButton(
         style: TextButton.styleFrom(
-          shape:
+          foregroundColor: Colors.white, shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          primary: Colors.white,
           backgroundColor: kPrimaryColor.withOpacity(0.8),
         ),
         onPressed: press as void Function()?,
