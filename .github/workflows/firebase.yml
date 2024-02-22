@@ -4,11 +4,11 @@ on:
   push:
     branches: [master]
 
-  jobs:
-    build:
-      runs-on: ubuntu-latest
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-      steps:
+    steps:
         - uses: actions/checkout@v2
         - uses: subosito/flutter-action@1.4.0
           with:
