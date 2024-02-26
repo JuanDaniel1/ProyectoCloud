@@ -28,7 +28,7 @@ class _ProductCategoryState extends State<ProductCategory> {
     };
 
     var url = Uri.parse(
-      "http://192.168.1.59/api/productos/?categoria_id=${widget.id}"
+      "https://juandaniel1.pythonanywhere.com/api/productos/?categoria_id=${widget.id}"
     );
 
     var response = await client.get(

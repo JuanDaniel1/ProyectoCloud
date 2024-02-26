@@ -16,7 +16,7 @@ class SpecialOffers extends StatelessWidget {
   }) : super(key: key);
 
   Future<List<PopularModel>> fetchPopularData() async {
-    final response = await http.get(Uri.http(Config.apiURL, Config.popularAPI));
+    final response = await http.get(Uri.parse("${Config.apiURL}${Config.popularAPI}"));
 
     if (response.statusCode == 200) {
       // Decodificar la respuesta JSON y mapear a instancias de PopularModel

@@ -13,10 +13,7 @@ class APIProducto {
       'Content-Type': 'application/json',
     };
 
-    var url = Uri.http(
-      Config.apiURL,
-      Config.productosAPI,
-    );
+    var url = Uri.parse("${Config.apiURL}${Config.productosAPI}");
 
     var response = await client.get(
       url,
@@ -43,7 +40,7 @@ class APIProducto {
       productURL = "$productURL${model.id.toString()}/";
     }
 
-    var url = Uri.http(Config.apiURL, productURL);
+    var url = Uri.parse("${Config.apiURL}$productURL");
 
     var requestMethod = isEditMode ? "PUT" : "POST";
 
@@ -80,7 +77,7 @@ class APIProducto {
       'Content-Type': 'application/json',
     };
 
-    var url = Uri.http(Config.apiURL, "${Config.productosAPI}/$productId/");
+    var url = Uri.parse("${Config.apiURL}${Config.productosAPI}/$productId/");
 
     var response = await client.delete(
       url,

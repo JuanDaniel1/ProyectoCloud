@@ -1,6 +1,6 @@
 class Config {
   static const String appName = "SENA";
-  static const String apiURL = '192.168.1.59';
+  static const String apiURL = 'https://juandaniel1.pythonanywhere.com/';
   static const productosAPI = "api/producto";
   static const productoCategoryAPI = "api/producto?search=";
   static const clientesAPI = "api/cliente";

@@ -12,10 +12,7 @@ class APIPopular {
       'Content-Type': 'application/json',
     };
 
-    var url = Uri.http(
-      Config.apiURL,
-      Config.popularAPI,
-    );
+    var url = Uri.parse("${Config.apiURL}${Config.popularAPI}");
 
     var response = await client.get(
       url,
@@ -37,7 +34,7 @@ class APIPopular {
 
 
 
-    var url = Uri.http(Config.apiURL, productURL);
+    var url = Uri.parse("${Config.apiURL}$productURL");
 
 
     /*Map<String, String> headers = {

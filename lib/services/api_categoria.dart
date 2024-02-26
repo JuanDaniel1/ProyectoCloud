@@ -11,10 +11,7 @@ class APIcategoria {
       'Content-Type': 'application/json',
     };
 
-    var url = Uri.http(
-      Config.apiURL,
-      Config.categoriasAPI,
-    );
+    var url = Uri.parse("${Config.apiURL}${Config.categoriasAPI}");
 
     var response = await client.get(
       url,
@@ -41,7 +38,7 @@ class APIcategoria {
       productURL = "$productURL${model.id.toString()}/";
     }
 
-    var url = Uri.http(Config.apiURL, productURL);
+    var url = Uri.parse("${Config.apiURL}$productURL");
 
     var requestMethod = isEditMode ? "PUT" : "POST";
 
@@ -70,7 +67,7 @@ class APIcategoria {
       'Content-Type': 'application/json',
     };
 
-    var url = Uri.http(Config.apiURL, "${Config.categoriasAPI}/$productId/");
+    var url = Uri.parse("${Config.apiURL}${Config.categoriasAPI}/$productId/");
 
     var response = await client.delete(
       url,

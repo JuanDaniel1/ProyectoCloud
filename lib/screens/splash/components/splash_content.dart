@@ -22,7 +22,7 @@ class SplashContent extends StatelessWidget {
         Text(
           "SENA",
           style: TextStyle(
-            fontSize: getProportionateScreenWidth(36),
+            fontSize: getProportionateScreenWidth(26),
             color: kPrimaryColor,
             fontWeight: FontWeight.bold,
           ),

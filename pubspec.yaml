@@ -68,7 +68,7 @@ dependencies:
   url_launcher: ^6.0.3
   sqflite: ^2.0.2
   get_it: ^7.2.0
-  pdf: ^3.10.7
+  pdf:
   open_file:
   printing:
 

@@ -5,6 +5,21 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "storage": {
+    "rules": [
+      {
+        "origin": ["*"],
+        "method": ["GET"],
+        "maxAgeSeconds": 3600
+      }
     ]
   }
 }
