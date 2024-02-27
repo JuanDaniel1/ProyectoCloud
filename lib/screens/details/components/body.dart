@@ -158,7 +158,7 @@ class _BodyState extends State<Body> {
   }
   void save() async{
     // URL del servidor al que deseas enviar la solicitud POST
-    String url = "http://192.168.1.59/api/carrito/";
+    String url = "https://juandaniel1.pythonanywhere.com/api/carrito/";
 
     // Preparar los datos del producto a enviar en la solicitud POST
     Map<String, dynamic> data = {

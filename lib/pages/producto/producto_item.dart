@@ -165,7 +165,7 @@ class _ProductoItemState extends State<ProductoItem> {
 
       // Realizar la solicitud POST al servidor
       http.post(
-        Uri.parse('http://192.168.1.59/api/producto-popular/'),
+        Uri.parse('https://juandaniel1.pythonanywhere.com/api/producto-popular/'),
         body: json.encode(data),
         headers: {"Content-Type": "application/json"},
       ).then((response) {

@@ -23,7 +23,7 @@ class _CartScreenState extends State<CartScreen> {
     final response =
 
 
-    await http.get(Uri.http(Config.apiURL, Config.carritoAPI));
+    await http.get(Uri.parse("${Config.apiURL}${Config.carritoAPI}"));
 
 
     if (response.statusCode == 200) {

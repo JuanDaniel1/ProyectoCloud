@@ -39,7 +39,7 @@ class _BodyState extends State<Body> {
         child: Column(
           children: <Widget>[
             Expanded(
-              flex: 2,
+              flex: 6,
               child: PageView.builder(
                 onPageChanged: (value) {
                   setState(() {
@@ -53,6 +53,7 @@ class _BodyState extends State<Body> {
                 ),
               ),
             ),
+            Spacer(),
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(
@@ -78,13 +79,14 @@ class _BodyState extends State<Body> {
                         ),
                       ),
                     ),
-                    Spacer(flex: 1,),
+                    Spacer(flex: 3),
                     DefaultButton(
                       text: "Continua",
                       press: () {
                         Navigator.pushNamed(context, HomeScreen.routeName);
                       },
                     ),
+                    Spacer(),
                   ],
                 ),
               ),

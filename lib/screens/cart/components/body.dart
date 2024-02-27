@@ -27,8 +27,7 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   Future<List<CarritoModel>> fetchPopularData() async {
-    final response =
-        await http.get(Uri.http(Config.apiURL, Config.carritoAPI));
+    final response = await http.get(Uri.parse("${Config.apiURL}${Config.carritoAPI}"));
 
     if (response.statusCode == 200) {
       // Decodificar la respuesta JSON y mapear a instancias de PopularModel
@@ -62,9 +61,7 @@ class _BodyState extends State<Body> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return CircularProgressIndicator(); // Puedes mostrar un indicador de carga mientras se espera la respuesta.
-          } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          }  else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return Text('No se encontraron datos');
           } else {
             double total = snapshot.data!

@@ -37,10 +37,10 @@ class _SignFormState extends State<SignForm> {
   TextEditingController passwordController = TextEditingController();
 
   //final urllogin = Uri.parse("http://192.168.1.108/api/login/");
-  final urllogin = Uri.http(Config.apiURL, Config.loginAPI);
+  final urllogin = Uri.parse("${Config.apiURL}${Config.loginAPI}");
 
   //final urlobtenertoken = Uri.parse("http://192.168.1.108/api/api-token-auth/");
-  final urlobtenertoken = Uri.http(Config.apiURL, Config.obtenertokenAPI);
+  final urlobtenertoken = Uri.parse("${Config.apiURL}${Config.obtenertokenAPI}");
   final headers = {"Content-Type": "application/json;charset=UTF-8"};
   final _formKey = GlobalKey<FormState>();
   String? email;

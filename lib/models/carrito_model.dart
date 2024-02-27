@@ -44,7 +44,7 @@ class CarritoModel {
   Future<void> deleteCarrito() async {
     try {
       final response = await http.delete(
-        Uri.http(Config.apiURL,  '${Config.carritoAPI}/${carritoId}'),
+        Uri.parse("${Config.apiURL}${Config.carritoAPI}/${carritoId}"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

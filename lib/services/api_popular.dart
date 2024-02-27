@@ -63,7 +63,7 @@ class APIPopular {
       'Content-Type': 'application/json',
     };
 
-    var url = Uri.http(Config.apiURL, "${Config.popularAPI}/$productId/");
+    var url = Uri.parse("${Config.apiURL}${Config.popularAPI}/$productId/");
 
     var response = await client.delete(
       url,
