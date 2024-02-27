@@ -80,14 +80,7 @@ class MenuState extends State<Menu> {
                 _onSelectItem(2);
               },
             ),
-            ListTile(
-              title: const Text('Populares'),
-              leading: const Icon(Icons.production_quantity_limits),
-              selected: (3 == _selectDrawerItem),
-              onTap: () {
-                _onSelectItem(3);
-              },
-            ),
+
             const Divider(),
             ListTile(
               title: const Text('Cerra Sessión'),

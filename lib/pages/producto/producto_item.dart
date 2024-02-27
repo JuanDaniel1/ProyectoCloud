@@ -59,34 +59,7 @@ class _ProductoItemState extends State<ProductoItem> {
                   fit: BoxFit.scaleDown,
                 ),
 
-                  Positioned.fill(
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _isHovering =! _isHovering;
-                              save();
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                      'Se agrego "${widget.model!.productoName
-                                      }" a productos populares'),
-                                  duration: Duration(seconds: 2),
-                                ),
-                              );
 
-                          }
-                            );
-                        },
-                        icon: Icon(
-                          Icons.star,
-                          size: 24,
-                          color: _isHovering ? Colors.yellow : Colors.grey,
-                        ),
-                      ),
-                    ),
-                  ),
               ],
             )
 

@@ -6,18 +6,18 @@ import 'package:shop_app/pages/producto/producto_add_edit.dart';
 import 'package:shop_app/services/api_popular.dart';
 import 'package:shop_app/models/popular_model.dart';
 import 'package:shop_app/models/producto_model.dart';
-class ProductoItem extends StatefulWidget {
+class ProductoItemComerc extends StatefulWidget {
   final ProductoModel? model;
   final PopularModel? popular;
   final Function? onDelete;
 
-  const ProductoItem({super.key, this.model, this.onDelete, this.popular});
+  const ProductoItemComerc({super.key, this.model, this.onDelete, this.popular});
 
   @override
-  State<ProductoItem> createState() => _ProductoItemState();
+  State<ProductoItemComerc> createState() => _ProductoItemComercState();
 }
 
-class _ProductoItemState extends State<ProductoItem> {
+class _ProductoItemComercState extends State<ProductoItemComerc> {
   // Resto del código de la clase
 
 

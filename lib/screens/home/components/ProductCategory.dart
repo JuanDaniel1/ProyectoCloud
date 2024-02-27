@@ -86,17 +86,16 @@ class _ProductCategoryState extends State<ProductCategory> {
       crossAxisCount = 4;
     }
     return Scaffold(
-      body: Column(
-        children: [
-          Padding(
-            padding:
-            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-            child: SectionTitle(title: widget.title, press: () {}),
-          ),
-          SizedBox(height: getProportionateScreenWidth(20)),
-          SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
+      body: SingleChildScrollView(
+        child:Column(
+          children: [
+            Padding(
+              padding:
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+              child: SectionTitle(title: widget.title, press: () {}),
+            ),
+            SizedBox(height: getProportionateScreenWidth(20)),
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 10),
@@ -116,10 +115,12 @@ class _ProductCategoryState extends State<ProductCategory> {
                 SizedBox(height: 20),
               ],
             ),
-          )
 
-        ],
+
+          ],
+        ),
       ),
+
       bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home,),
     );
       

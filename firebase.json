@@ -12,14 +12,5 @@
         "destination": "/index.html"
       }
     ]
-  },
-  "storage": {
-    "rules": [
-      {
-        "origin": ["*"],
-        "method": ["GET"],
-        "maxAgeSeconds": 3600
-      }
-    ]
   }
 }

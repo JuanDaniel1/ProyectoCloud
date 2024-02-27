@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/models/producto_model.dart';
 import 'package:shop_app/pages/producto/producto_add_edit.dart';
 import 'package:shop_app/pages/producto/producto_item.dart';
+import 'package:shop_app/screens/comercializadora/producto/producto_item.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/services/api_producto.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
@@ -123,7 +124,7 @@ class _ProductosListComercState extends State<ProductosListComerc> {
                 scrollDirection: Axis.vertical,
                 itemCount: productos.length,
                 itemBuilder: (context, index) {
-                  return ProductoItem(
+                  return ProductoItemComerc(
                     model: productos[index],
                     onDelete: (ProductoModel model) {
                       setState(() {

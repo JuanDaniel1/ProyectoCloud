@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_app/menucomerc.dart';
 import 'package:shop_app/screens/complete_profile/complete_profile_screen.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
@@ -43,6 +44,17 @@ class _BodyState extends State<Body> {
                         await FirebaseAuth.instance.signOut();
                         // Navegar a la pantalla de inicio de sesión
                         Navigator.pushNamed(context, Menu.routeName);
+                      },
+                    );
+                  } else if (user.email == "comerc@gmail.com"){
+                    return ProfileMenu(
+                      text: "Comercializadora",
+                      icon: "assets/icons/Settings.svg",
+                      press: () async {
+                        // Cerrar sesión
+                        await FirebaseAuth.instance.signOut();
+                        // Navegar a la pantalla de inicio de sesión
+                        Navigator.pushNamed(context, MenuComerc.routeName);
                       },
                     );
                   } else {

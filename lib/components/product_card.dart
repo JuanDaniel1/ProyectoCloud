@@ -86,22 +86,39 @@ class _ProductCardState extends State<ProductCard> {
                   maxLines: 2,
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 8, right: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "\$${widget.model!.productoPrice}",
-                      style: GoogleFonts.oswald(fontSize: getProportionateScreenWidth(16), fontWeight: FontWeight.w400, color: kPrimaryColor)
+              Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 8, right: 8),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                                "\$${widget.model!.productoPrice}",
+                                style: GoogleFonts.oswald(fontSize: getProportionateScreenWidth(16), fontWeight: FontWeight.w400, color: kPrimaryColor)
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              "Cantidad: ${widget.model!.productoCantidad}",
+                              style: GoogleFonts.oswald(fontSize: getProportionateScreenWidth(10), fontWeight: FontWeight.w300, color: Colors.black),
+                            )
+                          ],
+                        )
+
+                      ],
                     ),
-                    Text(
-                      "Cantidad: ${widget.model!.productoCantidad}",
-                      style: GoogleFonts.oswald(fontSize: getProportionateScreenWidth(13), fontWeight: FontWeight.w300, color: Colors.black),
-                    )
-                  ],
-                ),
+
+
+                  )
+                ],
               )
+
 
 
               ],
