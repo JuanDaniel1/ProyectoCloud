@@ -83,7 +83,7 @@ class _CategoriasListState extends State<CategoriasList> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.amber,
+                          backgroundColor: Colors.green,
                           padding: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 30),
                           shape: RoundedRectangleBorder(
@@ -101,7 +101,7 @@ class _CategoriasListState extends State<CategoriasList> {
                         //Navigator.push(context,MaterialPageRoute(builder: (context) => Home()),                        );
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.lightBlueAccent,
+                          backgroundColor: Colors.lightGreen,
                           padding: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 30),
                           shape: RoundedRectangleBorder(
@@ -119,7 +119,7 @@ class _CategoriasListState extends State<CategoriasList> {
                         //Navigator.push(context,MaterialPageRoute(builder: (context) => Home()),                        );
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.lightBlueAccent,
+                          backgroundColor: Colors.lightGreen,
                           padding: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 30),
                           shape: RoundedRectangleBorder(
