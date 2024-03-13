@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/models/producto_model.dart';
 import 'package:shop_app/pages/producto/producto_add_edit.dart';
 import 'package:shop_app/pages/producto/producto_item.dart';
-import 'package:shop_app/screens/comercializadora/producto/producto_item.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/services/api_producto.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
 
-import 'package:shop_app/menu.dart';
+import '../../../menuAdmin.dart';
 
-class ProductosListComerc extends StatefulWidget {
-  static String routeName="/Product-listComerc";
-  const ProductosListComerc({Key? key}) : super(key: key);
+
+class ProductosListAdmin extends StatefulWidget {
+  static String routeName="/Product-list";
+  const ProductosListAdmin({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _ProductosListComercState createState() => _ProductosListComercState();
+  _ProductosListAdminState createState() => _ProductosListAdminState();
 }
 
-class _ProductosListComercState extends State<ProductosListComerc> {
+class _ProductosListAdminState extends State<ProductosListAdmin> {
   // List<ProductModel> products = List<ProductModel>.empty(growable: true);
   bool isApiCallProcess = false;
   @override
@@ -75,17 +75,33 @@ class _ProductosListComercState extends State<ProductosListComerc> {
               Row(
                 // ignore: sort_child_properties_last
                 children: [
-
                   ElevatedButton(
                       onPressed: () {
                         Navigator.pushNamed(
                           context,
-                          MenuTutor.routeName,
+                          ProductoAddEdit.routeName,
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 30),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50))),
+                      child: const Text(
+                        'Add Producto',
+                        style: TextStyle(fontSize: 15, color: Colors.black),
+                      )),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          MenuAdmin.routeName,
                         );
                         //Navigator.push(context,MaterialPageRoute(builder: (context) => Home()),                        );
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.lightBlueAccent,
+                          backgroundColor: Colors.lightGreen,
                           padding: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 30),
                           shape: RoundedRectangleBorder(
@@ -103,7 +119,7 @@ class _ProductosListComercState extends State<ProductosListComerc> {
                         //Navigator.push(context,MaterialPageRoute(builder: (context) => Home()),                        );
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.lightBlueAccent,
+                          backgroundColor: Colors.lightGreen,
                           padding: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 30),
                           shape: RoundedRectangleBorder(
@@ -124,7 +140,7 @@ class _ProductosListComercState extends State<ProductosListComerc> {
                 scrollDirection: Axis.vertical,
                 itemCount: productos.length,
                 itemBuilder: (context, index) {
-                  return ProductoItemComerc(
+                  return ProductoItem(
                     model: productos[index],
                     onDelete: (ProductoModel model) {
                       setState(() {

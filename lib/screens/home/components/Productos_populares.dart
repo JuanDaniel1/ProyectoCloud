@@ -72,13 +72,13 @@ class SpecialOffers extends StatelessWidget {
                   press: () {},
                 ),
               ),
-              SizedBox(height: getProportionateScreenWidth(20)),
+              SizedBox(height: 20),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
                     ...offerCards, // Usar el operador spread para agregar las tarjetas a la lista
-                    SizedBox(width: getProportionateScreenWidth(20)),
+                    SizedBox(width: 10),
                   ],
                 ),
               ),
@@ -106,12 +106,22 @@ class SpecialOfferCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double fosize = 20;
+    double size = 150;
+    double screenWidth = MediaQuery.of(context).size.width;
+    if (screenWidth > 600 && screenWidth < 1000) { // Puedes ajustar este valor según tus necesidades
+      size = 160; // Cambia el crossAxisCount para pantallas más grandes
+      fosize = 25;
+    } else if (screenWidth >= 1000) {
+      size = 170;
+      fosize = 30;
+    }
     return Padding(
-      padding: EdgeInsets.only(left: getProportionateScreenWidth(20)),
+      padding: EdgeInsets.only(left: 10),
       child: GestureDetector(
         onTap: () {},
         child: SizedBox(
-          height: getProportionateScreenWidth(130),
+          height: size,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Stack(
@@ -147,11 +157,11 @@ class SpecialOfferCard extends StatelessWidget {
                             TextSpan(
                               text: "$category\n",
                               style: TextStyle(
-                                fontSize: getProportionateScreenWidth(18),
+                                fontSize: fosize,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            TextSpan(text: "\$$numOfBrands", style: TextStyle(fontSize: getProportionateScreenWidth(15)))
+                            TextSpan(text: "\$$numOfBrands", style: TextStyle(fontSize: fosize))
                           ],
                         ),
                       ),

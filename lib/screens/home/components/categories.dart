@@ -54,7 +54,7 @@ class Categories extends StatelessWidget {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Padding(
-            padding: EdgeInsets.all(getProportionateScreenWidth(20)),
+            padding: EdgeInsets.all(30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,6 +78,7 @@ class Categories extends StatelessWidget {
   }
 }
 class CategoryCard extends StatefulWidget {
+
   const CategoryCard({super.key,
     required this.press, this.model,});
   final CategoriaModel? model;
@@ -92,6 +93,16 @@ class _CategoryCardState extends State<CategoryCard> {
   late bool borde = false;
   @override
   Widget build(BuildContext context) {
+    double size = 75;
+    double fosize = 20;
+    double screenWidth = MediaQuery.of(context).size.width;
+    if (screenWidth > 600 && screenWidth < 1000) { // Puedes ajustar este valor según tus necesidades
+      size = 95; // Cambia el crossAxisCount para pantallas más grandes
+      fosize = 25;
+    } else if (screenWidth >= 1000) {
+      size = 115;
+      fosize = 30;
+    }
 
     return Padding(padding: EdgeInsets.only(right: 20),
       child: GestureDetector(
@@ -105,8 +116,8 @@ class _CategoryCardState extends State<CategoryCard> {
             child: Column(
               children: [
               Container(
-              width: getProportionateScreenWidth(60),
-              height: getProportionateScreenWidth(60),
+              width: size,
+              height: size,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
@@ -122,7 +133,7 @@ class _CategoryCardState extends State<CategoryCard> {
                       widget.model!.categoriaName!,
                       style: TextStyle(
                         color: Colors.black54,
-                        fontSize: getProportionateScreenWidth(14),
+                        fontSize: fosize,
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center,

@@ -239,7 +239,7 @@ class _SignFormState extends State<SignForm> {
     // ignore: use_build_context_synchronously
     if (user.username == "admin@gmail.com") {
       Navigator.pushNamed(
-          context, Menu.routeName
+          context, MenuTutor.routeName
       );
     } else if (user.username == "comerc@gmail.com") {
       Navigator.pushNamed(context, Comercializadora.routeName);
@@ -259,7 +259,7 @@ class _SignFormState extends State<SignForm> {
     if(user != null) {
       print("usuario creado");
       if(email == "admin@gmail.com"){
-        Navigator.pushNamed(context, Menu.routeName);
+        Navigator.pushNamed(context, MenuTutor.routeName);
       } else if(email == "comerc@gmail.com"){
         Navigator.pushNamed(context, MenuComerc.routeName);
       } else if(email == "jefe@gmail.com"){

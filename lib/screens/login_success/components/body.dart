@@ -35,7 +35,7 @@ class Body extends StatelessWidget {
           child: DefaultButton(
             text: "Ir a inicio",
             press: () {
-              Navigator.pushNamed(context, Menu.routeName);
+              Navigator.pushNamed(context, MenuTutor.routeName);
             },
           ),
         ),

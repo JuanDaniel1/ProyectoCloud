@@ -43,7 +43,7 @@ class _BodyState extends State<Body> {
                         // Cerrar sesión
                         await FirebaseAuth.instance.signOut();
                         // Navegar a la pantalla de inicio de sesión
-                        Navigator.pushNamed(context, Menu.routeName);
+                        Navigator.pushNamed(context, MenuTutor.routeName);
                       },
                     );
                   } else if (user.email == "comerc@gmail.com"){

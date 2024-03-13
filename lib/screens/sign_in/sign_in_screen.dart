@@ -19,7 +19,7 @@ class SignInScreen extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('assets/uchuvas.jpg'),
+                      image: AssetImage('assets/uchuva.jpg'),
                       fit: BoxFit.cover,
                       colorFilter: ColorFilter.mode(Colors.black45, BlendMode.darken)
                   )

@@ -29,10 +29,12 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
 
   List<dynamic> searchResults = [];
+  bool isLoading = false;
 
   searchDjango(value) async {
     // Limpia la lista de resultados antes de realizar una nueva búsqueda
     setState(() {
+      isLoading = true;
       searchResults.clear();
     });
 
@@ -47,10 +49,14 @@ class _SearchPageState extends State<SearchPage> {
       // Actualiza la lista de resultados y notifica a Flutter que debe redibujar la interfaz de usuario
       setState(() {
         searchResults.addAll(data);
+        isLoading = false;
       });
     } catch (e) {
       // Maneja el error de manera apropiada, como mostrar un mensaje de error al usuario
       print("Error fetching search results: $e");
+      setState(() {
+        isLoading = false; // Marcar que se ha terminado de cargar, incluso si hay un error
+      });
     }
   }
 
@@ -73,6 +79,9 @@ class _SearchPageState extends State<SearchPage> {
 
         body: ListView(
           children: <Widget>[
+            TextButton(onPressed: (){
+              Navigator.pop(context);
+            }, child: Text("Atras")),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextField(
@@ -97,6 +106,7 @@ class _SearchPageState extends State<SearchPage> {
             SizedBox(
               height: 10.0,
             ),
+            isLoading ? Center(child: CircularProgressIndicator(),):
             GridView.builder(
               shrinkWrap: true,
               itemCount: searchResults.length,
@@ -106,7 +116,8 @@ class _SearchPageState extends State<SearchPage> {
               crossAxisCount: crossAxisCount,
               childAspectRatio: 0.7
             ),
-            )
+            ),
+
           ],
         ),
         bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home,),
@@ -190,7 +201,9 @@ class _SearchPageState extends State<SearchPage> {
                               ),
                             ],
                           ),
-                        )
+                        ),
+
+
 
 
                       ],

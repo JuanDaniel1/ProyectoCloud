@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/models/producto_model.dart';
-import 'package:shop_app/pages/producto/producto_add_edit.dart';
-import 'package:shop_app/pages/producto/producto_item.dart';
-import 'package:shop_app/screens/comercializadora/producto/producto_item.dart';
+import 'package:shop_app/models/categoria_model.dart';
+import 'package:shop_app/pages/categoria/categoria_add_edit.dart';
+import 'package:shop_app/pages/categoria/categoria_item.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
-import 'package:shop_app/services/api_producto.dart';
+import 'package:shop_app/services/api_categoria.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
 
-import 'package:shop_app/menu.dart';
 
-class ProductosListComerc extends StatefulWidget {
-  static String routeName="/Product-listComerc";
-  const ProductosListComerc({Key? key}) : super(key: key);
+import '../../../menuAdmin.dart';
+
+class CategoriasListAdmin extends StatefulWidget {
+  static String routeName="/Category-list";
+  const CategoriasListAdmin({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _ProductosListComercState createState() => _ProductosListComercState();
+  _CategoriasListAdminState createState() => _CategoriasListAdminState();
 }
 
-class _ProductosListComercState extends State<ProductosListComerc> {
+class _CategoriasListAdminState extends State<CategoriasListAdmin> {
   // List<ProductModel> products = List<ProductModel>.empty(growable: true);
   bool isApiCallProcess = false;
   @override
@@ -39,20 +39,20 @@ class _ProductosListComercState extends State<ProductosListComerc> {
         inAsyncCall: isApiCallProcess,
         opacity: 0.3,
         key: UniqueKey(),
-        child: loadProductos(),
+        child: loadcategorias(),
       ),
     );
   }
 
-  Widget loadProductos() {
+  Widget loadcategorias() {
     return FutureBuilder(
-      future: APIProducto.getProductos(),
+      future: APIcategoria.getcategorias(),
       builder: (
           BuildContext context,
-          AsyncSnapshot<List<ProductoModel>?> model,
+          AsyncSnapshot<List<CategoriaModel>?> model,
           ) {
         if (model.hasData) {
-          return productoList(model.data);
+          return categoriaList(model.data);
         }
 
         return const Center(
@@ -62,7 +62,8 @@ class _ProductosListComercState extends State<ProductosListComerc> {
     );
   }
 
-  Widget productoList(productos) {
+
+  Widget categoriaList(categorias) {
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Column(
@@ -75,17 +76,33 @@ class _ProductosListComercState extends State<ProductosListComerc> {
               Row(
                 // ignore: sort_child_properties_last
                 children: [
-
                   ElevatedButton(
                       onPressed: () {
                         Navigator.pushNamed(
                           context,
-                          MenuTutor.routeName,
+                          CategoriaAddEdit.routeName,
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 30),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50))),
+                      child: const Text(
+                        'Add categoria',
+                        style: TextStyle(fontSize: 15, color: Colors.black),
+                      )),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          MenuAdmin.routeName,
                         );
                         //Navigator.push(context,MaterialPageRoute(builder: (context) => Home()),                        );
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.lightBlueAccent,
+                          backgroundColor: Colors.lightGreen,
                           padding: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 30),
                           shape: RoundedRectangleBorder(
@@ -103,7 +120,7 @@ class _ProductosListComercState extends State<ProductosListComerc> {
                         //Navigator.push(context,MaterialPageRoute(builder: (context) => Home()),                        );
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.lightBlueAccent,
+                          backgroundColor: Colors.lightGreen,
                           padding: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 30),
                           shape: RoundedRectangleBorder(
@@ -122,16 +139,16 @@ class _ProductosListComercState extends State<ProductosListComerc> {
                 shrinkWrap: true,
                 physics: const ClampingScrollPhysics(),
                 scrollDirection: Axis.vertical,
-                itemCount: productos.length,
+                itemCount: categorias.length,
                 itemBuilder: (context, index) {
-                  return ProductoItemComerc(
-                    model: productos[index],
-                    onDelete: (ProductoModel model) {
+                  return CategoriaItem(
+                    model: categorias[index],
+                    onDelete: (CategoriaModel model) {
                       setState(() {
                         isApiCallProcess = true;
                       });
 
-                      APIProducto.deleteProducto(model.id).then(
+                      APIcategoria.deletecategoria(model.id).then(
                             (response) {
                           setState(() {
                             isApiCallProcess = false;

@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shop_app/menu.dart';
+import 'package:shop_app/menucomerc.dart';
 import 'package:shop_app/screens/chatbot/chatbotscreen.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/screens/informacion/pag2_informacion.dart';
@@ -42,16 +44,79 @@ class CustomBottomNavBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              IconButton(
-                icon: SvgPicture.asset(
-                  "assets/icons/Shop Icon.svg",
-                  color: MenuState.home == selectedMenu
-                      ? inActiveIconColor
-                      : kPrimaryColor,
-                ),
-                onPressed: () =>
-                    Navigator.pushNamed(context, HomeScreen.routeName),
+              FutureBuilder<User?>(
+                future: FirebaseAuth.instance.authStateChanges().first,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    final User? user = snapshot.data;
+                    if (user != null) {
+                      if(user.email == "admin@gmail.com") {
+                        // El usuario ha iniciado sesión
+                        return IconButton(
+                            icon: SvgPicture.asset(
+                              "assets/icons/Shop Icon.svg",
+                              color: MenuState.home == selectedMenu
+                                  ? inActiveIconColor
+                                  : kPrimaryColor,
+                            ),
+                            onPressed: () {
+                              Navigator.pushNamed(context, MenuTutor.routeName);
+
+                            }
+
+                        );
+                      } else if (user.email == "comerc@gmail.com"){
+                        return IconButton(
+                            icon: SvgPicture.asset(
+                              "assets/icons/Shop Icon.svg",
+                              color: MenuState.home == selectedMenu
+                                  ? inActiveIconColor
+                                  : kPrimaryColor,
+                            ),
+                            onPressed: () {
+                              Navigator.pushNamed(context, MenuComerc.routeName);
+
+                            }
+
+                        );
+                      } else {
+                        return IconButton(
+                            icon: SvgPicture.asset(
+                              "assets/icons/Shop Icon.svg",
+                              color: MenuState.home == selectedMenu
+                                  ? inActiveIconColor
+                                  : kPrimaryColor,
+                            ),
+                            onPressed: () {
+                              Navigator.pushNamed(context, HomeScreen.routeName);
+
+                            }
+
+                        );;
+                      }
+                    } else {
+                      return IconButton(
+                          icon: SvgPicture.asset(
+                            "assets/icons/Shop Icon.svg",
+                            color: MenuState.home == selectedMenu
+                                ? inActiveIconColor
+                                : kPrimaryColor,
+                          ),
+                          onPressed: () {
+                            Navigator.pushNamed(context, HomeScreen.routeName);
+
+                          }
+
+                      );;
+
+                    }
+                  } else {
+                    // Mostrar un indicador de carga mientras se verifica el estado de autenticación
+                    return CircularProgressIndicator();
+                  }
+                },
               ),
+
               IconButton(
                 icon: SvgPicture.asset(
                   "assets/icons/info.svg",

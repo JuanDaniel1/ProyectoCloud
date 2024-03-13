@@ -96,7 +96,7 @@ class _CategoriasListState extends State<CategoriasList> {
                       onPressed: () {
                         Navigator.pushNamed(
                           context,
-                          Menu.routeName,
+                          MenuTutor.routeName,
                         );
                         //Navigator.push(context,MaterialPageRoute(builder: (context) => Home()),                        );
                       },

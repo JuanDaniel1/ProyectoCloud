@@ -27,9 +27,9 @@ class IconBtnWithCounter extends StatelessWidget {
         clipBehavior: Clip.none,
         children: [
           Container(
-            padding: EdgeInsets.all(getProportionateScreenWidth(12)),
-            height: getProportionateScreenWidth(50),
-            width: getProportionateScreenWidth(50),
+            padding: EdgeInsets.all(20),
+            height: 70,
+            width: 70,
             decoration: BoxDecoration(
               color: kSecondaryColor.withOpacity(0.1),
               shape: BoxShape.circle,

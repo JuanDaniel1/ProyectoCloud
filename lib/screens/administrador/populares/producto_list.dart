@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/models/producto_model.dart';
+import 'package:shop_app/pages/populares/producto_item.dart';
 import 'package:shop_app/pages/producto/producto_add_edit.dart';
 import 'package:shop_app/pages/producto/producto_item.dart';
-import 'package:shop_app/screens/comercializadora/producto/producto_item.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
-import 'package:shop_app/services/api_producto.dart';
+
 import 'package:snippet_coder_utils/ProgressHUD.dart';
 
-import 'package:shop_app/menu.dart';
+import 'package:shop_app/models/popular_model.dart';
+import 'package:shop_app/services/api_popular.dart';
 
-class ProductosListComerc extends StatefulWidget {
-  static String routeName="/Product-listComerc";
-  const ProductosListComerc({Key? key}) : super(key: key);
+class PopularListAdmin extends StatefulWidget {
+  static String routeName="/Product-list";
+  const PopularListAdmin({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _ProductosListComercState createState() => _ProductosListComercState();
+  _PopularListAdminState createState() => _PopularListAdminState();
 }
 
-class _ProductosListComercState extends State<ProductosListComerc> {
+class _PopularListAdminState extends State<PopularListAdmin> {
   // List<ProductModel> products = List<ProductModel>.empty(growable: true);
   bool isApiCallProcess = false;
   @override
@@ -46,10 +46,10 @@ class _ProductosListComercState extends State<ProductosListComerc> {
 
   Widget loadProductos() {
     return FutureBuilder(
-      future: APIProducto.getProductos(),
+      future: APIPopular.getProductos(),
       builder: (
           BuildContext context,
-          AsyncSnapshot<List<ProductoModel>?> model,
+          AsyncSnapshot<List<PopularModel>?> model,
           ) {
         if (model.hasData) {
           return productoList(model.data);
@@ -80,24 +80,6 @@ class _ProductosListComercState extends State<ProductosListComerc> {
                       onPressed: () {
                         Navigator.pushNamed(
                           context,
-                          MenuTutor.routeName,
-                        );
-                        //Navigator.push(context,MaterialPageRoute(builder: (context) => Home()),                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.lightBlueAccent,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 30),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50))),
-                      child: const Text(
-                        'Menu',
-                        style: TextStyle(fontSize: 15, color: Colors.black),
-                      )),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(
-                          context,
                           HomeScreen.routeName,
                         );
                         //Navigator.push(context,MaterialPageRoute(builder: (context) => Home()),                        );
@@ -109,7 +91,7 @@ class _ProductosListComercState extends State<ProductosListComerc> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50))),
                       child: const Text(
-                        'Home',
+                        'Menu',
                         style: TextStyle(fontSize: 15, color: Colors.black),
                       )),
                 ],
@@ -124,14 +106,14 @@ class _ProductosListComercState extends State<ProductosListComerc> {
                 scrollDirection: Axis.vertical,
                 itemCount: productos.length,
                 itemBuilder: (context, index) {
-                  return ProductoItemComerc(
+                  return PopularItem(
                     model: productos[index],
-                    onDelete: (ProductoModel model) {
+                    onDelete: (PopularModel model) {
                       setState(() {
                         isApiCallProcess = true;
                       });
 
-                      APIProducto.deleteProducto(model.id).then(
+                      APIPopular.deleteProducto(model.id).then(
                             (response) {
                           setState(() {
                             isApiCallProcess = false;

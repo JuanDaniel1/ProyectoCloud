@@ -10,19 +10,19 @@ import 'package:shop_app/screens/home/home_screen.dart';
 
 
 
-class Menu extends StatefulWidget {
+class MenuTutor extends StatefulWidget {
   static String routeName = "/admin";
   @override
-  MenuState createState() => MenuState();
+  MenuTutorState createState() => MenuTutorState();
 }
 
-class MenuState extends State<Menu> {
+class MenuTutorState extends State<MenuTutor> {
 
   int _selectDrawerItem = 0;
   getDrawerItemWidget(int pos) {
     switch (pos) {
       case 0:
-        return const inicio();
+        return HomeScreen();
       case 1:
         return const CategoriasList();
       case 2:

@@ -27,6 +27,13 @@ class _ProductCardState extends State<ProductCard> {
   Offset mousPos = new Offset(0, 0);
   @override
   Widget build(BuildContext context) {
+    double size = 25;
+    double screenWidth = MediaQuery.of(context).size.width;
+    if (screenWidth > 600 && screenWidth < 1000) { // Puedes ajustar este valor según tus necesidades
+      size = 30; // Cambia el crossAxisCount para pantallas más grandes
+    } else if (screenWidth >= 1000) {
+      size = 35;
+    }
     return Padding(
       padding: EdgeInsets.all(5 ),
       child: Card(
@@ -82,7 +89,7 @@ class _ProductCardState extends State<ProductCard> {
                 padding: EdgeInsets.only(left: 8),
                 child: Text(
                   widget.model!.productoName!,
-                  style: GoogleFonts.oswald(fontSize: getProportionateScreenWidth(14), fontWeight: FontWeight.w300, color: Colors.black),
+                  style: GoogleFonts.oswald(fontSize: size, fontWeight: FontWeight.w300, color: Colors.black),
                   maxLines: 2,
                 ),
               ),
@@ -97,7 +104,7 @@ class _ProductCardState extends State<ProductCard> {
                           children: [
                             Text(
                                 "\$${widget.model!.productoPrice}",
-                                style: GoogleFonts.oswald(fontSize: getProportionateScreenWidth(16), fontWeight: FontWeight.w400, color: kPrimaryColor)
+                                style: GoogleFonts.oswald(fontSize: size, fontWeight: FontWeight.w400, color: kPrimaryColor)
                             ),
                           ],
                         ),

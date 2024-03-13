@@ -13,6 +13,7 @@ import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 import 'package:http/http.dart' as http;
 import '../../../models/carrito_model.dart';
+import 'dart:math';
 
 class PdfPage extends StatefulWidget {
   final List<CarritoModel> model;
@@ -72,6 +73,19 @@ class _PdfPageState extends State<PdfPage> {
         (await rootBundle.load("assets/sena.png")).buffer.asUint8List());
 
     final pageTheme = await myPageTheme(format);
+    User? user = FirebaseAuth.instance.currentUser;
+    Random random = Random();
+    int randomNumber = random.nextInt(1000000);
+    DateTime now = DateTime.now();
+    DateTime tomorrow = now.add(Duration(days: 1));
+    String formatDate(DateTime dateTime) {
+      String formattedDate =
+          "${dateTime.year.toString().padLeft(4, '0')}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')} ${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}";
+      return formattedDate;
+    }
+
+    String formattedNow = formatDate(now);
+    String formattedTomorrow = formatDate(tomorrow);
 
     doc.addPage(
       pw.MultiPage(
@@ -93,7 +107,10 @@ class _PdfPageState extends State<PdfPage> {
                               children: [
                                 pw.Text('Email: '),
                                 pw.Text('Telefono: '),
-                                pw.Text('Instagram: ')
+                                pw.Text('Cliente Correo: '),
+                                pw.Text("Numero de factura: "),
+                                pw.Text("Fecha de inicio: "),
+                                pw.Text("Fecha de expiracion: ")
                               ]),
                           pw.SizedBox(width: 70),
                           pw.Column(
@@ -101,12 +118,17 @@ class _PdfPageState extends State<PdfPage> {
                               children: [
                                 pw.Text('sena@misena.com'),
                                 pw.Text('032131 03123'),
+                                pw.Text("${user?.email}"),
+                                pw.Text("$randomNumber"),
+                                pw.Text(formattedNow),
+                                pw.Text(formattedTomorrow)
+
                               ]),
                           pw.SizedBox(width: 70),
                           pw.BarcodeWidget(
-                              data: "Factura",
-                              width: 40,
-                              height: 40,
+                              data: "Su pedido se ha realizado con exito! tiene un plazo de 1 dia para reclamar sus productos, costo total de \$${widget.model.map((carrito) => int.parse(carrito.carritoSubtotal!)).fold(0, (a, b) => a + b)}",
+                              width: 160,
+                              height: 160,
                               barcode: pw.Barcode.qrCode(),
                               drawText: false),
                           pw.Padding(padding: pw.EdgeInsets.zero)
@@ -145,7 +167,8 @@ class _PdfPageState extends State<PdfPage> {
                   decoration: pw.BoxDecoration(
                     border: pw.Border.all(color: PdfColors.black),
                   ),
-                  child: pw.Row(
+                  child:
+                  pw.Row(
                     mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                     children: [
                       pw.Text('Total:'),
@@ -156,7 +179,9 @@ class _PdfPageState extends State<PdfPage> {
                 )
               ]),
     );
+
     return doc.save();
+
   }
 
   @override
