@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/components/product_card.dart';
 import 'package:shop_app/config.dart';
 
 import '../../../models/popular_model.dart';
 import '../../../models/producto_model.dart';
 import '../../../size_config.dart';
 import '../../details/details_screen.dart';
+import '../../detailspopular/details_screen.dart';
 import 'section_title.dart';
 import 'package:http/http.dart' as http;
 

@@ -12,12 +12,19 @@ class PopularModel {
   late String? productoName;
   late String? productoPrice;
   late String? productoImage;
+  late String? productoDescription;
+  late String? productoCantidad;
+  double total = 0.0;
+
+
 
   PopularModel({
     this.id,
     this.productoName,
     this.productoPrice,
     this.productoImage,
+    this.productoDescription,
+    this.productoCantidad
   });
 
   factory PopularModel.fromJson(Map<String, dynamic> json) {
@@ -26,6 +33,8 @@ class PopularModel {
         productoName: json['productoName'],
         productoPrice: json['productoPrice'],
         productoImage: json['productoImagen'],
+        productoCantidad: json['productoCantidad'],
+        productoDescription: json['productoDescription']
     );
   }
 
@@ -35,6 +44,8 @@ class PopularModel {
     data['productoName'] = productoName;
     data['productoPrice'] = productoPrice;
     data['productoImagen'] = productoImage;
+    data['productoDescription'] = productoDescription;
+    data['productoCantidad'] = productoCantidad;
     return data;
   }
 }

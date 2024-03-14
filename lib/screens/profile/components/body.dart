@@ -34,10 +34,10 @@ class _BodyState extends State<Body> {
               if (snapshot.connectionState == ConnectionState.done) {
                 final User? user = snapshot.data;
                 if (user != null) {
-                  if(user.email == "admin@gmail.com") {
+                  if(user.email == "tutor@gmail.com") {
                     // El usuario ha iniciado sesión
                     return ProfileMenu(
-                      text: "Admin",
+                      text: "Tutor",
                       icon: "assets/icons/Settings.svg",
                       press: () async {
                         // Cerrar sesión
@@ -68,13 +68,6 @@ class _BodyState extends State<Body> {
                 // Mostrar un indicador de carga mientras se verifica el estado de autenticación
                 return CircularProgressIndicator();
               }
-            },
-          ),
-          ProfileMenu(
-            text: "FaceAuth",
-            icon: "assets/icons/Question mark.svg",
-            press: () {
-
             },
           ),
           FutureBuilder<User?>(

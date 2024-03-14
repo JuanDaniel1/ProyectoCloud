@@ -28,11 +28,14 @@ class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     double size = 25;
+    double minsize = 15;
     double screenWidth = MediaQuery.of(context).size.width;
     if (screenWidth > 600 && screenWidth < 1000) { // Puedes ajustar este valor según tus necesidades
       size = 30; // Cambia el crossAxisCount para pantallas más grandes
+      minsize = 20;
     } else if (screenWidth >= 1000) {
       size = 35;
+      minsize = 25;
     }
     return Padding(
       padding: EdgeInsets.all(5 ),
@@ -89,7 +92,7 @@ class _ProductCardState extends State<ProductCard> {
                 padding: EdgeInsets.only(left: 8),
                 child: Text(
                   widget.model!.productoName!,
-                  style: GoogleFonts.oswald(fontSize: size, fontWeight: FontWeight.w300, color: Colors.black),
+                  style: GoogleFonts.truculenta(fontSize: size, fontWeight: FontWeight.w300, color: Colors.black),
                   maxLines: 2,
                 ),
               ),
@@ -104,7 +107,7 @@ class _ProductCardState extends State<ProductCard> {
                           children: [
                             Text(
                                 "\$${widget.model!.productoPrice}",
-                                style: GoogleFonts.oswald(fontSize: size, fontWeight: FontWeight.w400, color: kPrimaryColor)
+                                style: GoogleFonts.truculenta(fontSize: size, fontWeight: FontWeight.w400, color: kPrimaryColor)
                             ),
                           ],
                         ),
@@ -113,7 +116,7 @@ class _ProductCardState extends State<ProductCard> {
                           children: [
                             Text(
                               "Cantidad: ${widget.model!.productoCantidad}",
-                              style: GoogleFonts.oswald(fontSize: getProportionateScreenWidth(10), fontWeight: FontWeight.w300, color: Colors.black),
+                              style: GoogleFonts.truculenta(fontSize: minsize, fontWeight: FontWeight.w300, color: Colors.black),
                             )
                           ],
                         )

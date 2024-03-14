@@ -237,7 +237,7 @@ class _SignFormState extends State<SignForm> {
     // ignore: use_build_context_synchronously
     //Navigator.push(context,MaterialPageRoute(builder: (context) => Home()),);
     // ignore: use_build_context_synchronously
-    if (user.username == "admin@gmail.com") {
+    if (user.username == "tutor@gmail.com") {
       Navigator.pushNamed(
           context, MenuTutor.routeName
       );
@@ -261,7 +261,7 @@ class _SignFormState extends State<SignForm> {
       if(email == "admin@gmail.com"){
         Navigator.pushNamed(context, MenuTutor.routeName);
       } else if(email == "comerc@gmail.com"){
-        Navigator.pushNamed(context, MenuComerc.routeName);
+        Navigator.pushNamed(context, Comercializadora.routeName);
       } else if(email == "jefe@gmail.com"){
         Navigator.pushNamed(context, jefe.routeName);
       } else {

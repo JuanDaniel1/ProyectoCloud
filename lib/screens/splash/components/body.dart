@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/constants.dart';
+import 'package:shop_app/menucomerc.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
 import 'package:shop_app/size_config.dart';
 
+import '../../../menu.dart';
 import '../components/splash_content.dart';
 import '../../../components/default_button.dart';
 
@@ -15,6 +18,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  User? user = FirebaseAuth.instance.currentUser;
   int currentPage = 0;
   List<Map<String, String>> splashData = [
     {
@@ -83,7 +87,15 @@ class _BodyState extends State<Body> {
                     DefaultButton(
                       text: "Continua",
                       press: () {
-                        Navigator.pushNamed(context, HomeScreen.routeName);
+                        if(user?.email == "tutor@gmail.com"){
+                          Navigator.pushNamed(context, MenuTutor.routeName);
+                        } else if(user?.email == "comerc@gmail.com"){
+                          Navigator.pushNamed(context, MenuComerc.routeName);
+                        }
+                        else {
+                          Navigator.pushNamed(context, HomeScreen.routeName);
+                        }
+
                       },
                     ),
                     Spacer(),

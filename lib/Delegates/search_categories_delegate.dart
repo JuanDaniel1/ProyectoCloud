@@ -125,6 +125,16 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
   Widget buildResultCard(ProductoModel producto) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double size = 25;
+    double minsize = 15;
+    if (screenWidth > 600 && screenWidth < 1000) { // Puedes ajustar este valor según tus necesidades
+      size = 30; // Cambia el crossAxisCount para pantallas más grandes
+      minsize = 20;
+    } else if (screenWidth >= 1000) {
+      size = 35;
+      minsize = 25;
+    }
     return Padding(
         padding: EdgeInsets.all(5 ),
         child: Card(
@@ -184,24 +194,42 @@ class _SearchPageState extends State<SearchPage> {
 
                             producto.productoName!,
 
-                            style: GoogleFonts.oswald(fontSize: getProportionateScreenWidth(14), fontWeight: FontWeight.w300, color: Colors.black),
+                            style: GoogleFonts.truculenta(fontSize: size, fontWeight: FontWeight.w300, color: Colors.black),
                             maxLines: 2,
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 8),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
+                        Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: 8, right: 8),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                          "\$${producto!.productoPrice}",
+                                          style: GoogleFonts.truculenta(fontSize: size, fontWeight: FontWeight.w400, color: kPrimaryColor)
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        "Cantidad: ${producto!.productoCantidad}",
+                                        style: GoogleFonts.truculenta(fontSize: minsize, fontWeight: FontWeight.w300, color: Colors.black),
+                                      )
+                                    ],
+                                  )
 
-                                  "\$${producto.productoPrice}",
-
-                                  style: GoogleFonts.oswald(fontSize: getProportionateScreenWidth(16), fontWeight: FontWeight.w400, color: kPrimaryColor)
+                                ],
                               ),
-                            ],
-                          ),
-                        ),
+
+
+                            )
+                          ],
+                        )
 
 
 

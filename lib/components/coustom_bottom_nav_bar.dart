@@ -50,7 +50,7 @@ class CustomBottomNavBar extends StatelessWidget {
                   if (snapshot.connectionState == ConnectionState.done) {
                     final User? user = snapshot.data;
                     if (user != null) {
-                      if(user.email == "admin@gmail.com") {
+                      if(user.email == "tutor@gmail.com") {
                         // El usuario ha iniciado sesión
                         return IconButton(
                             icon: SvgPicture.asset(

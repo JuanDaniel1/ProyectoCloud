@@ -3,7 +3,7 @@ import 'package:shop_app/size_config.dart';
 
 // Configuraciones de variables para disenos y tamanos de letra
 
-const kPrimaryColor = Color(0xFFFF20752B);
+const kPrimaryColor = Color(0xffff20752b);
 const kPrimaryLightColor = Color(0xFFFFECDF);
 const kPrimaryGradientColor = LinearGradient(
   begin: Alignment.topLeft,

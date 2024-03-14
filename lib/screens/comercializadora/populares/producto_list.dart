@@ -72,49 +72,6 @@ class _PopularListComercState extends State<PopularListComerc> {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Row(
-                // ignore: sort_child_properties_last
-                children: [
-
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(
-                          context,
-                          HomeScreen.routeName,
-                        );
-                        //Navigator.push(context,MaterialPageRoute(builder: (context) => Home()),                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.lightBlueAccent,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 30),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50))),
-                      child: const Text(
-                        'Home',
-                        style: TextStyle(fontSize: 15, color: Colors.black),
-                      )),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(
-                          context,
-                          HomeScreen.routeName,
-                        );
-                        //Navigator.push(context,MaterialPageRoute(builder: (context) => Home()),                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.lightBlueAccent,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 30),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50))),
-                      child: const Text(
-                        'Menu',
-                        style: TextStyle(fontSize: 15, color: Colors.black),
-                      )),
-                ],
-                mainAxisAlignment: MainAxisAlignment.center,
-              ),
 
               //Navigator.pushNamed(context,'/add-product',);
               //Add Product

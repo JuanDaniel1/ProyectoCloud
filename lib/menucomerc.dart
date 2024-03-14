@@ -37,7 +37,7 @@ class _MenuComercState extends State<MenuComerc> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("SENA"),
+        title: const Text("Comercializadora"),
       ),
       drawer: Drawer(
         child: ListView(
@@ -72,24 +72,6 @@ class _MenuComercState extends State<MenuComerc> {
               selected: (2 == _selectDrawerItem),
               onTap: () {
                 _onSelectItem(2);
-              },
-            ),
-            const Divider(),
-            ListTile(
-              title: const Text('Cerra Sessión'),
-              leading: const Icon(Icons.touch_app_outlined),
-              selected: (4 == _selectDrawerItem),
-              onTap: () {
-                Navigator.pushNamed(context, HomeScreen.routeName);
-              },
-            ),
-            ListTile(
-              title: const Text('Limpiar FaceAuth'),
-              leading: const Icon(Icons.remove),
-              selected: (5 == _selectDrawerItem),
-              onTap: () {
-
-
               },
             ),
           ],

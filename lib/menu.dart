@@ -43,7 +43,7 @@ class MenuTutorState extends State<MenuTutor> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("SENA"),
+        title: const Text("Tutor"),
       ),
       drawer: Drawer(
         child: ListView(
@@ -81,24 +81,6 @@ class MenuTutorState extends State<MenuTutor> {
               },
             ),
 
-            const Divider(),
-            ListTile(
-              title: const Text('Cerra Sessión'),
-              leading: const Icon(Icons.touch_app_outlined),
-              selected: (4 == _selectDrawerItem),
-              onTap: () {
-                Navigator.pushNamed(context, HomeScreen.routeName);
-              },
-            ),
-            ListTile(
-              title: const Text('Limpiar FaceAuth'),
-              leading: const Icon(Icons.remove),
-              selected: (5 == _selectDrawerItem),
-              onTap: () {
-
-
-              },
-            ),
           ],
         ),
       ),

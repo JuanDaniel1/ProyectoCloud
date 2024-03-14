@@ -114,34 +114,7 @@ class _ProductoItemComercState extends State<ProductoItemComerc> {
               const SizedBox(
                 height: 10,
               ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width - 180,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    GestureDetector(
-                      child: const Icon(Icons.edit),
-                      onTap: () {
-                        Navigator.of(context).pushNamed(
-                          ProductoAddEdit.routeName,
-                          arguments: {
-                            'model': widget.model,
-                          },
-                        );
-                      },
-                    ),
-                    GestureDetector(
-                      child: const Icon(
-                        Icons.delete,
-                        color: Colors.red,
-                      ),
-                      onTap: () {
-                        widget.onDelete!(widget.model);
-                      },
-                    ),
-                  ],
-                ),
-              )
+
             ],
           ),
         ),
@@ -161,6 +134,8 @@ class _ProductoItemComercState extends State<ProductoItemComerc> {
         "productoName": widget.model!.productoName,
         "productoImagen": widget.model!.productoImage,
         "productoPrice": widget.model!.productoPrice,
+        "productoDescription": widget.model!.productoDescription,
+        "productoCantidad": widget.model!.productoCantidad
       };
 
       // Realizar la solicitud POST al servidor

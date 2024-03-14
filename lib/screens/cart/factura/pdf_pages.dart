@@ -126,7 +126,7 @@ class _PdfPageState extends State<PdfPage> {
                               ]),
                           pw.SizedBox(width: 70),
                           pw.BarcodeWidget(
-                              data: "Su pedido se ha realizado con exito! tiene un plazo de 1 dia para reclamar sus productos, costo total de \$${widget.model.map((carrito) => int.parse(carrito.carritoSubtotal!)).fold(0, (a, b) => a + b)}",
+                              data: "Su pedido se ha realizado con exito! tiene un plazo de 1 dia ($formattedNow - $formattedTomorrow) para reclamar sus productos , costo total de \$${widget.model.map((carrito) => int.parse(carrito.carritoSubtotal!)).fold(0, (a, b) => a + b)}",
                               width: 160,
                               height: 160,
                               barcode: pw.Barcode.qrCode(),
