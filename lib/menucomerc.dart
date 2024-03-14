@@ -51,7 +51,7 @@ class _MenuComercState extends State<MenuComerc> {
             ),
             ListTile(
               title: const Text('Inicio'),
-              leading: const Icon(Icons.phone),
+              leading: const Icon(Icons.home),
               selected: (0 == _selectDrawerItem),
               onTap: () {
                 _onSelectItem(0);
@@ -60,7 +60,7 @@ class _MenuComercState extends State<MenuComerc> {
             const Divider(),
             ListTile(
               title: const Text('Productos'),
-              leading: const Icon(Icons.person),
+              leading: const Icon(Icons.production_quantity_limits),
               selected: (1 == _selectDrawerItem),
               onTap: () {
                 _onSelectItem(1);
@@ -68,7 +68,7 @@ class _MenuComercState extends State<MenuComerc> {
             ),
             ListTile(
               title: const Text('Populares'),
-              leading: const Icon(Icons.wind_power_rounded),
+              leading: const Icon(Icons.star),
               selected: (2 == _selectDrawerItem),
               onTap: () {
                 _onSelectItem(2);

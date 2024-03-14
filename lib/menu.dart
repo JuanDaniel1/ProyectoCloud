@@ -57,7 +57,7 @@ class MenuTutorState extends State<MenuTutor> {
             ),
             ListTile(
               title: const Text('Inicio'),
-              leading: const Icon(Icons.phone),
+              leading: const Icon(Icons.home),
               selected: (0 == _selectDrawerItem),
               onTap: () {
                 _onSelectItem(0);
@@ -66,7 +66,7 @@ class MenuTutorState extends State<MenuTutor> {
             const Divider(),
             ListTile(
               title: const Text('Categorias'),
-              leading: const Icon(Icons.person),
+              leading: const Icon(Icons.category),
               selected: (1 == _selectDrawerItem),
               onTap: () {
                 _onSelectItem(1);
@@ -74,7 +74,7 @@ class MenuTutorState extends State<MenuTutor> {
             ),
             ListTile(
               title: const Text('Productos'),
-              leading: const Icon(Icons.wind_power_rounded),
+              leading: const Icon(Icons.production_quantity_limits),
               selected: (2 == _selectDrawerItem),
               onTap: () {
                 _onSelectItem(2);
