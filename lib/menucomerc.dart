@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/pages/populares/producto_list.dart';
-import 'package:shop_app/screens/comercializadora/inicio/inicio.dart';
 import 'package:shop_app/screens/comercializadora/populares/producto_list.dart';
 import 'package:shop_app/screens/comercializadora/producto/producto_list.dart';
+import 'package:shop_app/screens/comercializadora/recibidos/recibidos.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 
 class MenuComerc extends StatefulWidget {
@@ -23,6 +23,8 @@ class _MenuComercState extends State<MenuComerc> {
         return const ProductosListComerc();
       case 2:
         return const PopularListComerc();
+      case 3:
+        return const Recibidos();
 
     }
   }
@@ -72,6 +74,14 @@ class _MenuComercState extends State<MenuComerc> {
               selected: (2 == _selectDrawerItem),
               onTap: () {
                 _onSelectItem(2);
+              },
+            ),
+            ListTile(
+              title: const Text('Recibidos'),
+              leading: const Icon(Icons.receipt_long),
+              selected: (3 == _selectDrawerItem),
+              onTap: () {
+                _onSelectItem(3);
               },
             ),
           ],

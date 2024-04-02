@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/constants.dart';
+import 'package:shop_app/menuAdmin.dart';
+import 'package:shop_app/menuEncargado.dart';
 import 'package:shop_app/menucomerc.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
@@ -18,6 +20,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+
   User? user = FirebaseAuth.instance.currentUser;
   int currentPage = 0;
   List<Map<String, String>> splashData = [
@@ -37,6 +40,16 @@ class _BodyState extends State<Body> {
   ];
   @override
   Widget build(BuildContext context) {
+    double size = 30;
+    double fosize = 20;
+    double screenWidth = MediaQuery.of(context).size.width;
+    if (screenWidth > 600 && screenWidth < 1000) { // Puedes ajustar este valor según tus necesidades
+      size = 40; // Cambia el crossAxisCount para pantallas más grandes
+      fosize = 25;
+    } else if (screenWidth >= 1000) {
+      size = 50;
+      fosize = 30;
+    }
     return SafeArea(
       child: SizedBox(
         width: double.infinity,
@@ -61,7 +74,7 @@ class _BodyState extends State<Body> {
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                    horizontal: getProportionateScreenWidth(20)),
+                    horizontal: size),
                 child: Column(
                   children: <Widget>[
                     Spacer(),
@@ -87,10 +100,14 @@ class _BodyState extends State<Body> {
                     DefaultButton(
                       text: "Continua",
                       press: () {
-                        if(user?.email == "tutor@gmail.com"){
+                        if(user?.email == "jefe@gmail.com"){
                           Navigator.pushNamed(context, MenuTutor.routeName);
                         } else if(user?.email == "comerc@gmail.com"){
                           Navigator.pushNamed(context, MenuComerc.routeName);
+                        } else if(user?.email == "admin@gmail.com"){
+                          Navigator.pushNamed(context, MenuAdmin.routeName);
+                        } else if(user?.email == "encarg@gmail.com"){
+                          Navigator.pushNamed(context, MenuEncarg.routeName);
                         }
                         else {
                           Navigator.pushNamed(context, HomeScreen.routeName);

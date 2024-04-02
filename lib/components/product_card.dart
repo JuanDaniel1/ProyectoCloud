@@ -27,15 +27,15 @@ class _ProductCardState extends State<ProductCard> {
   Offset mousPos = new Offset(0, 0);
   @override
   Widget build(BuildContext context) {
-    double size = 25;
+    double size = 20;
     double minsize = 15;
     double screenWidth = MediaQuery.of(context).size.width;
     if (screenWidth > 600 && screenWidth < 1000) { // Puedes ajustar este valor según tus necesidades
-      size = 30; // Cambia el crossAxisCount para pantallas más grandes
-      minsize = 20;
+      size = 24; // Cambia el crossAxisCount para pantallas más grandes
+      minsize = 18;
     } else if (screenWidth >= 1000) {
-      size = 35;
-      minsize = 25;
+      size = 26;
+      minsize = 21;
     }
     return Padding(
       padding: EdgeInsets.all(5 ),

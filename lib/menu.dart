@@ -11,7 +11,9 @@ import 'package:shop_app/screens/home/home_screen.dart';
 
 
 class MenuTutor extends StatefulWidget {
-  static String routeName = "/admin";
+  static String routeName = "/jefenice";
+
+  const MenuTutor({super.key});
   @override
   MenuTutorState createState() => MenuTutorState();
 }
@@ -43,7 +45,7 @@ class MenuTutorState extends State<MenuTutor> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Tutor"),
+        title: const Text("Jefe"),
       ),
       drawer: Drawer(
         child: ListView(

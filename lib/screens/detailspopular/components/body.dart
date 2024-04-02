@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shop_app/components/default_button.dart';
 import 'package:shop_app/models/Product.dart';
 import 'package:shop_app/size_config.dart';
@@ -8,6 +9,7 @@ import 'package:shop_app/size_config.dart';
 import '../../../components/rounded_icon_btn.dart';
 import '../../../models/popular_model.dart';
 import '../../../models/producto_model.dart';
+import '../../cart/provider.dart';
 import 'color_dots.dart';
 import 'product_description.dart';
 import 'top_rounded_container.dart';
@@ -17,8 +19,13 @@ import 'package:http/http.dart' as http;
 // Cuerpo de Detalles de cada producto
 
 class Body extends StatefulWidget {
-  final PopularModel? model;
-  const Body({super.key, this.model});
+  final String image;
+  final String description;
+  final int price;
+  final String name;
+  final int id;
+  final String cantidad;
+  const Body({super.key, required this.image, required this.description, required this.price, required this.name, required this.cantidad, required this.id});
 
   @override
   State<Body> createState() => _BodyState();
@@ -29,7 +36,7 @@ class _BodyState extends State<Body> {
   int counter = 1;
   void incrementCounter() {
     setState(() {
-      if(counter < int.parse(widget.model!.productoCantidad!)) {
+      if(counter < int.parse(widget.cantidad)) {
         counter++;
       }
     });
@@ -44,15 +51,17 @@ class _BodyState extends State<Body> {
   }
   @override
   Widget build(BuildContext context) {
+    final shoppingCartProvider = Provider.of<ShoppingCartProvider>(context);
     return ListView(
       children: [
-        ProductImages(model: widget.model),
+        PopularImages(model: widget.image),
         TopRoundedContainer(
           color: Colors.white,
           child: Column(
             children: [
-              ProductDescription(
-                model: widget.model,
+              PopularDescription(
+                description: widget.description,
+                name: widget.name,
                 pressOnSeeMore: () {},
               ),
               TopRoundedContainer(
@@ -64,7 +73,7 @@ class _BodyState extends State<Body> {
                       EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
                       child: Row(
                         children: [
-                          Text("\$${widget.model!.productoPrice}", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                          Text("\$${widget.price}", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                           Spacer(),
                           RoundedIconBtn(
                             icon: Icons.remove,
@@ -97,11 +106,25 @@ class _BodyState extends State<Body> {
                               child: DefaultButton(
                                 text: "Anadir a carrito",
                                 press: () {
-                                  save();
+                                  int price = widget.price;
+                                  int quantity = counter;
+                                  int subtotal = price * quantity;
+                                  shoppingCartProvider.listProductsPurchased.add(
+                                      ProductoModel(
+                                        id: widget.id,
+                                        productoDescription: widget.description,
+                                        productoPrice: widget.price.toString(),
+                                        productoCantidad: widget.cantidad,
+                                        productoName: widget.name,
+                                        productoImage: widget.image,
+                                        counter: counter.toString(),
+                                        subtotal: subtotal.toString(),
+                                      )
+                                  );
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                          'Se agrego "${widget.model!.productoName
+                                          'Se agrego "${widget.name
                                           }" al carrito de compras'),
                                       duration: Duration(seconds: 2),
                                     ),
@@ -163,13 +186,12 @@ class _BodyState extends State<Body> {
 
     // Preparar los datos del producto a enviar en la solicitud POST
     Map<String, dynamic> data = {
-      "nombre": widget.model!.productoName,
-      "imagen": widget.model!.productoImage,
-      "preciounitario": widget.model!.productoPrice,
+      "nombre": widget.name,
+      "imagen": widget.image,
+      "preciounitario": widget.price,
       "cantidad": counter,
 
     };
-    widget.model!.total += double.parse(widget.model!.productoPrice! * counter);
 
     // Realizar la solicitud POST al servidor
     http.post(

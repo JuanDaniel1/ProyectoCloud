@@ -6,11 +6,11 @@ import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/form_error.dart';
 import 'package:shop_app/helper/keyboard.dart';
 import 'package:shop_app/menu.dart';
+import 'package:shop_app/menuAdmin.dart';
+import 'package:shop_app/menuEncargado.dart';
 import 'package:shop_app/menucomerc.dart';
-import 'package:shop_app/screens/comercializadora/comercializadora.dart';
 import 'package:shop_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
-import 'package:shop_app/screens/jefe/jefe.dart';
 import 'package:shop_app/screens/login_success/login_success_screen.dart';
 import 'package:shop_app/screens/profile/profile_screen.dart';
 import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
@@ -242,10 +242,13 @@ class _SignFormState extends State<SignForm> {
           context, MenuTutor.routeName
       );
     } else if (user.username == "comerc@gmail.com") {
-      Navigator.pushNamed(context, Comercializadora.routeName);
+      Navigator.pushNamed(context, MenuComerc.routeName);
     } else if (user.username == "jefe@gmail.com") {
-      Navigator.pushNamed(context, jefe.routeName);
-    } else {
+      Navigator.pushNamed(context, MenuTutor.routeName);
+    } else if(user.username == "admin@gmail.com") {
+      Navigator.pushNamed(context, MenuAdmin.routeName);
+    }
+    else {
       Navigator.pushNamed(context, HomeScreen.routeName);
     }
   }
@@ -259,12 +262,15 @@ class _SignFormState extends State<SignForm> {
     if(user != null) {
       print("usuario creado");
       if(email == "admin@gmail.com"){
-        Navigator.pushNamed(context, MenuTutor.routeName);
+        Navigator.pushNamed(context, MenuAdmin.routeName);
       } else if(email == "comerc@gmail.com"){
-        Navigator.pushNamed(context, Comercializadora.routeName);
+        Navigator.pushNamed(context, MenuComerc.routeName);
       } else if(email == "jefe@gmail.com"){
-        Navigator.pushNamed(context, jefe.routeName);
-      } else {
+        Navigator.pushNamed(context, MenuTutor.routeName);
+      } else if(email == "encarg@gmail.com"){
+        Navigator.pushNamed(context, MenuEncarg.routeName);
+      }
+      else {
         Navigator.pushNamed(context, HomeScreen.routeName);
       }
 

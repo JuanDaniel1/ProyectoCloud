@@ -58,9 +58,10 @@ class SpecialOffers extends StatelessWidget {
             image: popularModel.productoImage!,
             category: popularModel.productoName!,
             numOfBrands: int.parse(popularModel.productoPrice!),
+
             press: () {
               // Acción al hacer clic en la tarjeta (puedes dejarlo vacío o agregar acciones según tu necesidad)
-            },
+            }, description: popularModel.productoDescription!, cantidad: popularModel.productoCantidad!, id: popularModel.id!,
           ))
               .toList();
 
@@ -68,7 +69,7 @@ class SpecialOffers extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(
-                    horizontal: getProportionateScreenWidth(20)),
+                    horizontal: 10),
                 child: SectionTitle(
                   title: "Populares",
                   press: () {},
@@ -98,13 +99,16 @@ class SpecialOfferCard extends StatelessWidget {
     required this.category,
     required this.image,
     required this.numOfBrands,
-    required this.press, this.model,
+    required this.press, this.model, required this.description, required this.cantidad, required this.id
   }) : super(key: key);
 
   final String category, image;
   final int numOfBrands;
   final GestureTapCallback press;
-  final ProductoModel? model;
+  final String description;
+  final PopularModel? model;
+  final String cantidad;
+  final int id;
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +125,9 @@ class SpecialOfferCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: 10),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.pushNamed(context, DetailsPopularScreen.routeName, arguments: ProductPopularDetailsArguments(image: image, name: category, price: numOfBrands, description: description, cantidad: cantidad, id: id));
+        },
         child: SizedBox(
           height: size,
           child: ClipRRect(

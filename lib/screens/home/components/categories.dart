@@ -16,6 +16,7 @@ class Categories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return ProgressHUD(
       inAsyncCall: isApiCallProcess,
       opacity: 0.3,
@@ -41,11 +42,21 @@ class Categories extends StatelessWidget {
     );
   }
   Widget categoriaList(categorias, BuildContext context) {
+    double size = 75;
+    double fosize = 20;
+    double screenWidth = MediaQuery.of(context).size.width;
+    if (screenWidth > 600 && screenWidth < 1000) { // Puedes ajustar este valor según tus necesidades
+      size = 95; // Cambia el crossAxisCount para pantallas más grandes
+      fosize = 25;
+    } else if (screenWidth >= 1000) {
+      size = 115;
+      fosize = 30;
+    }
     return Column(
       children: [
         Padding(
           padding:
-          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+          EdgeInsets.symmetric(horizontal: 15),
           child: SectionTitle(
             title: "Categorias",
             press: () {},
@@ -126,8 +137,6 @@ class _CategoryCardState extends State<CategoryCard> {
                 ),
               ),
             ),
-
-
 
                  Text(
                       widget.model!.categoriaName!,

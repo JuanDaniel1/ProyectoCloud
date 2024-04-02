@@ -9,14 +9,14 @@ import '../../../size_config.dart';
 
 // Seccion de descripcion de productos en detalles
 
-class ProductDescription extends StatelessWidget {
-  const ProductDescription({
+class PopularDescription extends StatelessWidget {
+  const PopularDescription({
     Key? key,
-    required this.model,
-    this.pressOnSeeMore,
+    this.pressOnSeeMore, required this.description, required this.name,
   }) : super(key: key);
 
-  final PopularModel? model;
+  final String description;
+  final String name;
   final GestureTapCallback? pressOnSeeMore;
 
   @override
@@ -28,7 +28,7 @@ class ProductDescription extends StatelessWidget {
           padding:
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
           child: Text(
-            model!.productoName!,
+            name,
             style: Theme.of(context).textTheme.headline6,
           ),
         ),
@@ -38,7 +38,7 @@ class ProductDescription extends StatelessWidget {
             right: getProportionateScreenWidth(64),
           ),
           child: Text(
-            model!.productoDescription!,
+            description,
             maxLines: 3,
           ),
         ),

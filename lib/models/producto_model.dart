@@ -14,6 +14,8 @@ class ProductoModel {
   late String? productoPrice;
   late String? productoImage;
   late String? productoCantidad;
+  late String? subtotal;
+  late String? counter;
   late List<dynamic?>selected=[];
   double total = 0.0;
 
@@ -24,6 +26,8 @@ class ProductoModel {
     this.productoPrice,
     this.productoImage,
     this.productoCantidad,
+    this.subtotal,
+    this.counter
   });
 
   factory ProductoModel.fromJson(Map<String, dynamic> json) {

@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/components/coustom_bottom_nav_bar.dart';
 import 'package:shop_app/enums.dart';
+import 'package:shop_app/menuAdmin.dart';
 import 'package:shop_app/menucomerc.dart';
 
 import '../../menu.dart';
@@ -26,8 +27,11 @@ class HomeScreen extends StatelessWidget {
               if(user.email == "comerc@gmail.com"){
                 return MenuComerc();
               } else if(user.email == "admin@gmail.com"){
+                return MenuAdmin();
+              } else if(user.email == "jefe@gmail.com"){
                 return MenuTutor();
-              } else{
+              }
+              else{
                 return SizedBox.shrink();
               }
             } else {

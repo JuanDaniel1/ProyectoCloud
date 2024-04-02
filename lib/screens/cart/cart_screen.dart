@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shop_app/config.dart';
 import 'package:shop_app/models/Cart.dart';
+import 'package:shop_app/screens/cart/provider.dart';
 
 import '../../models/carrito_model.dart';
 import 'components/body.dart';
@@ -18,13 +20,9 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-
   Future<List<CarritoModel>> fetchPopularData() async {
     final response =
-
-
-    await http.get(Uri.parse("${Config.apiURL}${Config.carritoAPI}"));
-
+        await http.get(Uri.parse("${Config.apiURL}${Config.carritoAPI}"));
 
     if (response.statusCode == 200) {
       // Decodificar la respuesta JSON y mapear a instancias de PopularModel
@@ -53,38 +51,28 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: fetchPopularData(),
-    builder: (context, snapshot) {
-    if (snapshot.connectionState == ConnectionState.waiting) {
-    // Muestra un indicador de carga mientras se obtienen los datos
-    return CircularProgressIndicator();
-    } else if (snapshot.hasError) {
-    // Muestra un mensaje de error si la obtención de datos falla
-    return Text('Error: ${snapshot.error}');
-    } else {
-    // Si los datos se obtienen correctamente, actualiza la lista de elementos del carrito
+    final shoppingCartProvider = Provider.of<ShoppingCartProvider>(context);
+    final productsPurchased =   shoppingCartProvider.listProductsPurchased;
+            // Si los datos se obtienen correctamente, actualiza la lista de elementos del carrito
 
-    return Scaffold(
-    appBar: AppBar(
-    title: Column(
-    children: [
-    Text(
-    "Carrito de Compras",
-    style: TextStyle(color: Colors.black),
-    ),
-    Text(
-    "${snapshot.data!.length} items",
-    style: Theme.of(context).textTheme.caption,
-    ),
-    ],
-    ),
-    ),
-    body: Body(),
-    );
-    }});
-    }
+            return Scaffold(
+              appBar: AppBar(
+                title: Column(
+                  children: [
+                    Text(
+                      "Carrito de Compras",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    Text(
+                      "${productsPurchased.length} items",
+                      style: Theme.of(context).textTheme.caption,
+                    ),
+                  ],
+                ),
+              ),
+              body: Body(),
+            );
+          }
+
 
 }
-
-

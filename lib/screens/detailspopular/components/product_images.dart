@@ -8,19 +8,19 @@ import '../../../size_config.dart';
 
 // Imagen de productos en detalles
 
-class ProductImages extends StatefulWidget {
-  const ProductImages({
+class PopularImages extends StatefulWidget {
+  const PopularImages({
     Key? key,
     required this.model,
   }) : super(key: key);
 
-  final PopularModel? model;
+  final String model;
 
   @override
-  _ProductImagesState createState() => _ProductImagesState();
+  _PopularImagesState createState() => _PopularImagesState();
 }
 
-class _ProductImagesState extends State<ProductImages> {
+class _PopularImagesState extends State<PopularImages> {
   int selectedImage = 0;
   @override
   Widget build(BuildContext context) {
@@ -30,10 +30,9 @@ class _ProductImagesState extends State<ProductImages> {
           width: getProportionateScreenWidth(238),
           child: AspectRatio(
             aspectRatio: 1,
-            child: Hero(
-              tag: widget.model!.id.toString(),
-              child: Image.network(widget.model!.productoImage!),
-            ),
+
+              child: Image.network(widget.model),
+
           ),
         ),
         // SizedBox(height: getProportionateScreenWidth(20)),
@@ -61,7 +60,7 @@ class _ProductImagesState extends State<ProductImages> {
           border: Border.all(
               color: kPrimaryColor.withOpacity(selectedImage == index ? 1 : 0)),
         ),
-        child: Image.network(widget.model!.productoImage!, fit: BoxFit.cover,),
+        child: Image.network(widget.model, fit: BoxFit.cover,),
       ),
     );
   }

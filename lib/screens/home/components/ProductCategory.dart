@@ -91,10 +91,10 @@ class _ProductCategoryState extends State<ProductCategory> {
           children: [
             Padding(
               padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+              EdgeInsets.symmetric(horizontal: 10),
               child: SectionTitle(title: widget.title, press: () {}),
             ),
-            SizedBox(height: getProportionateScreenWidth(20)),
+            SizedBox(height: 15),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

@@ -1,12 +1,14 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shop_app/components/default_button.dart';
 import 'package:shop_app/models/Product.dart';
 import 'package:shop_app/size_config.dart';
 
 import '../../../components/rounded_icon_btn.dart';
 import '../../../models/producto_model.dart';
+import '../../cart/provider.dart';
 import 'color_dots.dart';
 import 'product_description.dart';
 import 'top_rounded_container.dart';
@@ -43,13 +45,16 @@ class _BodyState extends State<Body> {
   }
   @override
   Widget build(BuildContext context) {
+    final shoppingCartProvider = Provider.of<ShoppingCartProvider>(context);
     return ListView(
       children: [
+
         ProductImages(model: widget.model),
         TopRoundedContainer(
           color: Colors.white,
           child: Column(
             children: [
+
               ProductDescription(
                 model: widget.model,
                 pressOnSeeMore: () {},
@@ -96,7 +101,21 @@ class _BodyState extends State<Body> {
                               child: DefaultButton(
                                 text: "Anadir a carrito",
                                 press: () {
-                                  save();
+                                  double price = double.parse(widget.model!.productoPrice ?? '0');
+                                  int quantity = counter;
+                                  double subtotal = price * quantity;
+                                  shoppingCartProvider.listProductsPurchased.add(
+                                      ProductoModel(
+                                          id: widget.model!.id,
+                                          productoDescription: widget.model!.productoDescription,
+                                          productoPrice: widget.model!.productoPrice,
+                                          productoCantidad: widget.model!.productoCantidad,
+                                          productoName: widget.model!.productoName,
+                                          productoImage: widget.model!.productoImage,
+                                         counter: counter.toString(),
+                                        subtotal: subtotal.toString(),
+                                      )
+                                  );
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(

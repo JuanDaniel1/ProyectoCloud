@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:shop_app/config.dart';
 import 'package:shop_app/models/Cart.dart';
 import 'package:http/http.dart' as http;
@@ -11,6 +12,7 @@ import '../../../components/default_button.dart';
 import '../../../constants.dart';
 import '../../../models/carrito_model.dart';
 import '../../../size_config.dart';
+import '../provider.dart';
 import 'cart_card.dart';
 import 'package:shop_app/screens/cart/factura/pdf_pages.dart';
 import 'package:pdf/widgets.dart' as pdfWidgets;
@@ -26,46 +28,14 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  Future<List<CarritoModel>> fetchPopularData() async {
-    final response = await http.get(Uri.parse("${Config.apiURL}${Config.carritoAPI}"));
 
-    if (response.statusCode == 200) {
-      // Decodificar la respuesta JSON y mapear a instancias de PopularModel
-      List<CarritoModel> carritoList = carritoFromJson(response.body);
-      // Puedes imprimir el total si lo necesitas
-      return carritoList;
-    } else {
-      // Si la solicitud no fue exitosa, lanzar una excepción o manejar el error según sea necesario
-      throw Exception('Error al cargar datos desde la API');
-    }
-  }
-
-  void main() async {
-    try {
-      List<CarritoModel> popularData = await fetchPopularData();
-
-      // Hacer algo con los datos obtenidos, por ejemplo, imprimirlos
-      print('Datos del carrito: $popularData');
-      // Hacer algo con los datos obtenidos, por ejemplo, imprimirlos
-      print(popularData);
-    } catch (e) {
-      // Manejar el error
-      print('Error: $e');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<CarritoModel>>(
-        future: fetchPopularData(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator(); // Puedes mostrar un indicador de carga mientras se espera la respuesta.
-          }  else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Text('No se encontraron datos');
-          } else {
-            double total = snapshot.data!
-                .map((carrito) => double.parse(carrito.carritoSubtotal!))
+    final shoppingCartProvider = Provider.of<ShoppingCartProvider>(context);
+    final productsPurchased =   shoppingCartProvider.listProductsPurchased;
+            double total = productsPurchased!
+                .map((carrito) => double.parse(carrito.subtotal!))
                 .fold(0, (a, b) => a + b);
             return Padding(
                 padding: EdgeInsets.symmetric(
@@ -74,16 +44,15 @@ class _BodyState extends State<Body> {
                   children: [
                     Expanded(
                       child: ListView.builder(
-                        itemCount: snapshot.data!.length,
+                        itemCount: productsPurchased.length,
                         itemBuilder: (context, index) => Padding(
                           padding: EdgeInsets.symmetric(vertical: 10),
                           child: Dismissible(
-                            key: Key(snapshot.data![index].toString()),
+                            key: Key(productsPurchased[index].toString()),
                             direction: DismissDirection.endToStart,
                             onDismissed: (direction) async {
-                              await snapshot.data![index].deleteCarrito();
                               setState(() {
-                                snapshot.data!.removeAt(index);
+                                productsPurchased.removeAt(index);
                               });
                               Navigator.pushReplacementNamed(context, CartScreen.routeName);
                             },
@@ -116,7 +85,7 @@ class _BodyState extends State<Body> {
                                         borderRadius: BorderRadius.circular(15),
                                       ),
                                       child: Image.network(
-                                          snapshot.data![index].carritoImagen!),
+                                          productsPurchased[index].productoImage!),
                                     ),
                                   ),
                                 ),
@@ -125,7 +94,7 @@ class _BodyState extends State<Body> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      snapshot.data![index].carritoNombre!,
+                                      productsPurchased[index].productoName!,
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontSize:
@@ -136,7 +105,7 @@ class _BodyState extends State<Body> {
                                     Text.rich(
                                       TextSpan(
                                         text:
-                                            "\$${snapshot.data![index].carritoPrecioUnitario}",
+                                            "\$${productsPurchased[index].productoPrice}",
                                         style: TextStyle(
                                             fontWeight: FontWeight.w600,
                                             color: kPrimaryColor,
@@ -146,7 +115,7 @@ class _BodyState extends State<Body> {
                                         children: [
                                           TextSpan(
                                               text:
-                                                  " x${snapshot.data![index].carritoCantidad}",
+                                                  " x${productsPurchased[index].counter}",
                                               style: TextStyle(
                                                   fontSize:
                                                       getProportionateScreenWidth(
@@ -169,7 +138,7 @@ class _BodyState extends State<Body> {
                                       ),
                                     ),
                                     Text(
-                                      "\$${snapshot.data![index].carritoSubtotal}",
+                                      "\$${productsPurchased[index].subtotal}",
                                       style: TextStyle(
                                           fontSize:
                                               getProportionateScreenWidth(16),
@@ -244,7 +213,7 @@ class _BodyState extends State<Body> {
                                   child: DefaultButton(
                                     text: "Comprar",
                                     press: () async {
-                                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=> PdfPage(model: snapshot.data!,)));
+                                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=> PdfPage(model: productsPurchased,)));
                                     },
                                   ),
                                 ),
@@ -257,6 +226,6 @@ class _BodyState extends State<Body> {
                   ],
                 ));
           }
-        });
-  }
+
+
 }

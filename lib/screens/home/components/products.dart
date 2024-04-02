@@ -56,7 +56,7 @@ class PopularProducts extends StatelessWidget {
       children: [
         Padding(
           padding:
-          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+          EdgeInsets.symmetric(horizontal: 15),
           child: SectionTitle(title: "Productos", press: () {}),
         ),
         SizedBox(height: getProportionateScreenWidth(20)),

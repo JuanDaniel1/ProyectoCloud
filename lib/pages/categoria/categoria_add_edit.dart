@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:shop_app/menu.dart';
 import 'package:shop_app/models/categoria_model.dart';
 import 'package:shop_app/pages/categoria/categoria_list.dart';
 import 'package:shop_app/services/api_categoria.dart';
@@ -169,7 +170,7 @@ class _CategoriaAddEditState extends State<CategoriaAddEdit> {
                           "Error occur",
                           "OK",
                               () {
-                            Navigator.pop(context);
+                            Navigator.pushNamed(context, MenuTutor.routeName);
                           },
                         );
                       }

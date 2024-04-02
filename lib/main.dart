@@ -2,8 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:shop_app/routes.dart';
 import 'package:shop_app/screens/MySplashPage.dart';
+import 'package:shop_app/screens/cart/provider.dart';
 import 'package:shop_app/screens/splash/splash_screen.dart';
 import 'package:shop_app/theme.dart';
 
@@ -22,12 +24,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiProvider(
+        providers: [
+    ChangeNotifierProvider(create: (_) => new ShoppingCartProvider())
+    ],
+      child:MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'The Flutter Way - Template',
       theme: AppTheme.lightTheme(context),
       initialRoute: MySplash.routeName,
       routes: routes,
+    )
     );
   }
 }

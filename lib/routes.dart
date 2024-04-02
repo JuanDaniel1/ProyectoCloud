@@ -3,6 +3,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:shop_app/main.dart';
+import 'package:shop_app/menuAdmin.dart';
+import 'package:shop_app/menuEncargado.dart';
 import 'package:shop_app/menucomerc.dart';
 import 'package:shop_app/pages/categoria/categoria_add_edit.dart';
 import 'package:shop_app/pages/categoria/categoria_item.dart';
@@ -12,15 +14,14 @@ import 'package:shop_app/pages/producto/producto_list.dart';
 import 'package:shop_app/screens/MySplashPage.dart';
 import 'package:shop_app/screens/cart/cart_screen.dart';
 import 'package:shop_app/screens/chatbot/chatbotscreen.dart';
-import 'package:shop_app/screens/comercializadora/comercializadora.dart';
 import 'package:shop_app/screens/comercializadora/populares/producto_list.dart';
 import 'package:shop_app/screens/comercializadora/producto/producto_list.dart';
 import 'package:shop_app/screens/complete_profile/complete_profile_screen.dart';
 import 'package:shop_app/screens/details/details_screen.dart';
+import 'package:shop_app/screens/detailspopular/details_screen.dart';
 import 'package:shop_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/screens/informacion/pag2_informacion.dart';
-import 'package:shop_app/screens/jefe/jefe.dart';
 import 'package:shop_app/screens/login_success/login_success_screen.dart';
 import 'package:shop_app/screens/otp/otp_screen.dart';
 import 'package:shop_app/screens/profile/profile_screen.dart';
@@ -51,15 +52,16 @@ final Map<String, WidgetBuilder> routes = {
   ProductoAddEdit.routeName: (context) => ProductoAddEdit(),
   ProductosList.routeName: (context) => ProductosList(),
   Carousel.routeName: (context) => Carousel(),
-  jefe.routeName: (context) => jefe(),
-  Comercializadora.routeName: (context) => Comercializadora(),
   MySplash.routeName: (context) => MySplash(),
   CategoriaAddEdit.routeName: (context) => CategoriaAddEdit(),
   CategoriasList.routeName: (context) => CategoriasList(),
   Register.routeName: (context) => Register(),
   PopularListComerc.routeName: (context) => PopularListComerc(),
   ProductosListComerc.routeName: (context) => ProductosListComerc(),
-  MenuComerc.routeName: (context) => MenuComerc()
+  MenuComerc.routeName: (context) => MenuComerc(),
+  MenuAdmin.routeName: (context) => MenuAdmin(),
+  MenuEncarg.routeName: (context) => MenuEncarg(),
+  DetailsPopularScreen.routeName: (context) => DetailsPopularScreen(),
 
 };
 

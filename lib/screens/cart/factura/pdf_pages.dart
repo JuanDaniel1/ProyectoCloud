@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:printing/printing.dart';
+import 'package:shop_app/models/producto_model.dart';
 import 'package:shop_app/screens/cart/factura/util/util.dart';
 import 'dart:io';
 import 'dart:typed_data';
@@ -16,7 +17,7 @@ import '../../../models/carrito_model.dart';
 import 'dart:math';
 
 class PdfPage extends StatefulWidget {
-  final List<CarritoModel> model;
+  final List<ProductoModel> model;
   const PdfPage({super.key, required this.model});
 
   @override
@@ -68,6 +69,7 @@ class _PdfPageState extends State<PdfPage> {
   }
 
   Future<Uint8List> generatePdf(final PdfPageFormat format) async {
+
     final doc = pw.Document(title: "Factura");
     final logoImage = pw.MemoryImage(
         (await rootBundle.load("assets/sena.png")).buffer.asUint8List());
@@ -126,7 +128,7 @@ class _PdfPageState extends State<PdfPage> {
                               ]),
                           pw.SizedBox(width: 70),
                           pw.BarcodeWidget(
-                              data: "Su pedido se ha realizado con exito! tiene un plazo de 1 dia ($formattedNow - $formattedTomorrow) para reclamar sus productos , costo total de \$${widget.model.map((carrito) => int.parse(carrito.carritoSubtotal!)).fold(0, (a, b) => a + b)}",
+                              data: "Su pedido se ha realizado con exito! tiene un plazo de 1 dia ($formattedNow - $formattedTomorrow) para reclamar sus productos , costo total de \$",
                               width: 160,
                               height: 160,
                               barcode: pw.Barcode.qrCode(),
@@ -143,6 +145,7 @@ class _PdfPageState extends State<PdfPage> {
     )
                     ),
                 for (var item in widget.model)
+
                   pw.Container(
                     padding:
                         pw.EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -153,10 +156,10 @@ class _PdfPageState extends State<PdfPage> {
                     child: pw.Row(
                       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                       children: [
-                        pw.Text(item.carritoNombre!),
+                        pw.Text(item.productoName!),
                         pw.Text(
-                            "\$${item.carritoPrecioUnitario} x ${item.carritoCantidad}"),
-                        pw.Text("\$${item.carritoSubtotal}"),
+                            "\$${item.productoPrice} x ${item.counter}"),
+                        pw.Text("\$${item.subtotal}"),
                       ],
                     ),
                   ),
@@ -173,7 +176,9 @@ class _PdfPageState extends State<PdfPage> {
                     children: [
                       pw.Text('Total:'),
                       pw.Text(
-                          "\$${widget.model.map((carrito) => int.parse(carrito.carritoSubtotal!)).fold(0, (a, b) => a + b)}"),
+                          "\$${widget.model!
+        .map((carrito) => int.parse(carrito.subtotal!))
+        .fold(0, (a, b) => a + b)}"),
                     ],
                   ),
                 )

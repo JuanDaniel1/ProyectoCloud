@@ -39,7 +39,7 @@ dependencies:
   provider: ^6.0.5 # for State management
   dialogflow_flutter:
   bubble: ^1.1.9+1
-  intl: ^0.18.1
+  intl:
   carousel_slider: ^4.0.0
   snippet_coder_utils: ^1.0.9
   image_picker: ^0.8.4+4
@@ -71,6 +71,8 @@ dependencies:
   pdf:
   open_file:
   printing:
+  charts_flutter_new:
+  syncfusion_flutter_charts: ^21.2.4
 
 dev_dependencies:
   flutter_test:
