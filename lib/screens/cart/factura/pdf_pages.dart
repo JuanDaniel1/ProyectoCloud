@@ -70,7 +70,7 @@ class _PdfPageState extends State<PdfPage> {
 
   Future<Uint8List> generatePdf(final PdfPageFormat format) async {
 
-    final doc = pw.Document(title: "Factura");
+    final doc = pw.Document(title: "Reserva");
     final logoImage = pw.MemoryImage(
         (await rootBundle.load("assets/sena.png")).buffer.asUint8List());
 
@@ -79,7 +79,7 @@ class _PdfPageState extends State<PdfPage> {
     Random random = Random();
     int randomNumber = random.nextInt(1000000);
     DateTime now = DateTime.now();
-    DateTime tomorrow = now.add(Duration(days: 1));
+    DateTime tomorrow = now.add(Duration(hours: 8));
     String formatDate(DateTime dateTime) {
       String formattedDate =
           "${dateTime.year.toString().padLeft(4, '0')}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')} ${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}";
@@ -128,7 +128,7 @@ class _PdfPageState extends State<PdfPage> {
                               ]),
                           pw.SizedBox(width: 70),
                           pw.BarcodeWidget(
-                              data: "Su pedido se ha realizado con exito! tiene un plazo de 1 dia ($formattedNow - $formattedTomorrow) para reclamar sus productos , costo total de \$",
+                              data: "Su pedido se ha realizado con exito! tiene un plazo de 8 horas ($formattedNow - $formattedTomorrow) para reclamar sus productos , costo total de \$",
                               width: 160,
                               height: 160,
                               barcode: pw.Barcode.qrCode(),

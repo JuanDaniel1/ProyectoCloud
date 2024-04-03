@@ -93,7 +93,6 @@ class _ChatBotState extends State<ChatBot> {
               child: ListTile(
 
                 title: Container(
-                  height: 35,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(
                         15)),

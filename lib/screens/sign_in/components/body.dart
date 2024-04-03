@@ -27,7 +27,7 @@ class Body extends StatelessWidget {
                   "Bienvenido!",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: getProportionateScreenWidth(28),
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -35,14 +35,14 @@ class Body extends StatelessWidget {
                   "Inicia Sesion con tu correo y contrasena ", style: TextStyle(color: Colors.white),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: SizeConfig.screenHeight * 0.08),
+                SizedBox(height: 25),
                 SignForm(),
-                SizedBox(height: getProportionateScreenHeight(20)),
+                SizedBox(height: 20),
                 IconButton(onPressed: (){
 
 
                 }, icon: Icon(Icons.camera)),
-                SizedBox(height: getProportionateScreenHeight(20)),
+                SizedBox(height: 30),
                 NoAccountText(),
               ],
             ),

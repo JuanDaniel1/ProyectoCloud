@@ -122,21 +122,24 @@ class _RecibidosState extends State<Recibidos> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Enviados: ${recibidos[index].enviado}'),
-                      Text('Recibidos: '),
-                      Expanded(
-                          child: SizedBox(
-                            width: 5,
-                            child: TextField(
+                      Padding(padding: EdgeInsets.only(right: 30),child: Text('Enviados: ${recibidos[index].enviado}'),)
 
-                              // Aquí puedes manejar la entrada de texto como desees
-                              controller: textFieldController,
-                            ),
-                          )
 
-                      ),
+
+
+
+
+
                     ],
                   ),
+                  Expanded(child: TextField(
+
+                    // Aquí puedes manejar la entrada de texto como desees
+                    controller: textFieldController,
+                    decoration: InputDecoration(
+                      hintText: "Recibidos"
+                    ),
+                  ),),
 
                   IconButton(onPressed: (){
                     postData();
