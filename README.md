@@ -1,13 +1,5 @@
 
-##
-## Aqui hubieron cambios de diseño en la barra de busqueda
-![2](https://github.com/JuanDaniel1/ProyectoFinalGitSena/assets/110691487/f2a4412b-b0ca-4588-b897-040214b698d9)
-##
-## Como se veria la lista  en general 
-![3](https://github.com/JuanDaniel1/ProyectoFinalGitSena/assets/110691487/e38d10b0-3946-41b7-ad52-8d045a64dbf3)
-##
-## He de actualiar el GitHub, hace bastante tiempo no lo actualizaba, pero aqui estamos con las nuevas mejoras, arreglos o cosas en construccion que el equipo esta trabajando!!
-## Espero les guste lo que podran encontrar en este Repositorio
+
 
 
 ## Pantalla de Carga!
