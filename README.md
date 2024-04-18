@@ -1,3 +1,11 @@
+# Integrantes
+
+- Juan Daniel Bohorquez Gonzalez
+- Sebastian Vidales
+- Felipe Cortes
+- Felipe Quevedo
+- Ronald Cortes
+
 # Tienda Sena
 
 Esta tienda contiene varias funcionalidades por cada rol (usuario, administrador, encargado de unidad, comercializadora, jefe de produccion) contiene una interfaz agradable y sencilla para que el usuario pueda comprenderla facilmente y pueda interactuar. A continuacion se observaran distintas secciones esenciales de la aplicacion.
