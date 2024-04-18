@@ -72,19 +72,16 @@ Esta tienda contiene varias funcionalidades por cada rol (usuario, administrador
 ##
 
 ## LogIn
-*Podemos ver un simple LogIn, realmente simple, sin mucho más!*
+*Podemos ver un LogIn, con un fondo como imagen y los campos para digitar el correo y contrasena, una vez que estos coincidan con la cuenta existente, te permitira continuar a la seccion de pagina principal*
 ##
 ![LOG_IN](https://github.com/JuanDaniel1/ProyectoFinalGitSena/assets/110691487/64059ff1-bd64-4ee0-a55c-aadde42d2e9f)
 ##
-## ¿Comó se ve una vez logeado?
-*Es bastante simple, informacion general de la cuenta *
-##
-![PANTALLA_LOGEO](https://github.com/JuanDaniel1/ProyectoFinalGitSena/assets/110691487/c40a9e12-fe24-43e4-98c4-aa4f8b52aaf7)
-##
+
 ## Pantalla de Perfil 
 *Podemos ver las opciones para loguearse en la tienda*
 ##
-![PANTALLA_PERFIL](https://github.com/JuanDaniel1/ProyectoFinalGitSena/assets/110691487/a35a6216-770e-495d-b632-4c5850f8e2ab)
+![WhatsApp Image 2024-04-18 at 7 24 53 AM](https://github.com/JuanDaniel1/ProyectoCloud/assets/110575826/65231af1-acc2-4001-a32d-2a94e2223d64)
+
 ##
 ## Registro de cuentas
 *Aqui podremos ver un simple registro, donde tendremos 3 campos a llenar, el usuario, el email, y la contraseña, una vez que ya hayan sido registrados, se procede a ingresar a la tienda con usuario*
