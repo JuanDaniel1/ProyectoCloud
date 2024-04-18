@@ -41,16 +41,36 @@ Esta tienda contiene varias funcionalidades por cada rol (usuario, administrador
 ##
 ![INFO_SENA](https://github.com/JuanDaniel1/ProyectoFinalGitSena/assets/110691487/355a9d4b-bec2-472e-83ed-80cfd52f162f)
 ##
-## Interfaz del admin para agregar Productos!
-*Podemos ver un boton "hamburguesa" seguido de 3 botones, uno para agregar producto, el menu y el inicio, seguido unas cards para editar y eliminar algun producto!*
-##
-![INTERFA_ADMIN_AGREGAR_PRODUCTO](https://github.com/JuanDaniel1/ProyectoFinalGitSena/assets/110691487/e5a89d34-e3e9-4f58-a4e4-d6f6e683ea1a)
-##
+
 ## Interfaz Admin
-*Podemos ver un pequeño resumen de perfil, el nombre del administrador, una imagen de perfil, y un correo de contacto, seguido de la pagina de categorias, productos y productos populares, para poder editarlos debidamente!*
+*Podemos visualizar una grafica que nos muestra la cantidad de productos enviados, recibidos y las perdidas, para mantener un control respecto a este tipo de situaciones*
 ##
-![INTERFAZZZ_ADMIN](https://github.com/JuanDaniel1/ProyectoFinalGitSena/assets/110691487/8f6cbd1c-9eff-440b-aeab-74e016887c1d)
+![Admin](https://github.com/JuanDaniel1/ProyectoCloud/assets/110575826/61fb1cd1-cc18-4a6b-bbb0-4ef711abdccb)
 ##
+
+## Interfaz Comercializadora
+*Podemos observar los productos que hay en la tienda y en este caso la comercializadora sera la encargada de agregar a productos populares, dependiendo de su buena venta o si se requiere de una venta rapida de aquellos productos, tambien se encuentra una seccion donde se colocan los recibidos de los envios hechos por el encargado de la unidad, para que estos datos sean enviados al administrador*
+##
+![WhatsApp Image 2024-04-18 at 7 03 47 AM-2](https://github.com/JuanDaniel1/ProyectoCloud/assets/110575826/20277c47-0047-4e73-9bf2-79c754416e04)
+![WhatsApp Image 2024-04-18 at 7 03 47 AM-3](https://github.com/JuanDaniel1/ProyectoCloud/assets/110575826/770187bc-b881-4c33-a9d9-5d065c8cfcdf)
+##
+
+## Intergaz Jefe de produccion
+*Contaremos con una seccion para que el jefe pueda crear, eliminar y editar las categorias de la tienda, al mismo tiempo con los productos tambien podra realizar estas funciones y los cambios se veran reflejados en la tienda*
+##
+![WhatsApp Image 2024-04-18 at 7 03 47 AM-4](https://github.com/JuanDaniel1/ProyectoCloud/assets/110575826/b7df4ebf-ace2-4370-8d2a-29ef8fef4846)
+![WhatsApp Image 2024-04-18 at 7 03 47 AM-5](https://github.com/JuanDaniel1/ProyectoCloud/assets/110575826/322a0496-6793-4e18-a371-8996e3d29f0d)
+##
+
+
+## Interfaz encargado de unidad
+*Este rol cumple con los envios de los productos hacia la tienda, por lo tanto va a colocar el nombre del producto y la cantidad de unidades que fueron enviadas a la tienda, asi mismo estos datos llegaran a la comercializadora para continuar con el respectivo procedimiento*
+##
+
+![WhatsApp Image 2024-04-18 at 7 21 44 AM](https://github.com/JuanDaniel1/ProyectoCloud/assets/110575826/e921045e-9f73-424f-982d-cd5e83b2dbb2)
+
+##
+
 ## LogIn
 *Podemos ver un simple LogIn, realmente simple, sin mucho más!*
 ##
@@ -62,12 +82,12 @@ Esta tienda contiene varias funcionalidades por cada rol (usuario, administrador
 ![PANTALLA_LOGEO](https://github.com/JuanDaniel1/ProyectoFinalGitSena/assets/110691487/c40a9e12-fe24-43e4-98c4-aa4f8b52aaf7)
 ##
 ## Pantalla de Perfil 
-*Podemos ver nuestra imagen de perfil, la configuracion del perfil, la informacion de nuestra cuenta y una opcion para cerrar sesión*
+*Podemos ver las opciones para loguearse en la tienda*
 ##
 ![PANTALLA_PERFIL](https://github.com/JuanDaniel1/ProyectoFinalGitSena/assets/110691487/a35a6216-770e-495d-b632-4c5850f8e2ab)
 ##
 ## Registro de cuentas
-*Aqui podremos ver un simple registro, donde tendremos 3 campos a llenar, el usuario, el email, y la contraseña*
+*Aqui podremos ver un simple registro, donde tendremos 3 campos a llenar, el usuario, el email, y la contraseña, una vez que ya hayan sido registrados, se procede a ingresar a la tienda con usuario*
 ##
 ![REGISTER](https://github.com/JuanDaniel1/ProyectoFinalGitSena/assets/110691487/b3714ddc-9dca-4ce5-826b-19762647642f)
 ##
